@@ -16,6 +16,7 @@ public class MyPanel extends JPanel{
 	
 	public MyPanel() { //Creamos el constructor para el/los paneles que usaremos para personalizarlos
 		Font font = new Font("Arial", Font.BOLD, 22);
+		Font fontError = new Font("Arial", Font.ITALIC, 14);
 		setBackground(new Color(255, 239, 182));
 		setLayout(null); //Hacemos que no salgan las cosas por defecto
 		JButton button = new JButton("Sign In", new ImageIcon("src/img/happy.png")); //Creacion del boton mediante un constructor (Pueden recibir multiples tipos de parametros, por eso es necesario verificar cual es más conveniente
@@ -29,7 +30,7 @@ public class MyPanel extends JPanel{
 		initializeButtonImage(button, "../img/happy.png"); //Se utiliza del metodo de abajo
 		
 		button.setToolTipText("Te redigira a otra pestaña"); //Añade un texto al pasar el mouse por encima
-		button.setBounds(440, 375, 120, 50);
+		button.setBounds(440, 425, 120, 50);
 		add(button);
 		
 		JLabel grettings = new JLabel("Welcome!, explore the wonderfull and bizarre world of Cinerea");
@@ -39,18 +40,25 @@ public class MyPanel extends JPanel{
 		
 		JLabel login = new JLabel("Login");
 		initializeCustomLabels(login, font, 470, 30, 800, 150);
-		grettings.setForeground(Color.black);
 		add(login);
 		
 		JLabel email = new JLabel("EMAIL");
-		initializeCustomLabels(email, font, 300, 30, 500, 300);
-		grettings.setForeground(Color.black);
+		initializeCustomLabels(email, font, 300, 30, 500, 345);
 		add(email);
 		
+		JLabel emailErrorText = new JLabel("Email is required");
+		initializeCustomLabels(emailErrorText, fontError, 300, 30, 500, 485);
+		emailErrorText.setForeground(Color.red);
+		add(emailErrorText);
+		
 		JLabel passwordLabel = new JLabel("PASSWORD");
-		initializeCustomLabels(passwordLabel, font, 300, 30, 500, 520);
-		grettings.setForeground(Color.black);
+		initializeCustomLabels(passwordLabel, font, 300, 30, 500, 550);
 		add(passwordLabel);
+		
+		JLabel passwordLabelErrorText = new JLabel("Password is required");
+		initializeCustomLabels(passwordLabelErrorText, fontError, 300, 30, 500, 685);
+		passwordLabelErrorText.setForeground(Color.red);
+		add(passwordLabelErrorText);
 		
 		JTextField text = new JTextField("");
 		text.setForeground(Color.black);
@@ -63,6 +71,8 @@ public class MyPanel extends JPanel{
 		password.setBounds(300, 320, 400, 40);
 		password.setFont(font);
 		add(password);
+		
+		
 		
 		/*
 		 * add(Component c) se añade el componente a la ventana

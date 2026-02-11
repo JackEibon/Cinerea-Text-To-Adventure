@@ -14,7 +14,7 @@ public class MyWindow extends JFrame{ //Extendemos a la libreria JFrame
 		setIconImage(myIcon);
 		setTitle("Happy Program");
 		
-		setSize(1000, 800);
+		setSize(1000, 600);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
