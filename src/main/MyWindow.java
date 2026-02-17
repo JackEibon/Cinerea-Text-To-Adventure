@@ -4,6 +4,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame; //Importamos la libreria JFrame
 
+import views.BorderLayoutPanel;
+import views.BoxLayoutPanel;
+import views.FlowLayoutPanel;
+import views.GridLayoutPanel;
 import views.MyPanel;
 
 public class MyWindow extends JFrame{ //Extendemos a la libreria JFrame
@@ -16,9 +20,13 @@ public class MyWindow extends JFrame{ //Extendemos a la libreria JFrame
 		
 		setSize(1000, 600);
 		setLocationRelativeTo(null);
-		setResizable(false);
+		setResizable(true);
 		
-		MyPanel panel = new MyPanel(); //Instanciamos la clase panel que funcionara como un panel dentro de las ventanas
+		//MyPanel panel = new MyPanel(); //Instanciamos la clase panel que funcionara como un panel dentro de las ventanas
+		//FlowLayoutPanel panel = new FlowLayoutPanel(); //Este viene desde el FlowLayoutPanel que esta en views
+		//BorderLayoutPanel panel = new BorderLayoutPanel(); //Este viene desde el BorderLayoutPanel que esta en views
+		//GridLayoutPanel panel = new GridLayoutPanel(); //Este viene desde el GridLayoutPanel que esta en views
+		BoxLayoutPanel panel = new BoxLayoutPanel(); //Este viene desde el BoxLayoutL¿Panel que esta en views
 		add(panel);
 		
 		setVisible(true); //Hacemos visible la ventana con setVisible, se puede agregar en el main con frame. o el constructor (es preferible que se ponga al final del constructor)

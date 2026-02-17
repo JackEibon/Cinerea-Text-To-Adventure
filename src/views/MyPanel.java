@@ -38,41 +38,39 @@ public class MyPanel extends JPanel{
 		grettings.setForeground(Color.black);
 		add(grettings);
 		
-		JLabel login = new JLabel("Login");
+		JLabel login = new JLabel("Login"); //Label de LOGIN
 		initializeCustomLabels(login, font, 470, 30, 800, 150);
 		add(login);
 		
-		JLabel email = new JLabel("EMAIL");
+		JLabel email = new JLabel("EMAIL"); //Label que estara encima del campo de email
 		initializeCustomLabels(email, font, 300, 30, 500, 345);
 		add(email);
 		
-		JLabel emailErrorText = new JLabel("Email is required");
+		JLabel emailErrorText = new JLabel("Email is required"); //Label que estara debajo del campo de contraseña
 		initializeCustomLabels(emailErrorText, fontError, 300, 30, 500, 485);
 		emailErrorText.setForeground(Color.red);
 		add(emailErrorText);
 		
-		JLabel passwordLabel = new JLabel("PASSWORD");
+		JLabel passwordLabel = new JLabel("PASSWORD"); //Label que estara encima del campo de contraseña
 		initializeCustomLabels(passwordLabel, font, 300, 30, 500, 550);
 		add(passwordLabel);
 		
-		JLabel passwordLabelErrorText = new JLabel("Password is required");
+		JLabel passwordLabelErrorText = new JLabel("Password is required"); //Label que estara debajo del campo de contraseña
 		initializeCustomLabels(passwordLabelErrorText, fontError, 300, 30, 500, 685);
 		passwordLabelErrorText.setForeground(Color.red);
 		add(passwordLabelErrorText);
 		
-		JTextField text = new JTextField("");
+		JTextField text = new JTextField(""); //Un campo de texto
 		text.setForeground(Color.black);
 		text.setBounds(300, 220, 400, 40);
 		text.setFont(font);
 		add(text);
 		
-		JPasswordField password = new JPasswordField("");
+		JPasswordField password = new JPasswordField(""); //Un campo de contraseña
 		password.setForeground(Color.black);
 		password.setBounds(300, 320, 400, 40);
 		password.setFont(font);
 		add(password);
-		
-		
 		
 		/*
 		 * add(Component c) se añade el componente a la ventana
