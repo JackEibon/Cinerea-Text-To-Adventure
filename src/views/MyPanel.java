@@ -17,7 +17,8 @@ public class MyPanel extends JPanel{
 	public MyPanel() { //Creamos el constructor para el/los paneles que usaremos para personalizarlos
 		Font font = new Font("Arial", Font.BOLD, 22);
 		Font fontError = new Font("Arial", Font.ITALIC, 14);
-		setBackground(new Color(255, 239, 182));
+		
+		setBackground(new Color(255, 239, 182)); //3, 0, 158
 		setLayout(null); //Hacemos que no salgan las cosas por defecto
 		JButton button = new JButton("Sign In", new ImageIcon("src/img/happy.png")); //Creacion del boton mediante un constructor (Pueden recibir multiples tipos de parametros, por eso es necesario verificar cual es más conveniente
 		
@@ -32,11 +33,6 @@ public class MyPanel extends JPanel{
 		button.setToolTipText("Te redigira a otra pestaña"); //Añade un texto al pasar el mouse por encima
 		button.setBounds(440, 425, 120, 50);
 		add(button);
-		
-		JLabel grettings = new JLabel("Welcome!, explore the wonderfull and bizarre world of Cinerea");
-		initializeCustomLabels(grettings, font, 175, 30, 800, 40);
-		grettings.setForeground(Color.black);
-		add(grettings);
 		
 		JLabel login = new JLabel("Login"); //Label de LOGIN
 		initializeCustomLabels(login, font, 470, 30, 800, 150);
