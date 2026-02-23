@@ -5,7 +5,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -13,6 +17,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -22,17 +27,17 @@ import javax.swing.border.Border;
 import components.TextPrompt;
 
 public class BorderLayoutPanel extends JPanel{
-	Font font = new Font("Arial", Font.BOLD, 22);
-	Font fontError = new Font("Arial", Font.ITALIC, 14);
+	Font font = new Font("..src/font/Alkhemikal.ttf", Font.BOLD, 22);
+	Font fontError = new Font("..src/font/OwreKynge.ttf", Font.ITALIC, 14);
 	
 	public BorderLayoutPanel() {
 		setLayout(new BorderLayout());
-		Border emptyBorder = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border emptyBorder = BorderFactory.createEmptyBorder(35, 62, 35, 62);
 		setBackground(new Color(255, 239, 182)); //3, 0, 158
 		setBorder(emptyBorder);
 		
 		JPanel topPanel = new JPanel(); //Crear el espacio para el norte del borderlayout
-		topPanel.setBorder(emptyBorder);
+		topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		JLabel grettings = new JLabel("Welcome!, explore the wonderfull and bizarre world of Cinerea");
 		initializeCustomLabels(grettings, font, 175, 30, 800, 40);
@@ -43,8 +48,6 @@ public class BorderLayoutPanel extends JPanel{
 		centerPanel.setBorder(emptyBorder);
 		
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-		
-		centerPanel.add(Box.createRigidArea(new Dimension(0,50))); //Espacio
 		
 		JLabel login = new JLabel("Login"); //Label de LOGIN
 		login.setFont(font);
@@ -84,7 +87,10 @@ public class BorderLayoutPanel extends JPanel{
 		passwordLabelErrorText.setForeground(Color.red);
 		centerPanel.add(passwordLabelErrorText);
 		
-		centerPanel.add(Box.createRigidArea(new Dimension(0,50))); //Espacio
+		JCheckBox chkAceptoCondiciones = new JCheckBox("Acepto los terminos y condiciones");
+		centerPanel.add(chkAceptoCondiciones);
+		
+		centerPanel.add(Box.createRigidArea(new Dimension(0,20))); //Espacio
 		
 		JButton button = new JButton("Sign In", new ImageIcon("src/img/happy.png")); //Creacion del boton mediante un constructor (Pueden recibir multiples tipos de parametros, por eso es necesario verificar cual es más conveniente
 		/*
@@ -97,7 +103,6 @@ public class BorderLayoutPanel extends JPanel{
 		button.setBounds(440, 425, 120, 50);
 		centerPanel.add(button);
 		
-		centerPanel.add(Box.createRigidArea(new Dimension(0,50))); //Espacio
 		
 		add(topPanel, BorderLayout.NORTH); //Añadir el topPanel al norte del borderLayout
 		add(centerPanel, BorderLayout.CENTER);
@@ -133,6 +138,19 @@ public class BorderLayoutPanel extends JPanel{
 	private void initializeCustomLabels(JLabel label, Font font, int width, int height, int horizontal, int vertical) {
 		label.setBounds(width, height, horizontal, vertical);
 		label.setFont(font);
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		Image fondo = null;
+		
+		try {
+			fondo = ImageIO.read(new File("src/img/Mirror (1).png"));
+			g2.drawImage(fondo, 0, 0, getWidth(), getHeight(), null);
+		}catch (IOException ex){
+			System.out.println("La imagen no existe");
+		}
 	}
 	
 	public void createCenterPanel() { //Crear el panel central y agregarle otro borderLayout en el cual añadiremos un flowlayout con dos botones
