@@ -43,7 +43,6 @@ public class BorderLayoutPanel extends JPanel{
 		centerPanel.setBorder(emptyBorder);
 		
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-		centerPanel.add(Box.createVerticalGlue());
 		
 		centerPanel.add(Box.createRigidArea(new Dimension(0,50))); //Espacio
 		
