@@ -29,7 +29,7 @@ public class MyWindow extends JFrame{ //Extendemos a la libreria JFrame
 		
 		setSize(1000, 600);
 		setLocationRelativeTo(null);
-		setResizable(false);
+		setResizable(true);
 		
 		//MyPanel panel = new MyPanel(); //Instanciamos la clase panel que funcionara como un panel dentro de las ventanas
 		//FlowLayoutPanel panel = new FlowLayoutPanel(); //Este viene desde el FlowLayoutPanel que esta en views
