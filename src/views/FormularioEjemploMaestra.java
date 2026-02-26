@@ -1,9 +1,10 @@
 package views;
 
 import java.awt.BorderLayout;
-//import java.awt.Font;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -12,11 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-//import utils.AppFont;
 
-public class FormularioRegistroLearnTestEibon extends JFrame{
+import utils.AppFont;
+
+public class FormularioEjemploMaestra  extends JFrame{
 	
-	public FormularioRegistroLearnTestEibon() {
+	public FormularioEjemploMaestra() {
 		
 		setSize(300, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,6 +38,7 @@ public class FormularioRegistroLearnTestEibon extends JFrame{
 	public void inicializarComponentes() {
 		
 		JLabel lblTitulo = new JLabel("Registro");
+		lblTitulo.setFont(AppFont.normal());
 		add(lblTitulo, BorderLayout.NORTH);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -50,7 +53,22 @@ public class FormularioRegistroLearnTestEibon extends JFrame{
 			panelComponentes.add(txt);
 		}
 		JScrollPane scroll = new JScrollPane(panelComponentes);
-		scroll.setHorizontalScrollBar(null);		
+		scroll.setHorizontalScrollBar(null);
+		
 		add(scroll);
-	}	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+

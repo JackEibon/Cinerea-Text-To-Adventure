@@ -1,4 +1,12 @@
 package gamecontentlogic;
+/*
+ * Author: Eibon
+ * added in class of 24/2/2026 at 0944 from New Cinerea Netbeans Project
+ * Resume: This code will read commands and new text and pass it to the description box
+ * where the story is narrated
+ * it is meant to be fixed for this new project
+ * status: useless
+ * */
 
 
 import javax.swing.*;
@@ -30,7 +38,7 @@ public class TextReader extends JComponent {
 
     public void submit() {
         if (!text.isEmpty()) {
-            GameWindow.logPanel.addMessage("> " + text);
+            //GameWindow.logPanel.addMessage("> " + text); -Quit Commenting when GameWindowAdded & Fixed
             // Optionally: forward to parser here
         }
         text = "";
