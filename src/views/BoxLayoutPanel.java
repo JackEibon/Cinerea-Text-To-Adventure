@@ -17,7 +17,7 @@ public class BoxLayoutPanel extends JPanel{
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //Cuando lo creamos le damos una direccion de creacion, en este caso sera esta misma clase
 		add(Box.createVerticalGlue());
 		
-		
+		/*test commit 4 eibon*/
 		
 		/*for(int i = 0; i < 3; i++) { //For de botones
 			JButton b = new JButton(i + "");
