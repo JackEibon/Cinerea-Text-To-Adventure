@@ -30,17 +30,11 @@ import utils.AppFont;
 
 public class LogIn extends JFrame {
 
-    // 1. ATRIBUTOS DE CLASE (Para acceder a ellos desde la validación)
     private JTextField txtEmail;
-    private JPasswordField txtPassword;
-    private JPasswordField txtConfirmPassword;
-
-    private JLabel lblErrorEmail;
-    private JLabel lblErrorPassword;
-    private JLabel lblErrorConfirm;
+    private JPasswordField txtPassword, txtConfirmPassword;
+    private JLabel lblErrorEmail, lblErrorPassword, lblErrorConfirm;
 
     public LogIn() {
-        // Configuración básica
         Toolkit tk = Toolkit.getDefaultToolkit(); 
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
         setIconImage(myIcon);

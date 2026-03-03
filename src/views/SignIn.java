@@ -40,7 +40,7 @@ public class SignIn extends JFrame {
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
         setIconImage(myIcon);
         
-        setTitle("Sign In");
+        setTitle("Sign Up");
         setSize(600, 800);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -52,14 +52,14 @@ public class SignIn extends JFrame {
     
     public void initializeCompounds() {
         Color bgCream = new Color(255, 239, 182);
-        Dimension fatSize = new Dimension(350, 45);
+        Dimension fatSize = new Dimension(350, 40);
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBackground(bgCream);
         centerPanel.setBorder(new EmptyBorder(35, 80, 35, 80));
 
-        JLabel lblTitle = new JLabel("SIGN IN");
+        JLabel lblTitle = new JLabel("SIGN UP");
         lblTitle.setFont(AppFont.title());
         lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         centerPanel.add(lblTitle);
@@ -86,7 +86,7 @@ public class SignIn extends JFrame {
         txtConfirmPass = new JPasswordField();
         errConfirm = addFormGroup(centerPanel, "CONFIRM PASSWORD", txtConfirmPass);
 
-        JButton btnRegister = new JButton("Sign In");
+        JButton btnRegister = new JButton("Sign Up");
         pixelBorderText(btnRegister);
         btnRegister.setFont(AppFont.titleSecondary());
         btnRegister.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -95,7 +95,7 @@ public class SignIn extends JFrame {
         
         centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         
-        btnRegister.addActionListener(e -> validarRegistro());
+        btnRegister.addActionListener(e -> validateRegister());
         centerPanel.add(btnRegister);
 
         JScrollPane scroll = new JScrollPane(centerPanel);
@@ -126,6 +126,7 @@ public class SignIn extends JFrame {
         
         pixelBorderText(combo);
         combo.setMaximumSize(size);
+        combo.setPreferredSize(size);
         combo.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(combo);
         
@@ -150,7 +151,7 @@ public class SignIn extends JFrame {
         component.putClientProperty("JComponent.focusWidth", 0);
     }
 
-    private void validarRegistro() {
+    private void validateRegister() {
         JLabel[] errores = {errEmail, errNickname, errGem, errWeapon, errElement, errPass, errConfirm};
         for(JLabel l : errores) l.setVisible(false);
 
