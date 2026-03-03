@@ -52,7 +52,6 @@ public class FormularioRegistro extends JFrame{
 		setLayout(new BorderLayout());
 		setBackground(new Color(255, 239, 182)); //3, 0, 158
 		
-		JLabel lblTitle = new JLabel("Log in");
 		lblTitle.setFont(AppFont.normal());
 		add(lblTitle, BorderLayout.NORTH);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
