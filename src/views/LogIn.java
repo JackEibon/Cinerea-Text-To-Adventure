@@ -32,7 +32,7 @@ public class LogIn extends JFrame {
 
     private JTextField txtEmail;
     private JPasswordField txtPassword, txtConfirmPassword;
-    private JLabel lblErrorEmail, lblErrorPassword, lblErrorConfirm;
+    private JLabel errEmail, errPassword, errConfirm;
 
     public LogIn() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
@@ -65,13 +65,13 @@ public class LogIn extends JFrame {
         centerPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
         txtEmail = new JTextField();
-        lblErrorEmail = addFormGroup(centerPanel, "EMAIL", txtEmail);
+        errEmail = addFormGroup(centerPanel, "EMAIL", txtEmail);
         
         txtPassword = new JPasswordField();
-        lblErrorPassword = addFormGroup(centerPanel, "PASSWORD", txtPassword);
+        errPassword = addFormGroup(centerPanel, "PASSWORD", txtPassword);
 
         txtConfirmPassword = new JPasswordField();
-        lblErrorConfirm = addFormGroup(centerPanel, "CONFIRM PASSWORD", txtConfirmPassword);
+        errConfirm = addFormGroup(centerPanel, "CONFIRM PASSWORD", txtConfirmPassword);
 
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         JButton btnLogin = new JButton("Log In"); 
@@ -100,7 +100,7 @@ public class LogIn extends JFrame {
         panel.add(field);
         
         JLabel lblError = new JLabel(" ");
-        lblError.setFont(new Font("Monospaced", Font.BOLD, 12));
+        lblError.setFont(new Font("Monospaced", Font.BOLD, 14));
         lblError.setForeground(new Color(200, 0, 0)); 
         lblError.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblError.setVisible(false);
@@ -118,9 +118,9 @@ public class LogIn extends JFrame {
     }
 
     private void validateAndShow() {
-        lblErrorEmail.setVisible(false);
-        lblErrorPassword.setVisible(false);
-        lblErrorConfirm.setVisible(false);
+        errEmail.setVisible(false);
+        errPassword.setVisible(false);
+        errConfirm.setVisible(false);
 
         String email = txtEmail.getText().trim();
         String pass = new String(txtPassword.getPassword());
@@ -128,22 +128,22 @@ public class LogIn extends JFrame {
         boolean isValid = true;
 
         if (email.isEmpty()) {
-            lblErrorEmail.setText("Email is required");
-            lblErrorEmail.setVisible(true);
+            errEmail.setText("Email is required");
+            errEmail.setVisible(true);
             isValid = false;
         }else if(!email.contains("@")) { 
-        	lblErrorEmail.setText("Valid email required"); 
-        	lblErrorEmail.setVisible(true); 
+        	errEmail.setText("Valid email required"); 
+        	errEmail.setVisible(true); 
         	isValid = false; 
         }
 
         if (pass.isEmpty()) {
-            lblErrorPassword.setText("Password is required");
-            lblErrorPassword.setVisible(true);
+            errPassword.setText("Password is required");
+            errPassword.setVisible(true);
             isValid = false;
         } else if (!pass.equals(confirm)) {
-            lblErrorConfirm.setText("Passwords do not match");
-            lblErrorConfirm.setVisible(true);
+            errConfirm.setText("Passwords do not match");
+            errConfirm.setVisible(true);
             isValid = false;
         }
 

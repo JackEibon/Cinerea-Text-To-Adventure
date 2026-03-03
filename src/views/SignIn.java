@@ -33,7 +33,7 @@ public class SignIn extends JFrame {
     private JTextField txtEmail, txtNickname;
     private JPasswordField txtPass, txtConfirmPass;
     private JComboBox<String> cbGems, cbWeapon, cbElement;
-    private JLabel errEmail, errNickname, errGem, errWeapon, errElement, errPass, errConfirm;
+    private JLabel errEmail, errNickname, errGem, errWeapon, errElement, errPassword, errConfirm;
 
     public SignIn() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
@@ -81,7 +81,7 @@ public class SignIn extends JFrame {
         errElement = addSelectGroup(centerPanel, "ELEMENT", cbElement, fatSize);
 
         txtPass = new JPasswordField();
-        errPass = addFormGroup(centerPanel, "PASSWORD", txtPass);
+        errPassword = addFormGroup(centerPanel, "PASSWORD", txtPass);
 
         txtConfirmPass = new JPasswordField();
         errConfirm = addFormGroup(centerPanel, "CONFIRM PASSWORD", txtConfirmPass);
@@ -135,7 +135,7 @@ public class SignIn extends JFrame {
 
     private JLabel crearLabelError(JPanel panel) {
         JLabel lblError = new JLabel(" ");
-        lblError.setFont(new Font("Arial", Font.BOLD, 11));
+        lblError.setFont(new Font("Monospaced", Font.BOLD, 14));
         lblError.setForeground(new Color(180, 0, 0));
         lblError.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblError.setVisible(false);
@@ -152,61 +152,59 @@ public class SignIn extends JFrame {
     }
 
     private void validateRegister() {
-        JLabel[] errors = {errEmail, errNickname, errGem, errWeapon, errElement, errPass, errConfirm};
+        JLabel[] errors = {errEmail, errNickname, errGem, errWeapon, errElement, errPassword, errConfirm};
         for(JLabel l : errors) l.setVisible(false);
 
-        boolean itsValid = true;
+        boolean isValid = true;
 
         if(txtEmail.getText().trim().isEmpty()) { 
         	errEmail.setText("Email required"); 
         	errEmail.setVisible(true); 
-        	itsValid = false; 
-        }
-        
-        if(!txtEmail.getText().contains("@")) { 
+        	isValid = false; 
+        }else if(!txtEmail.getText().contains("@")) { 
         	errEmail.setText("Valid email required"); 
         	errEmail.setVisible(true); 
-        	itsValid = false; 
+        	isValid = false; 
         }
         
         if(txtNickname.getText().trim().isEmpty()) { 
         	errNickname.setText("Nickname required"); 
         	errNickname.setVisible(true); 
-        	itsValid = false; 
+        	isValid = false; 
         }
 
         if(cbGems.getSelectedIndex() == 0) { 
         	errGem.setText("Pick a gem"); 
         	errGem.setVisible(true); 
-        	itsValid = false; 
+        	isValid = false; 
         }
         
         if(cbWeapon.getSelectedIndex() == 0) { 
         	errWeapon.setText("Pick a weapon"); 
         	errWeapon.setVisible(true); 
-        	itsValid = false; 
+        	isValid = false; 
         }
         
         if(cbElement.getSelectedIndex() == 0) { 
         	errElement.setText("Pick an element"); 
         	errElement.setVisible(true); 
-        	itsValid = false; 
+        	isValid = false; 
         }
 
         String password = new String(txtPass.getPassword());
         String secondPassword = new String(txtConfirmPass.getPassword());
 
         if(password.isEmpty()) { 
-        	errPass.setText("Password required"); 
-        	errPass.setVisible(true); 
-        	itsValid = false; 
+        	errPassword.setText("Password required"); 
+        	errPassword.setVisible(true); 
+        	isValid = false; 
         } else if(!password.equals(secondPassword)) { 
         	errConfirm.setText("Passwords don't match"); 
         	errConfirm.setVisible(true); 
-        	itsValid = false; 
+        	isValid = false; 
         }
 
-        if(itsValid) {
+        if(isValid) {
             JOptionPane.showMessageDialog(this, "Character Created: " + txtNickname.getText());
         }
         
