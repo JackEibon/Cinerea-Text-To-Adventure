@@ -152,38 +152,45 @@ public class SignIn extends JFrame {
     }
 
     private void validateRegister() {
-        JLabel[] errores = {errEmail, errNickname, errGem, errWeapon, errElement, errPass, errConfirm};
-        for(JLabel l : errores) l.setVisible(false);
+        JLabel[] errors = {errEmail, errNickname, errGem, errWeapon, errElement, errPass, errConfirm};
+        for(JLabel l : errors) l.setVisible(false);
 
-        boolean itsTrue = true;
+        boolean itsValid = true;
 
         if(txtEmail.getText().trim().isEmpty()) { 
         	errEmail.setText("Email required"); 
-        	errEmail.setVisible(true); itsTrue = false; 
+        	errEmail.setVisible(true); 
+        	itsValid = false; 
+        }
+        
+        if(!txtEmail.getText().contains("@")) { 
+        	errEmail.setText("Valid email required"); 
+        	errEmail.setVisible(true); 
+        	itsValid = false; 
         }
         
         if(txtNickname.getText().trim().isEmpty()) { 
         	errNickname.setText("Nickname required"); 
         	errNickname.setVisible(true); 
-        	itsTrue = false; 
+        	itsValid = false; 
         }
 
         if(cbGems.getSelectedIndex() == 0) { 
         	errGem.setText("Pick a gem"); 
         	errGem.setVisible(true); 
-        	itsTrue = false; 
+        	itsValid = false; 
         }
         
         if(cbWeapon.getSelectedIndex() == 0) { 
         	errWeapon.setText("Pick a weapon"); 
         	errWeapon.setVisible(true); 
-        	itsTrue = false; 
+        	itsValid = false; 
         }
         
         if(cbElement.getSelectedIndex() == 0) { 
         	errElement.setText("Pick an element"); 
         	errElement.setVisible(true); 
-        	itsTrue = false; 
+        	itsValid = false; 
         }
 
         String password = new String(txtPass.getPassword());
@@ -192,14 +199,14 @@ public class SignIn extends JFrame {
         if(password.isEmpty()) { 
         	errPass.setText("Password required"); 
         	errPass.setVisible(true); 
-        	itsTrue = false; 
+        	itsValid = false; 
         } else if(!password.equals(secondPassword)) { 
         	errConfirm.setText("Passwords don't match"); 
         	errConfirm.setVisible(true); 
-        	itsTrue = false; 
+        	itsValid = false; 
         }
 
-        if(itsTrue) {
+        if(itsValid) {
             JOptionPane.showMessageDialog(this, "Character Created: " + txtNickname.getText());
         }
         

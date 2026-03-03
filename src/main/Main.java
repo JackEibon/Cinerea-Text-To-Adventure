@@ -22,7 +22,7 @@ public class Main {
 
         UIManager.put("Label.font", AppFont.normal());
         
-        SignIn window = new SignIn(); 
-        //LogIn window = new LogIn(); 
+        //SignIn window = new SignIn(); 
+        LogIn window = new LogIn(); 
     }
 }

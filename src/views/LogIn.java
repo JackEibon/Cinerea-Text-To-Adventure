@@ -125,25 +125,29 @@ public class LogIn extends JFrame {
         String email = txtEmail.getText().trim();
         String pass = new String(txtPassword.getPassword());
         String confirm = new String(txtConfirmPassword.getPassword());
-        boolean esValido = true;
+        boolean isValid = true;
 
         if (email.isEmpty()) {
             lblErrorEmail.setText("Email is required");
             lblErrorEmail.setVisible(true);
-            esValido = false;
+            isValid = false;
+        }else if(!email.contains("@")) { 
+        	lblErrorEmail.setText("Valid email required"); 
+        	lblErrorEmail.setVisible(true); 
+        	isValid = false; 
         }
 
         if (pass.isEmpty()) {
             lblErrorPassword.setText("Password is required");
             lblErrorPassword.setVisible(true);
-            esValido = false;
+            isValid = false;
         } else if (!pass.equals(confirm)) {
             lblErrorConfirm.setText("Passwords do not match");
             lblErrorConfirm.setVisible(true);
-            esValido = false;
+            isValid = false;
         }
 
-        if (esValido) {
+        if (isValid) {
             JOptionPane.showMessageDialog(this, "Welcome, " + email + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
         
