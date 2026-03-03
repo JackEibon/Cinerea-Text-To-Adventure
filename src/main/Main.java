@@ -1,22 +1,28 @@
 package main;
 
+import com.formdev.flatlaf.FlatLightLaf; 
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.SwingUtilities; 
 
 import utils.AppFont;
-import views.FormularioRegistro;
-import views.FormularioEjemploMaestra;
-import views.MyPanel;
+import views.LogIn;
+import views.SignIn;
 
 public class Main {
 
-	public static void main(String[] args) {
-		UIManager.put("Label.font", AppFont.normal());
-		
-		//Comentado para ver el ejemplo de la maestra
-		//FormularioRegistro window = new FormularioRegistro(); //Instanciamos la clase window que funcionara como la ventana donde trabajaremos
-		
-		FormularioEjemploMaestra window = new FormularioEjemploMaestra(); //Ejemplo
-		MyPanel panel = new MyPanel(); //Instanciamos la clase panel que funcionara como un panel dentro de las ventanas
-	}
+    public static void main(String[] args) {
+        
+        try {
+			UIManager.setLookAndFeel(new FlatLightLaf());
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+        UIManager.put("Label.font", AppFont.normal());
+        
+        //SignIn window = new SignIn(); 
+        LogIn window = new LogIn(); 
+    }
 }
