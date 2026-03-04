@@ -149,7 +149,7 @@ public class LogIn extends JFrame {
 
         if (isValid) {
             JOptionPane.showMessageDialog(this, "Welcome, " + email + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
-        }
+        } //Aqui proximamente pondremos la variable del personaje al que le pertenece la cuenta
         
         revalidate();
         repaint();
