@@ -28,14 +28,14 @@ import javax.swing.border.EmptyBorder;
 
 import utils.AppFont;
 
-public class SignIn extends JFrame {
+public class SignUpWindow extends JFrame {
 
     private JTextField txtEmail, txtNickname;
     private JPasswordField txtPass, txtConfirmPass;
     private JComboBox<String> cbGems, cbWeapon, cbElement;
     private JLabel errEmail, errNickname, errGem, errWeapon, errElement, errPassword, errConfirm;
 
-    public SignIn() {
+    public SignUpWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
         setIconImage(myIcon);
@@ -51,12 +51,12 @@ public class SignIn extends JFrame {
     }
     
     public void initializeCompounds() {
-        Color bgCream = new Color(255, 239, 182);
+        Color bgColor = new Color(255, 239, 182);
         Dimension fatSize = new Dimension(350, 40);
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.setBackground(bgCream);
+        centerPanel.setBackground(bgColor);
         centerPanel.setBorder(new EmptyBorder(35, 80, 35, 80));
 
         JLabel lblTitle = new JLabel("SIGN UP");
@@ -86,27 +86,48 @@ public class SignIn extends JFrame {
         txtConfirmPass = new JPasswordField();
         errConfirm = addFormGroup(centerPanel, "CONFIRM PASSWORD", txtConfirmPass);
 
-        JButton btnRegister = new JButton("Sign Up");
-        pixelBorderText(btnRegister);
-        btnRegister.setFont(AppFont.titleSecondary());
-        btnRegister.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnRegister.setMaximumSize(new Dimension(300, 55));
-        btnRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        JButton btnRegister = new JButton();
+        addButtonForm("Sign Up", btnRegister);
         
         centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         
         btnRegister.addActionListener(e -> validateRegister());
         centerPanel.add(btnRegister);
+        
+        JButton btnCancel = new JButton();
+        addButtonForm("Cancel", btnCancel);
+        
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        
+        btnCancel.addActionListener(e -> cancelRegister());
+        centerPanel.add(btnCancel);
 
         JScrollPane scroll = new JScrollPane(centerPanel);
         scroll.setBorder(null); 
         scroll.getVerticalScrollBar().setUnitIncrement(16);
-        scroll.getViewport().setBackground(bgCream); 
+        scroll.getViewport().setBackground(bgColor); 
         add(scroll);
+    }
+    
+    private void cancelRegister() {
+    	JOptionPane.showConfirmDialog(this, "Cancel Operation?");
+        new LogInWindow();
+        dispose();
+	}
+
+	private void addButtonForm(String labelText, JButton button) {
+    	pixelBorderText(button);
+    	button.setText(labelText);
+    	button.setFont(AppFont.titleSecondary());
+    	button.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	button.setMaximumSize(new Dimension(250, 50));
+    	button.setPreferredSize(new Dimension(250, 50));
+    	button.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {
         JLabel lbl = new JLabel(labelText);
+        lbl.setFont(AppFont.titleSecondary());
         lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(lbl);
         
@@ -121,6 +142,7 @@ public class SignIn extends JFrame {
 
     private JLabel addSelectGroup(JPanel panel, String labelText, JComboBox<String> combo, Dimension size) {
         JLabel lbl = new JLabel(labelText);
+        lbl.setFont(AppFont.titleSecondary());
         lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(lbl);
         
@@ -206,6 +228,8 @@ public class SignIn extends JFrame {
 
         if(isValid) {
             JOptionPane.showMessageDialog(this, "Character Created: " + txtNickname.getText());
+            new LogInWindow();
+            dispose();
         }
         
         revalidate();

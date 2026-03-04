@@ -28,19 +28,19 @@ import javax.swing.border.EmptyBorder;
 
 import utils.AppFont;
 
-public class LogIn extends JFrame {
+public class LogInWindow extends JFrame {
 
     private JTextField txtEmail;
     private JPasswordField txtPassword, txtConfirmPassword;
     private JLabel errEmail, errPassword, errConfirm;
 
-    public LogIn() {
+    public LogInWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
         setIconImage(myIcon);
         
         setTitle("Login");
-        setSize(900, 600); 
+        setSize(700, 650); 
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,11 +51,11 @@ public class LogIn extends JFrame {
     }
     
     public void initializeCompounds() {
-        Color bgCream = new Color(255, 239, 182);
+        Color bgColor = new Color(255, 239, 182);
         
         JPanel centerPanel = new JPanel(); 
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.setBackground(bgCream);
+        centerPanel.setBackground(bgColor);
         centerPanel.setBorder(new EmptyBorder(40, 60, 40, 60));
 
         JLabel lblTitle = new JLabel("LOGIN");
@@ -70,25 +70,39 @@ public class LogIn extends JFrame {
         txtPassword = new JPasswordField();
         errPassword = addFormGroup(centerPanel, "PASSWORD", txtPassword);
 
-        txtConfirmPassword = new JPasswordField();
-        errConfirm = addFormGroup(centerPanel, "CONFIRM PASSWORD", txtConfirmPassword);
-
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        JButton btnLogin = new JButton("Log In"); 
-        pixelBorderText(btnLogin);
-        btnLogin.setFont(AppFont.titleSecondary());
-        btnLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnLogin.setMaximumSize(new Dimension(250, 50));
-        btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        JButton btnLogin = new JButton(); 
+        addButtonForm("Log In", btnLogin);
         
         btnLogin.addActionListener(e -> validateAndShow());
         
         centerPanel.add(btnLogin);
         
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        
+        JButton btnRegister = new JButton(); 
+        addButtonForm("Sign Up", btnRegister);
+        
+        btnRegister.addActionListener(e -> handleBtnRegister());
+        
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        
+        centerPanel.add(btnRegister);
+        
         add(centerPanel);
     }
+    
+    private void addButtonForm(String labelText, JButton button) {
+    	pixelBorderText(button);
+    	button.setText(labelText);
+    	button.setFont(AppFont.titleSecondary());
+    	button.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	button.setMaximumSize(new Dimension(250, 50));
+    	button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
 
-    private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {
+	private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {
         JLabel lbl = new JLabel(labelText);
         lbl.setFont(AppFont.normalSecondary());
         lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -120,11 +134,9 @@ public class LogIn extends JFrame {
     private void validateAndShow() {
         errEmail.setVisible(false);
         errPassword.setVisible(false);
-        errConfirm.setVisible(false);
 
         String email = txtEmail.getText().trim();
         String pass = new String(txtPassword.getPassword());
-        String confirm = new String(txtConfirmPassword.getPassword());
         boolean isValid = true;
 
         if (email.isEmpty()) {
@@ -141,17 +153,20 @@ public class LogIn extends JFrame {
             errPassword.setText("Password is required");
             errPassword.setVisible(true);
             isValid = false;
-        } else if (!pass.equals(confirm)) {
-            errConfirm.setText("Passwords do not match");
-            errConfirm.setVisible(true);
-            isValid = false;
         }
 
         if (isValid) {
             JOptionPane.showMessageDialog(this, "Welcome, " + email + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            new MainWindow();
+            dispose();
         } //Aqui proximamente pondremos la variable del personaje al que le pertenece la cuenta
         
         revalidate();
         repaint();
     }
+
+    private void handleBtnRegister() {
+    	new SignUpWindow();
+        dispose();
+	}
 }
