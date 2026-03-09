@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -25,6 +27,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import utils.AppFont;
 
@@ -91,6 +95,8 @@ public class LogInWindow extends JFrame {
         centerPanel.add(btnRegister);
         
         add(centerPanel);
+        
+        addActionListeners();
     }
     
     private void addButtonForm(String labelText, JButton button) {
@@ -130,23 +136,49 @@ public class LogInWindow extends JFrame {
         component.setBackground(Color.WHITE);
         component.putClientProperty("JComponent.focusWidth", 0);
     }
+    
+    private boolean validateTxtEmail() {
+    	if(txtEmail.getText().trim().isEmpty()) { 
+        	errEmail.setText("Email required"); 
+        	errEmail.setVisible(true); 
+        	return false;
+        }else if(!txtEmail.getText().contains("@")) { 
+        	errEmail.setText("Valid email required"); 
+        	errEmail.setVisible(true);
+        	return false;
+        }
+        errEmail.setText(""); 
+        return true;
+    }
+    
+    private void addActionListeners() {
+    	txtEmail.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            	validateTxtEmail();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                validateTxtEmail();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            	validateTxtEmail();
+            }
+        });
+    }
 
     private void validateAndShow() {
         errEmail.setVisible(false);
         errPassword.setVisible(false);
 
-        String email = txtEmail.getText().trim();
         String pass = new String(txtPassword.getPassword());
         boolean isValid = true;
-
-        if (email.isEmpty()) {
-            errEmail.setText("Email is required");
-            errEmail.setVisible(true);
-            isValid = false;
-        }else if(!email.contains("@")) { 
-        	errEmail.setText("Valid email required"); 
-        	errEmail.setVisible(true); 
-        	isValid = false; 
+        
+        if(!validateTxtEmail()) {
+        	isValid = false;
         }
 
         if (pass.isEmpty()) {
@@ -156,7 +188,7 @@ public class LogInWindow extends JFrame {
         }
 
         if (isValid) {
-            JOptionPane.showMessageDialog(this, "Welcome, " + email + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Welcome, " + txtEmail.getText().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
             new MainWindow();
             dispose();
         } //Aqui proximamente pondremos la variable del personaje al que le pertenece la cuenta

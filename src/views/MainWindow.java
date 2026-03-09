@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -15,6 +16,9 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -25,9 +29,7 @@ import utils.AppFont;
 
 public class MainWindow extends JFrame{
 
-    private JTextField txtEmail;
-    private JPasswordField txtPassword, txtConfirmPassword;
-    private JLabel errEmail, errPassword, errConfirm;
+    private JMenuItem salir;
 
     public MainWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
@@ -85,31 +87,49 @@ public class MainWindow extends JFrame{
     	btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
     	
     	panel.add(btn);
-    	
+    	//setMenu();
     	return btn;
     }
 
-	private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {
-        JLabel lbl = new JLabel(labelText);
-        lbl.setFont(AppFont.normalSecondary());
-        lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(lbl);
-        
-        pixelBorderText(field);
-        field.setMaximumSize(new Dimension(400, 45));
-        field.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(field);
-        
-        JLabel lblError = new JLabel(" ");
-        lblError.setFont(new Font("Monospaced", Font.BOLD, 14));
-        lblError.setForeground(new Color(200, 0, 0)); 
-        lblError.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblError.setVisible(false);
-        panel.add(lblError);
-        
-        panel.add(Box.createRigidArea(new Dimension(0, 25)));
-        return lblError;
-    }
+    /*public void setMenu() {
+
+		JMenuBar mb = new JMenuBar();
+		setJMenuBar(mb);
+
+		JMenu archivo = new JMenu("Archive");
+		archivo.setMnemonic(KeyEvent.VK_A);
+		mb.add(archivo);
+
+		JMenuItem abrir = new JMenuItem("Open");
+		abrir.setMnemonic(KeyEvent.VK_B);
+		archivo.add(abrir);
+
+		JMenuItem guardar = new JMenuItem("Save");
+		guardar.setMnemonic(KeyEvent.VK_G);
+		archivo.add(guardar);
+
+		archivo.addSeparator();
+
+		JMenuItem salir = new JMenuItem("Close");
+		salir.setMnemonic(KeyEvent.VK_S);
+		archivo.add(salir);
+
+		JMenu otraOpcion = new JMenu("Other option");
+		otraOpcion.setMnemonic(KeyEvent.VK_O);
+		mb.add(otraOpcion);
+
+		JMenu opcion1 = new JMenu("Option 1");
+		otraOpcion.add(opcion1);
+
+		JMenuItem opcion3 = new JMenuItem("Option 3");
+		opcion1.add(opcion3);
+
+		JMenuItem opcion2 = new JMenuItem("Option 2");
+		otraOpcion.add(opcion2);
+
+	}*/
+
+
 
     private void pixelBorderText(JComponent component) {
         component.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));

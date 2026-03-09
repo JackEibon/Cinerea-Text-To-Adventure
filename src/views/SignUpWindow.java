@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -25,6 +27,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import utils.AppFont;
 
@@ -107,6 +111,8 @@ public class SignUpWindow extends JFrame {
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         scroll.getViewport().setBackground(bgColor); 
         add(scroll);
+        
+        addActionListeners();
     }
     
     private void cancelRegister() {
@@ -172,45 +178,110 @@ public class SignUpWindow extends JFrame {
         component.setBackground(Color.WHITE);
         component.putClientProperty("JComponent.focusWidth", 0);
     }
+    
+    private boolean validateTxtEmail() {
+    	if(txtEmail.getText().trim().isEmpty()) { 
+        	errEmail.setText("Email required"); 
+        	errEmail.setVisible(true); 
+        	return false;
+        }else if(!txtEmail.getText().contains("@")) { 
+        	errEmail.setText("Valid email required"); 
+        	errEmail.setVisible(true);
+        	return false;
+        }
+        errEmail.setText(""); 
+        return true;
+    }
+    
+    private boolean validateTxtNickname() {
+    	if(txtNickname.getText().trim().isEmpty()) { 
+        	errNickname.setText("Nickname required"); 
+        	errNickname.setVisible(true); 
+        	return false;
+        }else if(txtNickname.getText().trim().length() <= 4) {
+        	errNickname.setText("5 characters minimum"); 
+        	errNickname.setVisible(true); 
+        	return false;
+        }
+    	errNickname.setText(""); 
+        return true;
+    }
+    
+    private boolean validateCb(String text, JComboBox<String> combo, JLabel err) {
+    	if(combo.getSelectedIndex() == 0) { 
+        	err.setText(text); 
+        	err.setVisible(true); 
+        	return false; 
+        }
+    	err.setText("");
+    	return true;
+    }
+    
+    private void addActionListeners() {
+    	txtEmail.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            	validateTxtEmail();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                validateTxtEmail();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            	validateTxtEmail();
+            }
+        });
+    	
+    	txtNickname.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            	validateTxtNickname();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+            	validateTxtNickname();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            	validateTxtNickname();
+            }
+        });
+    	
+    	cbGems.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                validateCb("Pick a gem", cbGems, errGem);
+            }
+        });
+    	
+    	cbWeapon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                validateCb("Pick a weapon", cbWeapon, errWeapon);
+            }
+        });
+    	
+    	cbElement.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                validateCb("Pick an element", cbElement, errElement);
+            }
+        });
+    }
 
     private void validateRegister() {
-        JLabel[] errors = {errEmail, errNickname, errGem, errWeapon, errElement, errPassword, errConfirm};
+        JLabel[] errors = {errWeapon, errElement, errPassword, errConfirm};
         for(JLabel l : errors) l.setVisible(false);
 
         boolean isValid = true;
-
-        if(txtEmail.getText().trim().isEmpty()) { 
-        	errEmail.setText("Email required"); 
-        	errEmail.setVisible(true); 
-        	isValid = false; 
-        }else if(!txtEmail.getText().contains("@")) { 
-        	errEmail.setText("Valid email required"); 
-        	errEmail.setVisible(true); 
-        	isValid = false; 
-        }
         
-        if(txtNickname.getText().trim().isEmpty()) { 
-        	errNickname.setText("Nickname required"); 
-        	errNickname.setVisible(true); 
-        	isValid = false; 
-        }
-
-        if(cbGems.getSelectedIndex() == 0) { 
-        	errGem.setText("Pick a gem"); 
-        	errGem.setVisible(true); 
-        	isValid = false; 
-        }
-        
-        if(cbWeapon.getSelectedIndex() == 0) { 
-        	errWeapon.setText("Pick a weapon"); 
-        	errWeapon.setVisible(true); 
-        	isValid = false; 
-        }
-        
-        if(cbElement.getSelectedIndex() == 0) { 
-        	errElement.setText("Pick an element"); 
-        	errElement.setVisible(true); 
-        	isValid = false; 
+        if(!validateTxtEmail() || !validateTxtNickname() || !validateCb("Pick a gem", cbGems, errGem) || !validateCb("Pick a weapon", cbWeapon, errWeapon) || !validateCb("Pick an element", cbElement, errElement)) {
+        	isValid = false;
         }
 
         String password = new String(txtPass.getPassword());
