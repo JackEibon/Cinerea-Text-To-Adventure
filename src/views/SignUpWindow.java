@@ -178,9 +178,20 @@ public class SignUpWindow extends JFrame {
         component.setBackground(Color.WHITE);
         component.putClientProperty("JComponent.focusWidth", 0);
     }
+<<<<<<< Updated upstream:src/views/SignUpWindow.java
     
     private boolean validateTxtEmail() {
     	if(txtEmail.getText().trim().isEmpty()) { 
+=======
+
+    private void validarRegistro() {
+        JLabel[] errors = {errEmail, errNickname, errGem, errWeapon, errElement, errPass, errConfirm};
+        for(JLabel l : errors) l.setVisible(false);
+
+        boolean itsTrue = true;
+
+        if(txtEmail.getText().trim().isEmpty()) { 
+>>>>>>> Stashed changes:src/views/SignIn.java
         	errEmail.setText("Email required"); 
         	errEmail.setVisible(true); 
         	return false;
