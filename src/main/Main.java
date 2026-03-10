@@ -3,7 +3,6 @@ package main;
 import com.formdev.flatlaf.FlatLightLaf; 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.SwingUtilities; 
 
 import utils.AppFont;
 import views.LogInWindow;

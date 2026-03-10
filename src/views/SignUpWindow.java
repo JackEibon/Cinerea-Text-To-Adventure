@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -10,12 +9,13 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -25,7 +25,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -45,7 +44,7 @@ public class SignUpWindow extends JFrame {
         setIconImage(myIcon);
         
         setTitle("Sign Up");
-        setSize(600, 800);
+        setSize(620, 800);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +54,20 @@ public class SignUpWindow extends JFrame {
     }
     
     public void initializeCompounds() {
-        Color bgColor = new Color(255, 239, 182);
+    	Color bgColor = new Color(92, 122, 237);
+        Color bigBdColor = new Color(17, 53, 189);
+        Color midBdColor = new Color(52, 86, 217);
+        
+        JPanel bigPanel = new JPanel();
+        bigPanel.setBackground(bigBdColor);
+        bigPanel.setLayout(new BoxLayout(bigPanel, BoxLayout.Y_AXIS));
+        bigPanel.setBorder(BorderFactory.createLineBorder(bigBdColor, 20));
+        
+        JPanel midPanel = new JPanel();
+        midPanel.setBackground(midBdColor);
+        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));
+        midPanel.setBorder(BorderFactory.createLineBorder(midBdColor, 20));
+        
         Dimension fatSize = new Dimension(350, 40);
         
         JPanel centerPanel = new JPanel();
@@ -96,6 +108,16 @@ public class SignUpWindow extends JFrame {
         centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         
         btnRegister.addActionListener(e -> validateRegister());
+        btnRegister.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				changeBackground(btnRegister);
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				resetBackground(btnRegister);
+			}
+		});
+        
         centerPanel.add(btnRegister);
         
         JButton btnCancel = new JButton();
@@ -104,9 +126,22 @@ public class SignUpWindow extends JFrame {
         centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         
         btnCancel.addActionListener(e -> cancelRegister());
+        btnCancel.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				changeBackground(btnCancel);
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				resetBackground(btnCancel);
+			}
+		});
+        
         centerPanel.add(btnCancel);
+        
+        bigPanel.add(midPanel);
+        midPanel.add(centerPanel);
 
-        JScrollPane scroll = new JScrollPane(centerPanel);
+        JScrollPane scroll = new JScrollPane(bigPanel);
         scroll.setBorder(null); 
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         scroll.getViewport().setBackground(bgColor); 
@@ -143,7 +178,7 @@ public class SignUpWindow extends JFrame {
         field.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(field);
         
-        return crearLabelError(panel);
+        return createLabelError(panel);
     }
 
     private JLabel addSelectGroup(JPanel panel, String labelText, JComboBox<String> combo, Dimension size) {
@@ -158,13 +193,23 @@ public class SignUpWindow extends JFrame {
         combo.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(combo);
         
-        return crearLabelError(panel);
+        return createLabelError(panel);
+    }
+    
+    private void changeBackground(JComponent component) {
+    	component.setBackground(new Color(17, 53, 189));
+    	component.setForeground(Color.white);
+    }
+    
+    private void resetBackground(JComponent component) {
+    	component.setBackground(Color.white);
+    	component.setForeground(Color.black);
     }
 
-    private JLabel crearLabelError(JPanel panel) {
+    private JLabel createLabelError(JPanel panel) {
         JLabel lblError = new JLabel(" ");
         lblError.setFont(new Font("Monospaced", Font.BOLD, 14));
-        lblError.setForeground(new Color(180, 0, 0));
+        lblError.setForeground(Color.CYAN);
         lblError.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblError.setVisible(false);
         panel.add(lblError);
@@ -178,31 +223,20 @@ public class SignUpWindow extends JFrame {
         component.setBackground(Color.WHITE);
         component.putClientProperty("JComponent.focusWidth", 0);
     }
-<<<<<<< Updated upstream:src/views/SignUpWindow.java
     
-    private boolean validateTxtEmail() {
-    	if(txtEmail.getText().trim().isEmpty()) { 
-=======
-
-    private void validarRegistro() {
-        JLabel[] errors = {errEmail, errNickname, errGem, errWeapon, errElement, errPass, errConfirm};
-        for(JLabel l : errors) l.setVisible(false);
-
-        boolean itsTrue = true;
-
-        if(txtEmail.getText().trim().isEmpty()) { 
->>>>>>> Stashed changes:src/views/SignIn.java
-        	errEmail.setText("Email required"); 
-        	errEmail.setVisible(true); 
-        	return false;
-        }else if(!txtEmail.getText().contains("@")) { 
-        	errEmail.setText("Valid email required"); 
-        	errEmail.setVisible(true);
-        	return false;
-        }
-        errEmail.setText(""); 
-        return true;
-    }
+	private boolean validateTxtEmail() {
+		if(txtEmail.getText().trim().isEmpty()) { 
+	    	errEmail.setText("Email required"); 
+	    	errEmail.setVisible(true); 
+	    	return false;
+	    }else if(!txtEmail.getText().contains("@")) { 
+	    	errEmail.setText("Valid email required"); 
+	    	errEmail.setVisible(true);
+	    	return false;
+	    }
+	    errEmail.setText(""); 
+	    return true;
+	}
     
     private boolean validateTxtNickname() {
     	if(txtNickname.getText().trim().isEmpty()) { 
@@ -286,12 +320,28 @@ public class SignUpWindow extends JFrame {
     }
 
     private void validateRegister() {
-        JLabel[] errors = {errWeapon, errElement, errPassword, errConfirm};
+        JLabel[] errors = {errPassword, errConfirm};
         for(JLabel l : errors) l.setVisible(false);
 
         boolean isValid = true;
         
-        if(!validateTxtEmail() || !validateTxtNickname() || !validateCb("Pick a gem", cbGems, errGem) || !validateCb("Pick a weapon", cbWeapon, errWeapon) || !validateCb("Pick an element", cbElement, errElement)) {
+        if(!validateTxtEmail()) {
+        	isValid = false;
+        }
+        
+        if(!validateTxtNickname()) {
+        	isValid = false;
+        }
+        
+        if(!validateCb("Pick a gem", cbGems, errGem)) {
+        	isValid = false;
+        }
+        
+        if(!validateCb("Pick a weapon", cbWeapon, errWeapon)) {
+        	isValid = false;
+        }
+
+        if(!validateCb("Pick an element", cbElement, errElement)) {
         	isValid = false;
         }
 

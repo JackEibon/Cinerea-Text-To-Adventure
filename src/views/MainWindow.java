@@ -29,7 +29,7 @@ import utils.AppFont;
 
 public class MainWindow extends JFrame{
 
-    private JMenuItem salir;
+    //private JMenuItem salir;
 
     public MainWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 

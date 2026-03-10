@@ -1,31 +1,27 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -35,8 +31,8 @@ import utils.AppFont;
 public class LogInWindow extends JFrame {
 
     private JTextField txtEmail;
-    private JPasswordField txtPassword, txtConfirmPassword;
-    private JLabel errEmail, errPassword, errConfirm;
+    private JPasswordField txtPassword;
+    private JLabel errEmail, errPassword;
 
     public LogInWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
@@ -44,7 +40,7 @@ public class LogInWindow extends JFrame {
         setIconImage(myIcon);
         
         setTitle("Login");
-        setSize(700, 650); 
+        setSize(630, 680); 
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +51,19 @@ public class LogInWindow extends JFrame {
     }
     
     public void initializeCompounds() {
-        Color bgColor = new Color(255, 239, 182);
+        Color bgColor = new Color(92, 122, 237);
+        Color bigBdColor = new Color(17, 53, 189);
+        Color midBdColor = new Color(52, 86, 217);
+        
+        JPanel bigPanel = new JPanel();
+        bigPanel.setBackground(bigBdColor);
+        bigPanel.setLayout(new BoxLayout(bigPanel, BoxLayout.Y_AXIS));
+        bigPanel.setBorder(BorderFactory.createLineBorder(bigBdColor, 20));
+        
+        JPanel midPanel = new JPanel();
+        midPanel.setBackground(midBdColor);
+        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));
+        midPanel.setBorder(BorderFactory.createLineBorder(midBdColor, 20));
         
         JPanel centerPanel = new JPanel(); 
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -80,6 +88,15 @@ public class LogInWindow extends JFrame {
         addButtonForm("Log In", btnLogin);
         
         btnLogin.addActionListener(e -> validateAndShow());
+        btnLogin.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				changeBackground(btnLogin);
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				resetBackground(btnLogin);
+			}
+		});
         
         centerPanel.add(btnLogin);
         
@@ -89,14 +106,35 @@ public class LogInWindow extends JFrame {
         addButtonForm("Sign Up", btnRegister);
         
         btnRegister.addActionListener(e -> handleBtnRegister());
+        btnRegister.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				changeBackground(btnRegister);
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				resetBackground(btnRegister);
+			}
+		});
         
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         
         centerPanel.add(btnRegister);
         
-        add(centerPanel);
+        bigPanel.add(midPanel);
+        midPanel.add(centerPanel);
+        add(bigPanel);;
         
         addActionListeners();
+    }
+    
+    private void changeBackground(JComponent component) {
+    	component.setBackground(new Color(17, 53, 189));
+    	component.setForeground(Color.white);
+    }
+    
+    private void resetBackground(JComponent component) {
+    	component.setBackground(Color.white);
+    	component.setForeground(Color.black);
     }
     
     private void addButtonForm(String labelText, JButton button) {
@@ -121,7 +159,7 @@ public class LogInWindow extends JFrame {
         
         JLabel lblError = new JLabel(" ");
         lblError.setFont(new Font("Monospaced", Font.BOLD, 14));
-        lblError.setForeground(new Color(200, 0, 0)); 
+        lblError.setForeground(Color.CYAN); 
         lblError.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblError.setVisible(false);
         panel.add(lblError);

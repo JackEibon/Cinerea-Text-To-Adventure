@@ -48,10 +48,10 @@ public class Graph {
 							q.setN(r);
 							}
 						if (i==0 && j==0) {
-							seed=p;
-							seed.setScene(1);
-	                                                seed.play("first",GameThread.p1);
-	                                                
+								seed=p;
+								seed.setScene(1);
+		                        seed.play("first",GameThread.p1);
+		                                                
 							}
 						}
 					r=corner;
@@ -115,7 +115,7 @@ public class Graph {
 			    		contador++;
 			    		p=seed;
 				        q.setScene(contador);
-	                                q.play("first",GameThread.p1);//14: method that sets the narrative and options
+	                    q.play("first",GameThread.p1);//14: method that sets the narrative and options
 				        }while(contador<mapSize);
 	                    //14:_this for was created for play(false), now called .play("prep")
 	                    wolfBeast=q;
