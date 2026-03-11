@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -48,7 +49,19 @@ public class MainWindow extends JFrame{
     }
     
     public void initializeCompounds() {
-        Color bgColor = new Color(255, 239, 182);
+    	Color bgColor = new Color(92, 122, 237);
+        Color bigBdColor = new Color(17, 53, 189);
+        Color midBdColor = new Color(52, 86, 217);
+        
+        JPanel bigPanel = new JPanel();
+        bigPanel.setBackground(bigBdColor);
+        bigPanel.setLayout(new BorderLayout());
+        bigPanel.setBorder(BorderFactory.createLineBorder(bigBdColor, 20));
+        
+        JPanel midPanel = new JPanel();
+        midPanel.setBackground(midBdColor);
+        midPanel.setLayout(new BorderLayout());
+        midPanel.setBorder(BorderFactory.createLineBorder(midBdColor, 20));
         
         JPanel centerPanel = new JPanel(); 
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -75,7 +88,9 @@ public class MainWindow extends JFrame{
         JButton btnCredits = new JButton();
         addButtonMain(centerPanel, "Credits", btnCredits);
         
-        add(centerPanel);
+        bigPanel.add(midPanel);
+        midPanel.add(centerPanel);
+        add(bigPanel);;
     }
     
     private JButton addButtonMain(JPanel panel, String labelText, JButton button) {

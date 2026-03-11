@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -42,7 +43,7 @@ public class LogInWindow extends JFrame {
         setTitle("Login");
         setSize(630, 680); 
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         initializeCompounds();
@@ -57,12 +58,12 @@ public class LogInWindow extends JFrame {
         
         JPanel bigPanel = new JPanel();
         bigPanel.setBackground(bigBdColor);
-        bigPanel.setLayout(new BoxLayout(bigPanel, BoxLayout.Y_AXIS));
+        bigPanel.setLayout(new BorderLayout());
         bigPanel.setBorder(BorderFactory.createLineBorder(bigBdColor, 20));
         
         JPanel midPanel = new JPanel();
         midPanel.setBackground(midBdColor);
-        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));
+        midPanel.setLayout(new BorderLayout());
         midPanel.setBorder(BorderFactory.createLineBorder(midBdColor, 20));
         
         JPanel centerPanel = new JPanel(); 
