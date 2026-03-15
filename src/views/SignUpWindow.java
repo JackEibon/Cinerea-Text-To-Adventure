@@ -1,16 +1,22 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -60,12 +66,12 @@ public class SignUpWindow extends JFrame {
         
         JPanel bigPanel = new JPanel();
         bigPanel.setBackground(bigBdColor);
-        bigPanel.setLayout(new BoxLayout(bigPanel, BoxLayout.Y_AXIS));
+        bigPanel.setLayout(new BorderLayout());
         bigPanel.setBorder(BorderFactory.createLineBorder(bigBdColor, 20));
         
         JPanel midPanel = new JPanel();
         midPanel.setBackground(midBdColor);
-        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));
+        midPanel.setLayout(new BorderLayout());
         midPanel.setBorder(BorderFactory.createLineBorder(midBdColor, 20));
         
         Dimension fatSize = new Dimension(350, 40);
@@ -116,6 +122,16 @@ public class SignUpWindow extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				resetBackground(btnRegister);
 			}
+		})
+        
+        
+        
+        ;
+        addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+			
+			}
 		});
         
         centerPanel.add(btnRegister);
@@ -148,13 +164,32 @@ public class SignUpWindow extends JFrame {
         add(scroll);
         
         addActionListeners();
+        addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowIconified(WindowEvent e) {
+				Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesgray.png"); 
+		        setIconImage(poorIcon);
+			}
+			public void windowDeiconified(WindowEvent e) {
+				Image Icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+		        setIconImage(Icon);
+				
+			}
+			
+		});
     }
     
     private void cancelRegister() {
-    	JOptionPane.showConfirmDialog(this, "Cancel Operation?");
-        new LogInWindow();
-        dispose();
+    	int option = JOptionPane.showConfirmDialog(this, "Cancel Operation?");
+    	
+    	if(option == JOptionPane.YES_OPTION) {
+    		//System.exit(0);
+    		new LogInWindow();
+            dispose();
+    	}
 	}
+    
+    
 
 	private void addButtonForm(String labelText, JButton button) {
     	pixelBorderText(button);
@@ -174,6 +209,7 @@ public class SignUpWindow extends JFrame {
         
         pixelBorderText(field);
         field.setMaximumSize(new Dimension(350, 40));
+        field.setMargin(new Insets(10, 10, 10, 10));
         field.setPreferredSize(new Dimension(350, 40));;
         field.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(field);
@@ -296,6 +332,31 @@ public class SignUpWindow extends JFrame {
             	validateTxtNickname();
             }
         });
+    	
+    	txtEmail.addKeyListener(new KeyAdapter() {
+    		@Override
+    		public void keyTyped(KeyEvent e) {
+    			if(txtEmail.getText().length() > 30) {
+    				e.consume();
+    			}
+    		}
+    		
+    		@Override
+    		public void keyPressed(KeyEvent e) {
+    			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+    				txtNickname.requestFocusInWindow();
+    			}
+    		}
+    	});
+    	
+    	txtNickname.addKeyListener(new KeyAdapter() {
+    		@Override
+    		public void keyTyped(KeyEvent e) {
+    			if(txtNickname.getText().length() > 20) {
+    				e.consume();
+    			}
+    		}
+    	});
     	
     	cbGems.addActionListener(new ActionListener() {
             @Override

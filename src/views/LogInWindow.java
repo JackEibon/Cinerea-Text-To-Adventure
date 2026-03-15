@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -9,6 +10,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -33,22 +36,23 @@ public class LogInWindow extends JFrame {
     private JTextField txtEmail;
     private JPasswordField txtPassword;
     private JLabel errEmail, errPassword;
-
     public LogInWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
+        
         setIconImage(myIcon);
         
         setTitle("Login");
         setSize(630, 680); 
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         initializeCompounds();
         
         setVisible(true);
     }
+    
     
     public void initializeCompounds() {
         Color bgColor = new Color(92, 122, 237);
@@ -57,12 +61,12 @@ public class LogInWindow extends JFrame {
         
         JPanel bigPanel = new JPanel();
         bigPanel.setBackground(bigBdColor);
-        bigPanel.setLayout(new BoxLayout(bigPanel, BoxLayout.Y_AXIS));
+        bigPanel.setLayout(new BorderLayout());
         bigPanel.setBorder(BorderFactory.createLineBorder(bigBdColor, 20));
         
         JPanel midPanel = new JPanel();
         midPanel.setBackground(midBdColor);
-        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));
+        midPanel.setLayout(new BorderLayout());
         midPanel.setBorder(BorderFactory.createLineBorder(midBdColor, 20));
         
         JPanel centerPanel = new JPanel(); 
@@ -125,6 +129,20 @@ public class LogInWindow extends JFrame {
         add(bigPanel);;
         
         addActionListeners();
+        
+        addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowIconified(WindowEvent e) {
+				Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesgray.png"); 
+		        setIconImage(poorIcon);
+			}
+			public void windowDeiconified(WindowEvent e) {
+				Image Icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+		        setIconImage(Icon);
+				
+			}
+			
+		});
     }
     
     private void changeBackground(JComponent component) {
@@ -239,4 +257,8 @@ public class LogInWindow extends JFrame {
     	new SignUpWindow();
         dispose();
 	}
+    
+    
+    
+    
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * Un nodo tendra todas sus conexiones apuntando a null hasta que sean apuntado estos valores con algun nodo en 
  * especifico*/
 public class NodeT1 {
-	boolean bridgeEW = false, bridgeNS = false, explored = false;
+	boolean bridge=false, cave=false, explored=false;
 	/*
 	 * 
     
@@ -34,19 +34,23 @@ public class NodeT1 {
            text = mainDescription;
 	 * 
 	 * */
-private int scene=0, odorP = 0, freshBeastBlood = 0, wolfBeenHere = 0;
+private int scene=0, odorP = 0, freshBeastBlood = 0, wolfBeenHere = 0, height=0;
 private NodeT1 aN1= null;
+private int aN1Cost= 999;
 private NodeT1 aN2= null;
+private int aN2Cost= 999;
 private NodeT1 aN3= null;
+private int aN3Cost= 999;
 private NodeT1 aN4= null;
+private int aN4Cost= 999;
 private NodeT1 aN5= null;
+private int aN5Cost= 999;
 private NodeT1 aN6= null;
+private int aN6Cost= 999;
 private NodeT1 aN7= null;
+private int aN7Cost= 999;
 private NodeT1 aN8= null;
-private NodeT1 aN9= null;
-private NodeT1 aN10= null;
-private NodeT1 aN11= null;
-private NodeT1 aN12= null;
+private int aN8Cost= 999;
 private String 
 biome = "meadow",
 mainDescription = "there doesn’t seem to be anything interesting",
@@ -63,12 +67,12 @@ public NodeT1(int scene){
     this.scene=scene;
     }
 
-public boolean isBridgeEW() {
-    return bridgeEW;
+public boolean isBridge() {
+    return bridge;
 }
 
-public boolean isBridgeNS() {
-    return bridgeNS;
+public boolean isCave() {
+    return cave;
 }
 
 public boolean isExplored() {
@@ -77,6 +81,10 @@ public boolean isExplored() {
 
 public int getScene() {
     return scene;
+}
+
+public int getHeight() {
+    return height;
 }
 
 public int getOdorP() {
@@ -123,21 +131,6 @@ public NodeT1 getaN8() {
     return aN8;
 }
 
-public NodeT1 getaN9() {
-    return aN9;
-}
-
-public NodeT1 getaN10() {
-    return aN10;
-}
-
-public NodeT1 getaN11() {
-    return aN11;
-}
-
-public NodeT1 getaN12() {
-    return aN12;
-}
 
 public String getBiome() {
     return biome;
@@ -175,12 +168,11 @@ public String getItemsDescriptions() {
     return itemsDescriptions;
 }
 
-public void setBridgeEW(boolean bridgeEW) {
-    this.bridgeEW = bridgeEW;
+public void setBridge(boolean bridge) {
+    this.bridge = bridge;
 }
-
-public void setBridgeNS(boolean bridgeNS) {
-    this.bridgeNS = bridgeNS;
+public void setCave(boolean cave) {
+    this.cave = cave;
 }
 
 public void setExplored(boolean explored) {
@@ -235,21 +227,7 @@ public void setaN8(NodeT1 aN8) {
     this.aN8 = aN8;
 }
 
-public void setaN9(NodeT1 aN9) {
-    this.aN9 = aN9;
-}
 
-public void setaN10(NodeT1 aN10) {
-    this.aN10 = aN10;
-}
-
-public void setaN11(NodeT1 aN11) {
-    this.aN11 = aN11;
-}
-
-public void setaN12(NodeT1 aN12) {
-    this.aN12 = aN12;
-}
 
 public void setBiome(String biome) {
     this.biome = biome;
@@ -285,6 +263,71 @@ public void setTargetDescriptions(String targetDescriptions) {
 
 public void setItemsDescriptions(String itemsDescriptions) {
     this.itemsDescriptions = itemsDescriptions;
+}
+
+public void setaN1Cost(int aN1Cost) {
+    this.aN1Cost = aN1Cost;
+}
+
+public void setaN2Cost(int aN2Cost) {
+    this.aN2Cost = aN2Cost;
+}
+
+public void setaN3Cost(int aN3Cost) {
+    this.aN3Cost = aN3Cost;
+}
+
+public void setaN4Cost(int aN4Cost) {
+    this.aN4Cost = aN4Cost;
+}
+
+public void setaN5Cost(int aN5Cost) {
+    this.aN5Cost = aN5Cost;
+}
+
+public void setaN6Cost(int aN6Cost) {
+    this.aN6Cost = aN6Cost;
+}
+
+public void setaN7Cost(int aN7Cost) {
+    this.aN7Cost = aN7Cost;
+}
+
+public void setaN8Cost(int aN8Cost) {
+    this.aN8Cost = aN8Cost;
+}
+
+
+public int getaN1Cost() {
+    return aN1Cost;
+}
+
+public int getaN2Cost() {
+    return aN2Cost;
+}
+
+public int getaN3Cost() {
+    return aN3Cost;
+}
+
+public int getaN4Cost() {
+    return aN4Cost;
+}
+
+public int getaN5Cost() {
+    return aN5Cost;
+}
+
+public int getaN6Cost() {
+    return aN6Cost;
+}
+
+public int getaN7Cost() {
+    return aN7Cost;
+}
+
+public int getaN8Cost() {
+    return aN8Cost;
 }
 
     

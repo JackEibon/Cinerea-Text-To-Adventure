@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -43,6 +45,7 @@ public class LogIn extends JFrame {
         // Configuración básica
         Toolkit tk = Toolkit.getDefaultToolkit(); 
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
+        Image poorIcon =tk.getImage("src/img/pixelesgray.png"); 
         setIconImage(myIcon);
         
         setTitle("Login");
@@ -92,6 +95,20 @@ public class LogIn extends JFrame {
         centerPanel.add(btnLogin);
         
         add(centerPanel);
+        
+        addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowIconified(WindowEvent e) {
+				Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesgray.png"); 
+		        setIconImage(poorIcon);
+			}
+			public void windowDeiconified(WindowEvent e) {
+				Image Icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+		        setIconImage(Icon);
+				
+			}
+			
+		});
     }
 
     private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {
