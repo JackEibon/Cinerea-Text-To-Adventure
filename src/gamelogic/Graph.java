@@ -69,16 +69,16 @@ public class Graph {
 	p,q,r,g;
 	
 	SilverCrater silverCrater;
-	
+}
 		
 	
 
 	/*Methods*/
 	//Constructor: initializes the objects of a class.
-		public Graph() {}
+		//public Graph() {}
     
 	//Genesis creates a fixed maps of nodes with int values, then updates those values from the "Seed Node"
-		public void Genesis() {
+	/*	public void Genesis() {
 			g=silverCrater;
 			int contador=1;
 			while(true) {
@@ -122,9 +122,9 @@ public class Graph {
 				
 				
 			
-		public boolean isTheSameUpasDown(int height1, int heigth2, String special) {return true;}
+		//public boolean isTheSameUpasDown(int height1, int heigth2, String special) {return true;}
 		//public boolean validateIsAdjNodeValid(NodeT1 a, NodeT1 b) {return true;}
-		public int determineCET(int height1, int heigth2, String special) {return 1;} //(CET Cost of Effort per Travel)
+		//public int determineCET(int height1, int heigth2, String special) {return 1;} //(CET Cost of Effort per Travel)
 		
 		public boolean ConnecttwoNodes (NodeT1 p, NodeT1 q) 
 		{
@@ -144,16 +144,17 @@ public class Graph {
 					break;
 				}	
 				
-					else {}
+				/*	else {}
 					if(g.getaN2()==null)
 					{}
 				 if(g.getaN3()==null)
 					{}
 					 if(g.getaN4()==null)
-					 {						
+					 {				
 					
 				}}
 	
 		
 		}
 }
+*/
