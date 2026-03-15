@@ -91,11 +91,6 @@ public class MainWindow extends JFrame{
         bigPanel.add(midPanel);
         midPanel.add(centerPanel);
         add(bigPanel);;
-<<<<<<< HEAD
-        
-        
-=======
->>>>>>> 8b8738f51ec21c33c8f49a9fc373bee28ede6d6c
     }
     
     private JButton addButtonMain(JPanel panel, String labelText, JButton button) {
@@ -110,8 +105,6 @@ public class MainWindow extends JFrame{
     	//setMenu();
     	return btn;
     }
-    
-    
 
     /*public void setMenu() {
 
