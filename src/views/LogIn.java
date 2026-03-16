@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -109,6 +111,8 @@ public class LogIn extends JFrame {
 			}
 			
 		});
+        
+
     }
 
     private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {

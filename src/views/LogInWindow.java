@@ -12,6 +12,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -143,7 +146,12 @@ public class LogInWindow extends JFrame {
 			}
 			
 		});
+        
+        
+        
     }
+	
+    
     
     private void changeBackground(JComponent component) {
     	component.setBackground(new Color(17, 53, 189));

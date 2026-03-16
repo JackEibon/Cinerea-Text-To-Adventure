@@ -11,6 +11,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -164,6 +166,27 @@ public class SignUpWindow extends JFrame {
         add(scroll);
         
         addActionListeners();
+        
+        
+
+        btnCancel.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesred.png"); 
+		        setIconImage(poorIcon);
+				
+				
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				Image Icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+		        setIconImage(Icon);
+				
+			}
+		});
+
         addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowIconified(WindowEvent e) {
@@ -176,7 +199,11 @@ public class SignUpWindow extends JFrame {
 				
 			}
 			
+			
+			
 		});
+        
+
     }
     
     private void cancelRegister() {
