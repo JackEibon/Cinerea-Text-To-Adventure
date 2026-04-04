@@ -146,12 +146,7 @@ public class LogInWindow extends JFrame {
 			}
 			
 		});
-        
-        
-        
     }
-	
-    
     
     private void changeBackground(JComponent component) {
     	component.setBackground(new Color(17, 53, 189));

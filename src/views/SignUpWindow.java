@@ -124,11 +124,8 @@ public class SignUpWindow extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				resetBackground(btnRegister);
 			}
-		})
+		});
         
-        
-        
-        ;
         addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -166,8 +163,6 @@ public class SignUpWindow extends JFrame {
         add(scroll);
         
         addActionListeners();
-        
-        
 
         btnCancel.addFocusListener(new FocusListener() {
 			
@@ -215,8 +210,6 @@ public class SignUpWindow extends JFrame {
             dispose();
     	}
 	}
-    
-    
 
 	private void addButtonForm(String labelText, JButton button) {
     	pixelBorderText(button);
