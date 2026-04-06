@@ -8,9 +8,8 @@ public class SilverCrater extends NodeT1{
 	
 
 	public SilverCrater(int scene) {
-		super(scene);
-		setBridgeEW(false); 
-		setBridgeNS(false);
+		super(scene); 
+
 		setExplored(true);
 		setScene(0);
 		setOdorP(15);
@@ -24,9 +23,6 @@ public class SilverCrater extends NodeT1{
 		setaN6(null);
 		setaN7(null);
 		setaN8(null);
-		setaN10(null);
-		setaN11(null);
-		setaN12(null);
 		setBiome("meadow");
 		setMainDescription("The crater in the middle of the earth shines shimmers with moonlight hue");
 		setDistantDescription("A silver light shivers far away");
@@ -35,8 +31,8 @@ public class SilverCrater extends NodeT1{
 		setRestDescriptions("");
 		setTalkDescriptions("") ;
 		setItemsDescriptions("") ;
-		itemsDescriptions = "";
 		
 	}
+
 
 }

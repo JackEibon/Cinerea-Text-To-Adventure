@@ -11,10 +11,14 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -122,6 +126,13 @@ public class SignUpWindow extends JFrame {
 			}
 		});
         
+        addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+			
+			}
+		});
+        
         centerPanel.add(btnRegister);
         
         JButton btnCancel = new JButton();
@@ -152,6 +163,42 @@ public class SignUpWindow extends JFrame {
         add(scroll);
         
         addActionListeners();
+
+        btnCancel.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesred.png"); 
+		        setIconImage(poorIcon);
+				
+				
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				Image Icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+		        setIconImage(Icon);
+				
+			}
+		});
+
+        addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowIconified(WindowEvent e) {
+				Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesgray.png"); 
+		        setIconImage(poorIcon);
+			}
+			public void windowDeiconified(WindowEvent e) {
+				Image Icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+		        setIconImage(Icon);
+				
+			}
+			
+			
+			
+		});
+        
+
     }
     
     private void cancelRegister() {

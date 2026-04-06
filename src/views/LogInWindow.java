@@ -10,6 +10,11 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -34,10 +39,10 @@ public class LogInWindow extends JFrame {
     private JTextField txtEmail;
     private JPasswordField txtPassword;
     private JLabel errEmail, errPassword;
-
     public LogInWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
+        
         setIconImage(myIcon);
         
         setTitle("Login");
@@ -50,6 +55,7 @@ public class LogInWindow extends JFrame {
         
         setVisible(true);
     }
+    
     
     public void initializeCompounds() {
         Color bgColor = new Color(92, 122, 237);
@@ -126,6 +132,20 @@ public class LogInWindow extends JFrame {
         add(bigPanel);;
         
         addActionListeners();
+        
+        addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowIconified(WindowEvent e) {
+				Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesgray.png"); 
+		        setIconImage(poorIcon);
+			}
+			public void windowDeiconified(WindowEvent e) {
+				Image Icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+		        setIconImage(Icon);
+				
+			}
+			
+		});
     }
     
     private void changeBackground(JComponent component) {
@@ -240,4 +260,8 @@ public class LogInWindow extends JFrame {
     	new SignUpWindow();
         dispose();
 	}
+    
+    
+    
+    
 }
