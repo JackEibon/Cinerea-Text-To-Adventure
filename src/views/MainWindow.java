@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -78,6 +80,16 @@ public class MainWindow extends JFrame{
         JButton btnPlay = new JButton("Start");
         addButtonMain(centerPanel, "Start", btnPlay);
         
+        btnPlay.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				changeBackground(btnPlay);
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				resetBackground(btnPlay);
+			}
+		});
+        
         centerPanel.add(Box.createRigidArea(new Dimension(0, 40)));
         
         JButton btnConfig = new JButton();
@@ -90,7 +102,7 @@ public class MainWindow extends JFrame{
         
         bigPanel.add(midPanel);
         midPanel.add(centerPanel);
-        add(bigPanel);;
+        add(bigPanel);
     }
     
     private JButton addButtonMain(JPanel panel, String labelText, JButton button) {
@@ -144,7 +156,15 @@ public class MainWindow extends JFrame{
 
 	}*/
 
-
+    private void changeBackground(JComponent component) {
+    	component.setBackground(new Color(17, 53, 189));
+    	component.setForeground(Color.white);
+    }
+    
+    private void resetBackground(JComponent component) {
+    	component.setBackground(Color.white);
+    	component.setForeground(Color.black);
+    }
 
     private void pixelBorderText(JComponent component) {
         component.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
