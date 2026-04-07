@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -32,6 +33,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import exceptions.InvalidUserException;
 import utils.AppFont;
 
 public class LogInWindow extends JFrame {
@@ -94,7 +96,7 @@ public class LogInWindow extends JFrame {
         JButton btnLogin = new JButton(); 
         addButtonForm("Log In", btnLogin);
         
-        btnLogin.addActionListener(e -> validateAndShow());
+        btnLogin.addActionListener(e -> handleLogin());
         btnLogin.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				changeBackground(btnLogin);
@@ -196,64 +198,72 @@ public class LogInWindow extends JFrame {
         component.putClientProperty("JComponent.focusWidth", 0);
     }
     
-    private boolean validateTxtEmail() {
-    	if(txtEmail.getText().trim().isEmpty()) { 
-        	errEmail.setText("Email required"); 
-        	errEmail.setVisible(true); 
-        	return false;
-        }else if(!txtEmail.getText().contains("@")) { 
-        	errEmail.setText("Valid email required"); 
-        	errEmail.setVisible(true);
-        	return false;
-        }
-        errEmail.setText(""); 
-        return true;
-    }
-    
     private void addActionListeners() {
     	txtEmail.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-            	validateTxtEmail();
+            	handleLogin();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                validateTxtEmail();
+                handleLogin();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-            	validateTxtEmail();
+            	handleLogin();
             }
         });
     }
+    
+    private void handleLogin() {
+		try {
+			if(validateAndShow(txtEmail.getText(), String.valueOf(txtPassword.getPassword()))) {
+			    JOptionPane.showMessageDialog(this, "Welcome, " + txtEmail.getText().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
+			    new MainWindow();
+			    dispose();
+			} 
+		} catch (HeadlessException e) {
+			// TODO Auto-generated catch block
+			errPassword.setVisible(true);
+			} catch (InvalidUserException e) {
+				// TODO Auto-generated catch block
+				errPassword.setText("Credenciales Invalidas");
+				errPassword.setVisible(true);
+		} //Aqui proximamente pondremos la variable del personaje al que le pertenece la cuenta
+	}
 
-    private void validateAndShow() {
+    private boolean validateAndShow(String txtEmail, String pass) throws InvalidUserException {
         errEmail.setVisible(false);
         errPassword.setVisible(false);
 
-        String pass = new String(txtPassword.getPassword());
         boolean isValid = true;
         
-        if(!validateTxtEmail()) {
+        if(txtEmail.trim().isEmpty()) { 
+        	errEmail.setText("Email required"); 
+        	errEmail.setVisible(true); 
         	isValid = false;
-        }
+        }else if(!txtEmail.contains("@")) { 
+        	errEmail.setText("Valid email required"); 
+        	errEmail.setVisible(true);
+        	isValid = false;
+        }else if(!txtEmail.trim().equals("esoto_24@alu.uabcs.mx")) {
+    		throw new InvalidUserException("");
+    	}
 
         if (pass.isEmpty()) {
             errPassword.setText("Password is required");
             errPassword.setVisible(true);
             isValid = false;
+        }else if (!pass.equals("asdfasdf")) {
+        	throw new InvalidUserException("");
         }
-
-        if (isValid) {
-            JOptionPane.showMessageDialog(this, "Welcome, " + txtEmail.getText().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            new MainWindow();
-            dispose();
-        } //Aqui proximamente pondremos la variable del personaje al que le pertenece la cuenta
         
         revalidate();
         repaint();
+        
+        return isValid;
     }
 
     private void handleBtnRegister() {
