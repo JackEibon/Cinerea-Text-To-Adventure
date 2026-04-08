@@ -33,6 +33,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import exceptions.InvalidPasswordException;
 import exceptions.InvalidUserException;
 import utils.AppFont;
 
@@ -219,10 +220,16 @@ public class LogInWindow extends JFrame {
     
     private void handleLogin() {
 		try {
-			if(validateAndShow(txtEmail.getText(), String.valueOf(txtPassword.getPassword()))) {
-			    JOptionPane.showMessageDialog(this, "Welcome, " + txtEmail.getText().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
-			    new MainWindow();
-			    dispose();
+			try {
+				if(validateAndShow(txtEmail.getText(), String.valueOf(txtPassword.getPassword()))) {
+				    JOptionPane.showMessageDialog(this, "Welcome, " + txtEmail.getText().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
+				    new MainWindow();
+				    dispose();
+				}
+			} catch (InvalidPasswordException e) {
+				// TODO Auto-generated catch block
+				errPassword.setText("Credenciales Invalidas");
+				errPassword.setVisible(true);
 			} 
 		} catch (HeadlessException e) {
 			// TODO Auto-generated catch block
@@ -234,7 +241,7 @@ public class LogInWindow extends JFrame {
 		} //Aqui proximamente pondremos la variable del personaje al que le pertenece la cuenta
 	}
 
-    private boolean validateAndShow(String txtEmail, String pass) throws InvalidUserException {
+    private boolean validateAndShow(String txtEmail, String pass) throws InvalidUserException, InvalidPasswordException {
         errEmail.setVisible(false);
         errPassword.setVisible(false);
 
@@ -257,7 +264,7 @@ public class LogInWindow extends JFrame {
             errPassword.setVisible(true);
             isValid = false;
         }else if (!pass.equals("asdfasdf")) {
-        	throw new InvalidUserException("");
+        	throw new InvalidPasswordException("");
         }
         
         revalidate();
