@@ -1,6 +1,9 @@
 package main;
 
-import com.formdev.flatlaf.FlatLightLaf; 
+import com.formdev.flatlaf.FlatLightLaf;
+
+import controllers.LoginController;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -23,5 +26,6 @@ public class Main {
         
         //SignUpWindow window = new SignUpWindow(); 
         LogInWindow window = new LogInWindow(); 
+        new LoginController(window);
     }
 }

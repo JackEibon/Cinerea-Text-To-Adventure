@@ -42,6 +42,8 @@ public class LogInWindow extends JFrame {
     private JTextField txtEmail;
     private JPasswordField txtPassword;
     private JLabel errEmail, errPassword;
+    private JButton btnLogin, btnRegister;
+    
     public LogInWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
@@ -97,7 +99,6 @@ public class LogInWindow extends JFrame {
         JButton btnLogin = new JButton(); 
         addButtonForm("Log In", btnLogin);
         
-        btnLogin.addActionListener(e -> handleLogin());
         btnLogin.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				changeBackground(btnLogin);
@@ -115,7 +116,6 @@ public class LogInWindow extends JFrame {
         JButton btnRegister = new JButton(); 
         addButtonForm("Sign Up", btnRegister);
         
-        btnRegister.addActionListener(e -> handleBtnRegister());
         btnRegister.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				changeBackground(btnRegister);
@@ -132,9 +132,7 @@ public class LogInWindow extends JFrame {
         
         bigPanel.add(midPanel);
         midPanel.add(centerPanel);
-        add(bigPanel);;
-        
-        addActionListeners();
+        add(bigPanel);
         
         addWindowListener(new WindowAdapter() {
 			@Override
@@ -199,86 +197,37 @@ public class LogInWindow extends JFrame {
         component.putClientProperty("JComponent.focusWidth", 0);
     }
     
-    private void addActionListeners() {
-    	txtEmail.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-            	handleLogin();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                handleLogin();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-            	handleLogin();
-            }
-        });
-    }
-    
-    private void handleLogin() {
-		try {
-			try {
-				if(validateAndShow(txtEmail.getText(), String.valueOf(txtPassword.getPassword()))) {
-				    JOptionPane.showMessageDialog(this, "Welcome, " + txtEmail.getText().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
-				    new MainWindow();
-				    dispose();
-				}
-			} catch (InvalidPasswordException e) {
-				// TODO Auto-generated catch block
-				errPassword.setText("Credenciales Invalidas");
-				errPassword.setVisible(true);
-			} 
-		} catch (HeadlessException e) {
-			// TODO Auto-generated catch block
-			errPassword.setVisible(true);
-			} catch (InvalidUserException e) {
-				// TODO Auto-generated catch block
-				errPassword.setText("Credenciales Invalidas");
-				errPassword.setVisible(true);
-		} //Aqui proximamente pondremos la variable del personaje al que le pertenece la cuenta
+	public JTextField getTxtEmail() {
+		return txtEmail;
 	}
 
-    private boolean validateAndShow(String txtEmail, String pass) throws InvalidUserException, InvalidPasswordException {
-        errEmail.setVisible(false);
-        errPassword.setVisible(false);
-
-        boolean isValid = true;
-        
-        if(txtEmail.trim().isEmpty()) { 
-        	errEmail.setText("Email required"); 
-        	errEmail.setVisible(true); 
-        	isValid = false;
-        }else if(!txtEmail.contains("@")) { 
-        	errEmail.setText("Valid email required"); 
-        	errEmail.setVisible(true);
-        	isValid = false;
-        }else if(!txtEmail.trim().equals("esoto_24@alu.uabcs.mx")) {
-    		throw new InvalidUserException("");
-    	}
-
-        if (pass.isEmpty()) {
-            errPassword.setText("Password is required");
-            errPassword.setVisible(true);
-            isValid = false;
-        }else if (!pass.equals("asdfasdf")) {
-        	throw new InvalidPasswordException("");
-        }
-        
-        revalidate();
-        repaint();
-        
-        return isValid;
-    }
-
-    private void handleBtnRegister() {
-    	new SignUpWindow();
-        dispose();
+	public JPasswordField getTxtPassword() {
+		return txtPassword;
 	}
-    
-    
-    
-    
+
+	public JLabel getErrEmail() {
+		return errEmail;
+	}
+
+	public JLabel getErrPassword() {
+		return errPassword;
+	}
+	
+	public String getEmail() {
+		return txtEmail.getText();
+	}
+	
+	public char[] getPassword() {
+		return txtPassword.getPassword();
+	}
+
+	public JButton getBtnLogin() {
+		return btnLogin;
+	}
+
+	public JButton getBtnRegister() {
+		return btnRegister;
+	}
+	
+	
 }
