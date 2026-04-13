@@ -6,62 +6,35 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.HeadlessException;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
-import exceptions.InvalidPasswordException;
-import exceptions.InvalidUserException;
 import utils.AppFont;
 
-public class LogInWindow extends JFrame {
+public class LoginView extends JPanel {
 
+    private LoginWindow window;
     private JTextField txtEmail;
     private JPasswordField txtPassword;
     private JLabel errEmail, errPassword;
     private JButton btnLogin, btnRegister;
-    
-    public LogInWindow() {
-        Toolkit tk = Toolkit.getDefaultToolkit(); 
-        Image myIcon = tk.getImage("src/img/pixeles.png"); 
-        
-        setIconImage(myIcon);
-        
-        setTitle("Login");
-        setSize(630, 680); 
-        setLocationRelativeTo(null);
-        setResizable(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
+    public LoginView(LoginWindow window) {
+        this.window = window;
+        setLayout(new BorderLayout());
         initializeCompounds();
-        
-        setVisible(true);
     }
-    
-    
+
     public void initializeCompounds() {
         Color bgColor = new Color(92, 122, 237);
         Color bigBdColor = new Color(17, 53, 189);
@@ -96,79 +69,61 @@ public class LogInWindow extends JFrame {
 
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         
-        JButton btnLogin = new JButton(); 
+        btnLogin = new JButton(); 
         addButtonForm("Log In", btnLogin);
         
         btnLogin.addMouseListener(new MouseAdapter() {
-			public void mouseEntered(MouseEvent e) {
-				changeBackground(btnLogin);
-			}
-			
-			public void mouseExited(MouseEvent e) {
-				resetBackground(btnLogin);
-			}
-		});
+            public void mouseEntered(MouseEvent e) {
+                changeBackground(btnLogin);
+            }
+            public void mouseExited(MouseEvent e) {
+                resetBackground(btnLogin);
+            }
+        });
         
         centerPanel.add(btnLogin);
-        
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         
-        JButton btnRegister = new JButton(); 
+        btnRegister = new JButton(); 
         addButtonForm("Sign Up", btnRegister);
         
         btnRegister.addMouseListener(new MouseAdapter() {
-			public void mouseEntered(MouseEvent e) {
-				changeBackground(btnRegister);
-			}
-			
-			public void mouseExited(MouseEvent e) {
-				resetBackground(btnRegister);
-			}
-		});
+            public void mouseEntered(MouseEvent e) {
+                changeBackground(btnRegister);
+            }
+            public void mouseExited(MouseEvent e) {
+                resetBackground(btnRegister);
+            }
+        });
         
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        
         centerPanel.add(btnRegister);
         
         bigPanel.add(midPanel);
         midPanel.add(centerPanel);
-        add(bigPanel);
-        
-        addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowIconified(WindowEvent e) {
-				Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesgray.png"); 
-		        setIconImage(poorIcon);
-			}
-			public void windowDeiconified(WindowEvent e) {
-				Image Icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
-		        setIconImage(Icon);
-				
-			}
-			
-		});
-    }
-    
-    private void changeBackground(JComponent component) {
-    	component.setBackground(new Color(17, 53, 189));
-    	component.setForeground(Color.white);
-    }
-    
-    private void resetBackground(JComponent component) {
-    	component.setBackground(Color.white);
-    	component.setForeground(Color.black);
-    }
-    
-    private void addButtonForm(String labelText, JButton button) {
-    	pixelBorderText(button);
-    	button.setText(labelText);
-    	button.setFont(AppFont.titleSecondary());
-    	button.setAlignmentX(Component.CENTER_ALIGNMENT);
-    	button.setMaximumSize(new Dimension(250, 50));
-    	button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        add(bigPanel, BorderLayout.CENTER);
     }
 
-	private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {
+    private void changeBackground(JComponent component) {
+        component.setBackground(new Color(17, 53, 189));
+        component.setForeground(Color.white);
+    }
+
+    private void resetBackground(JComponent component) {
+        component.setBackground(Color.white);
+        component.setForeground(Color.black);
+    }
+
+    private void addButtonForm(String labelText, JButton button) {
+        pixelBorderText(button);
+        button.setText(labelText);
+        button.setFont(AppFont.titleSecondary());
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setMaximumSize(new Dimension(250, 50));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {
         JLabel lbl = new JLabel(labelText);
         lbl.setFont(AppFont.normalSecondary());
         lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -196,38 +151,40 @@ public class LogInWindow extends JFrame {
         component.setBackground(Color.WHITE);
         component.putClientProperty("JComponent.focusWidth", 0);
     }
-    
-	public JTextField getTxtEmail() {
-		return txtEmail;
-	}
 
-	public JPasswordField getTxtPassword() {
-		return txtPassword;
-	}
+    public LoginWindow getWindow() {
+        return window;
+    }
 
-	public JLabel getErrEmail() {
-		return errEmail;
-	}
+    public JTextField getTxtEmail() {
+        return txtEmail;
+    }
 
-	public JLabel getErrPassword() {
-		return errPassword;
-	}
-	
-	public String getEmail() {
-		return txtEmail.getText();
-	}
-	
-	public char[] getPassword() {
-		return txtPassword.getPassword();
-	}
+    public JPasswordField getTxtPassword() {
+        return txtPassword;
+    }
 
-	public JButton getBtnLogin() {
-		return btnLogin;
-	}
+    public JLabel getErrEmail() {
+        return errEmail;
+    }
 
-	public JButton getBtnRegister() {
-		return btnRegister;
-	}
-	
-	
+    public JLabel getErrPassword() {
+        return errPassword;
+    }
+
+    public String getEmail() {
+        return txtEmail.getText();
+    }
+
+    public char[] getPassword() {
+        return txtPassword.getPassword();
+    }
+
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public JButton getBtnRegister() {
+        return btnRegister;
+    }
 }

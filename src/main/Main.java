@@ -8,8 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import utils.AppFont;
-import views.LogInWindow;
-import views.SignUpWindow;
+import views.LoginWindow;
 
 public class Main {
 
@@ -25,7 +24,7 @@ public class Main {
         UIManager.put("Label.font", AppFont.normal());
         
         //SignUpWindow window = new SignUpWindow(); 
-        LogInWindow window = new LogInWindow(); 
-        new LoginController(window);
+        LoginWindow window = new LoginWindow(); 
+        new LoginController(window.getLoginView());
     }
 }

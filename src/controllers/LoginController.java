@@ -1,23 +1,22 @@
 package controllers;
 
-import java.awt.HeadlessException;
-
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import exceptions.InvalidPasswordException;
 import exceptions.InvalidUserException;
-import views.LogInWindow;
+import models.User;
+import views.LoginView;
 import views.MainWindow;
 import views.SignUpWindow;
 
 public class LoginController {
 	
-	private LogInWindow view;
+	private LoginView view;
 
-	LoginController(LogInWindow view){
-		this.view = view;
+	public LoginController(LoginView loginView){
+		this.view = loginView;
 		registerListeners();
 	}
 	
@@ -25,7 +24,7 @@ public class LoginController {
 		view.getTxtEmail().getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-            	handleLogin();
+                handleLogin();
             }
 
             @Override
@@ -35,7 +34,7 @@ public class LoginController {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-            	handleLogin();
+                handleLogin();
             }
         });
 		
@@ -45,34 +44,39 @@ public class LoginController {
 	}
 	
 	private void handleLogin() {
+        
+		User user = new User(view.getEmail(), String.valueOf(view.getTxtPassword().getPassword()));
+
 		try {
-			if(validateAndShow(view.getEmail(), String.valueOf(view.getTxtPassword().getPassword()))) {
-			    JOptionPane.showMessageDialog(view, "Welcome, " + view.getTxtEmail().getText().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
+			if(validateAndShow(user)) {
+			    JOptionPane.showMessageDialog(view.getWindow(), "Welcome, " + user.getEmail().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
 			    new MainWindow();
-			    view.dispose();
+			    view.getWindow().dispose();
 			}
 		} catch (InvalidUserException | InvalidPasswordException e) {
-			// TODO Auto-generated catch block
 			view.getErrPassword().setText("Credenciales Invalidas");
 			view.getErrPassword().setVisible(true);
-		} //Aqui proximamente pondremos la variable del personaje al que le pertenece la cuenta
+		} 
 	}
 	
-	private boolean validateAndShow(String txtEmail, String pass) throws InvalidUserException, InvalidPasswordException {
+	private boolean validateAndShow(User user) throws InvalidUserException, InvalidPasswordException {
 		view.getErrEmail().setVisible(false);
 		view.getErrPassword().setVisible(false);
 
         boolean isValid = true;
         
-        if(txtEmail.trim().isEmpty()) { 
+        String email = user.getEmail();
+        String pass = user.getPassword();
+        
+        if(email.trim().isEmpty()) { 
         	view.getErrEmail().setText("Email required"); 
         	view.getErrEmail().setVisible(true); 
         	isValid = false;
-        }else if(!txtEmail.contains("@")) { 
+        }else if(!email.contains("@")) { 
         	view.getErrEmail().setText("Valid email required"); 
         	view.getErrEmail().setVisible(true);
         	isValid = false;
-        }else if(!txtEmail.trim().equals("esoto_24@alu.uabcs.mx")) {
+        }else if(!email.trim().equals("esoto_24@alu.uabcs.mx")) {
     		throw new InvalidUserException("");
     	}
 
@@ -92,6 +96,6 @@ public class LoginController {
 	
 	private void handleBtnRegister() {
     	new SignUpWindow();
-    	view.dispose();
+    	view.getWindow().dispose();
 	}
 }

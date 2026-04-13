@@ -6,27 +6,23 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
-import controllers.SignUpController;
+public class LoginWindow extends JFrame {
 
-public class SignUpWindow extends JFrame {
+    private LoginView loginView;
 
-    private SignUpView signUpView;
-
-    public SignUpWindow() {
+    public LoginWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
         Image myIcon = tk.getImage("src/img/pixeles.png"); 
-        setIconImage(myIcon);
         
-        setTitle("Sign Up");
-        setSize(620, 800);
+        setIconImage(myIcon);
+        setTitle("Login");
+        setSize(630, 680); 
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        signUpView = new SignUpView(this);
-        add(signUpView);
-        
-        new SignUpController(signUpView);
+        loginView = new LoginView(this);
+        add(loginView);
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -43,8 +39,8 @@ public class SignUpWindow extends JFrame {
         
         setVisible(true);
     }
-
-    public SignUpView getSignUpView() {
-        return signUpView;
+    
+    public LoginView getLoginView() {
+        return loginView;
     }
 }
