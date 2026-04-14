@@ -1,5 +1,9 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class User {
 	
 	private String name;
@@ -14,12 +18,7 @@ public class User {
 		
 	}
 	
-	public User(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
-	
-	public User(String name, String email, String country, char gender, String description, String[] languages, String password) {
+	public User(String name, String email, String country, char gender, String description, List[] languages, String password) {
 		this.name = name;
 		this.email = email;
 		this.country = country;
@@ -84,4 +83,44 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "Name: " + name + 
+				"\nEmail: " + email + 
+				"\nCountry: " + country + 
+				"\nGender: " + gender + 
+				"\nDescription: " + description + 
+				"\nLanguages:\n" + String.join("\n", languages) +
+				"\nPassword:" + password;
+	}
+	
+	public String toCsv() {
+		return name + "," +
+				email + "," +
+				country + "," +
+				gender + "," +
+				description + "," +
+				String.join("|", languages) +
+				password;
+	}
+	
+	public static User fromCsv(String userData) {
+		String data[] = userData.split(",");
+		String name = data[0];
+		String email = data[1];
+		String country = data[2];
+		char gender = data[3].charAt(0);
+		String descritpion = data[4];
+		
+		List<String> languages = new ArrayList<String>();
+		if(data.length > 5) {
+			languages = Arrays.asList(data[5].split("\\|"));
+		}
+		
+		String password = data[6];
+		
+		return new User(name, email, country, gender, descritpion, languages, password);
+	}
+	
 }

@@ -4,21 +4,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import models.User;
+import repository.UserRepository;
 import views.LoginWindow;
 import views.SignUpView;
 
 public class SignUpController {
 
     private SignUpView view;
+    private UserRepository repository;
 
-    public SignUpController(SignUpView view) {
+    public SignUpController(SignUpView view, UserRepository repository) {
         this.view = view;
+        this.repository = repository;
         registerListeners();
     }
 
@@ -111,6 +117,15 @@ public class SignUpController {
         view.getBtnCancel().addActionListener(e -> {
             cancelRegister();
         });
+    }
+    
+    private void registerUser(User user) {
+    	try {
+    		repository.save(user);
+    		JOptionPane.showMessageDialog(view, "Saved");
+    	}catch(IOException e) {
+    		JOptionPane.showMessageDialog(view, e.getMessage());
+    	}
     }
 
     private boolean validateTxtEmail() {
