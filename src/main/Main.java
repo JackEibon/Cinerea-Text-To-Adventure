@@ -7,7 +7,7 @@ import controllers.LoginController;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import utils.AppFont;
+import assets.utils.AppFont;
 import views.LoginWindow;
 
 public class Main {

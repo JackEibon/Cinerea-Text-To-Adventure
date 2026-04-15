@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import utils.AppFont;
+import assets.utils.AppFont;
 
 public class MainWindow extends JFrame{
 
@@ -28,7 +28,7 @@ public class MainWindow extends JFrame{
 
     public MainWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
-        Image myIcon = tk.getImage("src/img/pixeles.png"); 
+        Image myIcon = tk.getImage("src/assets/img/pixeles.png"); 
         setIconImage(myIcon);
         
         setTitle("Cinerea");

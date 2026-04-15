@@ -1,39 +1,37 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class User {
 	
-	private String name;
+	private String nickname;
 	private String email;
-	private String country;
-	private char gender;
-	private String description;
-	private String[] languages;
+	private String gem;
+	private String weapon;
+	private String elements;
 	private String password;
 	
 	public User() {
 		
 	}
 	
-	public User(String name, String email, String country, char gender, String description, List[] languages, String password) {
-		this.name = name;
+	public User(String email, String password) {
 		this.email = email;
-		this.country = country;
-		this.gender = gender;
-		this.description = description;
-		this.languages = languages;
 		this.password = password;
 	}
-
-	public String getName() {
-		return name;
+	
+	public User(String nickname, String email, String gem, String weapon, String elements) {
+		this.nickname = nickname;
+		this.email = email;
+		this.gem = gem;
+		this.weapon = weapon;
+		this.elements = elements;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickame(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getEmail() {
@@ -44,83 +42,60 @@ public class User {
 		this.email = email;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getGem() {
+		return gem;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setGem(String gem) {
+		this.gem = gem;
 	}
 
-	public char getGender() {
-		return gender;
+	public String getWeapon() {
+		return weapon;
 	}
 
-	public void setGender(char gender) {
-		this.gender = gender;
+	public void setWeapon(String weapon) {
+		this.weapon = weapon;
+	}
+	
+	public String getElements() {
+		return elements;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String[] getLanguages() {
-		return languages;
-	}
-
-	public void setLanguages(String[] languages) {
-		this.languages = languages;
+	public void setElements(String elements) {
+		this.elements = elements;
 	}
 	
 	public String getPassword() {
 		return password;
 	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	@Override
 	public String toString() {
-		return "Name: " + name + 
+		return "Nickname: " + nickname + 
 				"\nEmail: " + email + 
-				"\nCountry: " + country + 
-				"\nGender: " + gender + 
-				"\nDescription: " + description + 
-				"\nLanguages:\n" + String.join("\n", languages) +
-				"\nPassword:" + password;
+				"\nGem: " + gem + 
+				"\nWeapon: " + weapon + 
+				"\nelements:\n" + elements;
 	}
 	
 	public String toCsv() {
-		return name + "," +
+		return nickname + "," +
 				email + "," +
-				country + "," +
-				gender + "," +
-				description + "," +
-				String.join("|", languages) +
-				password;
+				gem + "," +
+				weapon + "," +
+				elements;
 	}
 	
 	public static User fromCsv(String userData) {
 		String data[] = userData.split(",");
-		String name = data[0];
+		String nickname = data[0];
 		String email = data[1];
-		String country = data[2];
-		char gender = data[3].charAt(0);
-		String descritpion = data[4];
+		String gem = data[2];
+		String weapon = data[3];
+		String elements = data[4];
 		
-		List<String> languages = new ArrayList<String>();
-		if(data.length > 5) {
-			languages = Arrays.asList(data[5].split("\\|"));
-		}
-		
-		String password = data[6];
-		
-		return new User(name, email, country, gender, descritpion, languages, password);
+		return new User(nickname, email, gem, weapon, elements);
 	}
 	
 }

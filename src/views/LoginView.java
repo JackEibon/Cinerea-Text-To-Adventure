@@ -19,7 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import utils.AppFont;
+import assets.utils.AppFont;
 
 public class LoginView extends JPanel {
 

@@ -12,7 +12,7 @@ public class LoginWindow extends JFrame {
 
     public LoginWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
-        Image myIcon = tk.getImage("src/img/pixeles.png"); 
+        Image myIcon = tk.getImage("src/assets/img/pixeles.png"); 
         
         setIconImage(myIcon);
         setTitle("Login");
@@ -27,12 +27,12 @@ public class LoginWindow extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowIconified(WindowEvent e) {
-                Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesgray.png"); 
+                Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/assets/img/pixelesgray.png"); 
                 setIconImage(poorIcon);
             }
             @Override
             public void windowDeiconified(WindowEvent e) {
-                Image icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+                Image icon = Toolkit.getDefaultToolkit().getImage("src/assets/img/pixeles.png"); 
                 setIconImage(icon);
             }
         });

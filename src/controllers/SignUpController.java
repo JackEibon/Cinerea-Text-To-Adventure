@@ -22,9 +22,9 @@ public class SignUpController {
     private SignUpView view;
     private UserRepository repository;
 
-    public SignUpController(SignUpView view, UserRepository repository) {
+    public SignUpController(SignUpView view) {
         this.view = view;
-        this.repository = repository;
+        this.repository = new UserRepository();
         registerListeners();
     }
 
@@ -223,9 +223,20 @@ public class SignUpController {
         }
 
         if (isValid) {
+        	User user = new User(
+        		view.getTxtNickname().getText(),
+        		view.getTxtEmail().getText(),
+        		view.getCbGems().getSelectedItem().toString(),
+        		view.getCbWeapon().getSelectedItem().toString(),
+        		view.getCbElement().getSelectedItem().toString()
+        	);
+        	
+        	registerUser(user);
+        	
             JOptionPane.showMessageDialog(view.getWindow(), "Character Created: " + view.getTxtNickname().getText());
             new LoginWindow();
             view.getWindow().dispose();
+            return;
         }
         
         view.revalidate();

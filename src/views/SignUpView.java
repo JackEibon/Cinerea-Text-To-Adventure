@@ -26,7 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import utils.AppFont;
+import assets.utils.AppFont;
 
 public class SignUpView extends JPanel {
 

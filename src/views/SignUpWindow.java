@@ -7,14 +7,16 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import controllers.SignUpController;
+import repository.UserRepository;
 
 public class SignUpWindow extends JFrame {
 
     private SignUpView signUpView;
+    private UserRepository repository;
 
     public SignUpWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
-        Image myIcon = tk.getImage("src/img/pixeles.png"); 
+        Image myIcon = tk.getImage("src/assets/img/pixeles.png"); 
         setIconImage(myIcon);
         
         setTitle("Sign Up");
@@ -31,12 +33,12 @@ public class SignUpWindow extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowIconified(WindowEvent e) {
-                Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/img/pixelesgray.png"); 
+                Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/assets/img/pixelesgray.png"); 
                 setIconImage(poorIcon);
             }
             @Override
             public void windowDeiconified(WindowEvent e) {
-                Image icon = Toolkit.getDefaultToolkit().getImage("src/img/pixeles.png"); 
+                Image icon = Toolkit.getDefaultToolkit().getImage("src/assets/img/pixeles.png"); 
                 setIconImage(icon);
             }
         });

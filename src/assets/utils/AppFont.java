@@ -1,4 +1,4 @@
-package utils;
+package assets.utils;
 
 import java.awt.Font;
 
@@ -8,7 +8,7 @@ public class AppFont {
 	
 	static {
 		try {
-			base = Font.createFont(Font.TRUETYPE_FONT, AppFont.class.getResourceAsStream("/fonts/OwreKynge.ttf"));
+			base = Font.createFont(Font.TRUETYPE_FONT, AppFont.class.getResourceAsStream("/assets/fonts/OwreKynge.ttf"));
 		}catch(Exception e) {
 			System.out.println("Not loading...");
 			base = new Font("Arial", Font.PLAIN, 14);
@@ -19,7 +19,7 @@ public class AppFont {
 	
 	static {
 		try {
-			secondary = Font.createFont(Font.TRUETYPE_FONT, AppFont.class.getResourceAsStream("/fonts/Alkhemikal.ttf"));
+			secondary = Font.createFont(Font.TRUETYPE_FONT, AppFont.class.getResourceAsStream("/assets/fonts/Alkhemikal.ttf"));
 		}catch(Exception e) {
 			System.out.println("Not loading...");
 			secondary = new Font("Arial", Font.PLAIN, 14);
