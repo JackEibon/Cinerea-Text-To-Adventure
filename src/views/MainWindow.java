@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -8,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,6 +20,10 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -25,7 +31,16 @@ import assets.utils.AppFont;
 
 public class MainWindow extends JFrame{
 
-    //private JMenuItem salir;
+	/*Para la tabla de Usuarios*/
+	public static final String HOME = "Home";
+	public static final String USERS = "Users";
+	public JMenuItem mItemExit;
+	public JButton usersBtn;
+	public JButton homeBtn;
+	public UsersView usersPanel;
+	private CardLayout cardLayout; //gestor de diseño
+	private JPanel container; //la caja/panel
+	
 
     public MainWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
@@ -37,8 +52,14 @@ public class MainWindow extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        	
         initializeCompounds();
+        
+        /*Para admins*/
+        setMenu();
+        createNavbar();
+        createViews();
+        
         
         setVisible(true);
     }
@@ -148,6 +169,66 @@ public class MainWindow extends JFrame{
 		otraOpcion.add(opcion2);
 
 	}*/
+    
+    public void setMenu() {
+
+	    JMenuBar mb = new JMenuBar();
+	    setJMenuBar(mb);
+
+	    JMenu mF = new JMenu("File");
+	    mF.setMnemonic(KeyEvent.VK_F);
+	    mb.add(mF);
+
+	    JMenuItem mItemOpen = new JMenuItem("Open");
+	    mItemOpen.setMnemonic(KeyEvent.VK_O);
+	    mF.add(mItemOpen);
+
+	    JMenuItem mItemSave = new JMenuItem("Save");
+	    mItemSave.setMnemonic(KeyEvent.VK_S);
+	    mF.add(mItemSave);
+
+	    mF.addSeparator();
+
+	    mItemExit = new JMenuItem("Exit");
+	    mItemExit.setMnemonic(KeyEvent.VK_E);
+	    mF.add(mItemExit);
+
+	}
+	
+
+    
+    public void createNavbar() {
+		JPanel navbar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		homeBtn = new JButton("Inicio");usersBtn = new JButton("Usuarios");
+		
+		navbar.add(homeBtn);navbar.add(usersBtn);
+		
+		add(navbar, BorderLayout.NORTH);
+	}
+	
+	private void createViews() {
+		cardLayout = new CardLayout();
+		container = new JPanel(cardLayout);
+		JPanel homePanel = new JPanel();
+		homePanel.add(new JLabel("Bienvenido al Sistema"));
+		usersPanel = new UsersView();
+		container.add(homePanel, HOME);
+		container.add(usersPanel, USERS);
+		add(container, BorderLayout.CENTER);
+	}
+    
+    public void showView(String view) {
+		cardLayout.show(container, view); //usaremos el panel container, nice, segun el view (Home o Users)
+	}
+    
+    public int confirmExit() { //pq esto es un int?, naturalmente, JOptionPane es un int
+	    return JOptionPane.showConfirmDialog(
+	        this,
+	        "¿Seguro que deseas regresar? Se perderán todos los datos",
+	        "¿Seguro?",
+	        JOptionPane.YES_NO_OPTION
+	    );
+	}
 
     private void changeBackground(JComponent component) {
     	component.setBackground(new Color(17, 53, 189));
