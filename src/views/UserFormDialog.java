@@ -48,6 +48,8 @@ public class UserFormDialog extends JDialog{
     	
     	this.user = user;
     	
+    	setTitle(user == null ? "Agregar usuario" : "Editar usuario");
+    	
     	setSize(400, 500);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
@@ -125,7 +127,7 @@ public class UserFormDialog extends JDialog{
 		panel.add(createField("Descripción:", new JScrollPane(txtDescription)));
 		panel.add(createField("Lenguajes:", new JScrollPane(lstLanguages)));
 
-
+		loadData();
 		return scroll;
     }
     		
@@ -146,4 +148,32 @@ public class UserFormDialog extends JDialog{
 
 		return panel;
 	}
+    
+    private void loadData() {
+    	if(user != null) {
+    		
+    	}
+    }
+    
+    private boolean save() {
+    	String nickname = txtName.getText();
+    	String email = txtEmail.getText();
+    	
+    	if(user == null) {
+    		user = new User();
+    	}else {
+    		user.setNickame(nickname);
+    		user.setEmail(email);
+    		user.setGem(gem);
+    		user.setElements(element);
+    		user.setWeapon(weapon);
+    	}
+    	
+    	saved = true;
+    	dispose();
+    }
+    
+    public boolean isSaved() {
+    	return save();
+    }
 }

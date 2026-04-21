@@ -1,5 +1,11 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import models.User;
 import repository.UserRepository;
 import tablemodels.UserTableModel;
 import views.UserFormDialog;
@@ -16,9 +22,53 @@ public class UserController {
 		repo = new UserRepository();
 		
 		view.getBtnAdd().addActionListener(e -> {
-			UserFormDialog form = new UserFormDialog(null, null);
-			form.setVisible(true);
+			openForm();
+		});
+		
+		this.view.getBtnEdit().addActionListener(e -> {
+			int row = view.getSelectedRow();
+			if(row == -1) {
+				JOptionPane.showMessageDialog(view, "Selecciona un usuario para editar");
+			}
+			
+			openForm(null);
 		});
 	}
 	
+	public void loadUsers() {
+		try {
+			List<User> users = repo.getUsers();
+			
+			if(model == null) {
+				model = new UserTableModel(users);
+				view.setTableModel(model);
+			}else {
+				model.setUsers(users);
+			}
+		}catch(IOException ex) {
+			JOptionPane.showMessageDialog(view, ex.getMessage());
+		}
+	}
+	
+	private void openForm() {
+		UserFormDialog dialog = new UserFormDialog(null, null);
+		dialog.setVisible(true);
+		
+		if(dialog.isSaved()) {
+			User savedUser = dialog.getUser();
+			
+			try {
+				if(user == null) {
+					repo.save(savedUser);
+				} else {
+					int row = view.getSelectedRow();
+					repo.update(row, savedUser);
+				}
+				loadUsers();
+			}catch(Exception e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(view, e.getMessage());
+			}
+		}
+	}
 }

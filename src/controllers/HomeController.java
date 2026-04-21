@@ -15,8 +15,11 @@ import views.MainWindow;
 
 public class HomeController {
 	private MainWindow view;
+	private UserController userController;
 	/*Constructor */
-	public HomeController(MainWindow view) {this.view = view;registerListeners();}
+	public HomeController(MainWindow view) {
+		this.view = view;registerListeners();
+	}
 	
 	public void registerListeners( ) {
 		
@@ -29,9 +32,13 @@ public class HomeController {
 			}
 		});
 		
-		view.usersBtn.addActionListener(e -> {showUsers();});
+		view.usersBtn.addActionListener(e -> {
+			showUsers();
+		});
 		
-		view.usersBtn.addActionListener(e -> view.showView(MainWindow.HOME)); //showView pq es el public, clarooo (yo media hora intentando usar create views, que nada que ver)	
+		view.usersBtn.addActionListener(e -> {
+			view.showView(MainWindow.HOME);
+		}); //showView pq es el public, clarooo (yo media hora intentando usar create views, que nada que ver)	
 	}
 	
 	private void showUsers() {
@@ -52,14 +59,29 @@ public class HomeController {
 		
 	}
 	
+	/*public void showUsers() {
+		if(userController == null) {
+			userController = new UserController(view.usersPanel);
+		}
+		
+		userController.loadUsers();
+		
+		
+		view.showView(MainWindow.USERS);
+	}*/
+	
 	private void handleClose() {
-		int option = view.confirmExit();
+		/*int option = view.confirmExit();
 		System.out.println(option);
 
 		if (option == JOptionPane.YES_OPTION) {
-			new LoginController(new LoginWindow().getLoginView());
+			new LoginController(new LoginWindow().getLoginView());*/
 			view.dispose();
-		}
+		//}
 	}
 	
+	private void updateMenuState(String viewName) {
+		view.usersBtn.setEnabled(!viewName.equals(MainWindow.USERS));
+		view.btnHome.setEnabled(!viewName.equals(MainWindow.USERS));
+	}
 }
