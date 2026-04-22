@@ -18,7 +18,8 @@ public class HomeController {
 	private UserController userController;
 	/*Constructor */
 	public HomeController(MainWindow view) {
-		this.view = view;registerListeners();
+		this.view = view;
+		registerListeners();
 	}
 	
 	public void registerListeners( ) {
@@ -36,52 +37,29 @@ public class HomeController {
 			showUsers();
 		});
 		
-		view.usersBtn.addActionListener(e -> {
+		view.homeBtn.addActionListener(e -> {
 			view.showView(MainWindow.HOME);
+			updateMenuState(MainWindow.HOME);
 		}); //showView pq es el public, clarooo (yo media hora intentando usar create views, que nada que ver)	
 	}
 	
 	private void showUsers() {
-		UserRepository repository = new UserRepository();
-		
-		try {
-			List<User> users = repository.getUsers();
-			
-			UserTableModel model = new UserTableModel(users);
-			
-			view.usersPanel.setTableModel(model);
-			
-			view.showView(MainWindow.USERS);
-			
-		}catch (IOException ex) {
-			JOptionPane.showMessageDialog(view, ex.getMessage());
-		}
-		
-	}
-	
-	/*public void showUsers() {
 		if(userController == null) {
 			userController = new UserController(view.usersPanel);
 		}
-		
+			
 		userController.loadUsers();
 		
-		
 		view.showView(MainWindow.USERS);
-	}*/
+		updateMenuState(MainWindow.USERS);
+	}
 	
 	private void handleClose() {
-		/*int option = view.confirmExit();
-		System.out.println(option);
-
-		if (option == JOptionPane.YES_OPTION) {
-			new LoginController(new LoginWindow().getLoginView());*/
-			view.dispose();
-		//}
+		view.dispose();
 	}
 	
 	private void updateMenuState(String viewName) {
 		view.usersBtn.setEnabled(!viewName.equals(MainWindow.USERS));
-		view.btnHome.setEnabled(!viewName.equals(MainWindow.USERS));
+		view.homeBtn.setEnabled(!viewName.equals(MainWindow.USERS));
 	}
 }

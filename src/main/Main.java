@@ -27,7 +27,6 @@ public class Main {
         new HomeController(new MainWindow());
 		//new LoginController(new LoginWindow().getLoginView());
 		//new RegistrationController(new RegistrationWindow());
-		//showOnScreen(1, ventanita);
 	}
 
         //UIManager.put("Label.font", AppFont.normal());

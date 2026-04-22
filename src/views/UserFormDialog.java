@@ -27,15 +27,10 @@ public class UserFormDialog extends JDialog{
 
 	private JTextField txtName;
     private JTextField txtEmail;
-    private JTextArea txtDescription;
 
-    private JComboBox<String> cboCountry;
-
-    private JRadioButton rbtnMale;
-    private JRadioButton rbtnFemale;
-    private ButtonGroup genderGroup;
-
-    private JList<String> lstLanguages;
+    private JComboBox<String> cbGem;
+    private JComboBox<String> cbWeapon;
+    private JComboBox<String> cbElement;
 
     private JButton btnSave;
     private JButton btnCancel;
@@ -77,7 +72,7 @@ public class UserFormDialog extends JDialog{
         panel.add(btnSave);
         panel.add(btnCancel);
         
-        //btnSave.addActionListener(e -> save());
+        btnSave.addActionListener(e -> save());
         btnCancel.addActionListener(e -> dispose());
         
         return panel;
@@ -98,34 +93,17 @@ public class UserFormDialog extends JDialog{
 
 		txtEmail = new JTextField();
 
-		cboCountry = new JComboBox<>(new String[] { "Seleccione", "México", "USA", "Canada" });
+		cbGem = new JComboBox<>(new String[]{"Select gem", "Ruby", "Sapphire", "Emerald", "Opaline", "Amethyst"});
 
-		rbtnMale = new JRadioButton("Masculino");
-		rbtnMale.setActionCommand("M");
+        cbWeapon = new JComboBox<>(new String[]{"Select weapon", "Spear", "Sword", "Gun"});
 
-		rbtnFemale = new JRadioButton("Femenino");
-		rbtnFemale.setActionCommand("F");
+        cbElement = new JComboBox<>(new String[]{"Select element", "Fire", "Earth", "Water", "Wind"});
 
-		genderGroup = new ButtonGroup();
-		genderGroup.add(rbtnMale);
-		genderGroup.add(rbtnFemale);
-
-		txtDescription = new JTextArea(4, 20);
-
-		lstLanguages = new JList<>(new String[] { "Java", "C++", "Python", "JavaScript" });
-
-		panel.add(createField("Nombre:", txtName));
+		panel.add(createField("Name:", txtName));
 		panel.add(createField("Email:", txtEmail));
-		panel.add(createField("País:", cboCountry));
-
-		JPanel genderPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		genderPanel.add(rbtnMale);
-		genderPanel.add(rbtnFemale);
-
-		panel.add(createField("Género:", genderPanel));
-
-		panel.add(createField("Descripción:", new JScrollPane(txtDescription)));
-		panel.add(createField("Lenguajes:", new JScrollPane(lstLanguages)));
+		panel.add(createField("Arma:", cbWeapon));
+		panel.add(createField("Gem:", cbGem));
+		panel.add(createField("Element:", cbElement));
 
 		loadData();
 		return scroll;
@@ -151,17 +129,24 @@ public class UserFormDialog extends JDialog{
     
     private void loadData() {
     	if(user != null) {
-    		
+    		txtName.setText(user.getNickname());
+            txtEmail.setText(user.getEmail());
+            cbGem.setSelectedItem(user.getGem());
+            cbWeapon.setSelectedItem(user.getWeapon());
+            cbElement.setSelectedItem(user.getElements());
     	}
     }
     
-    private boolean save() {
+    private void save() {
     	String nickname = txtName.getText();
     	String email = txtEmail.getText();
+    	String gem = (String) cbGem.getSelectedItem();
+    	String element = (String) cbElement.getSelectedItem();
+    	String weapon = (String) cbWeapon.getSelectedItem();
     	
     	if(user == null) {
     		user = new User();
-    	}else {
+    	} else {
     		user.setNickame(nickname);
     		user.setEmail(email);
     		user.setGem(gem);
@@ -174,6 +159,10 @@ public class UserFormDialog extends JDialog{
     }
     
     public boolean isSaved() {
-    	return save();
+    	return saved;
+    }
+    
+    public User getUser() {
+    	return user;
     }
 }

@@ -21,17 +21,18 @@ public class UserController {
 		this.view = view;
 		repo = new UserRepository();
 		
-		view.getBtnAdd().addActionListener(e -> {
-			openForm();
+		this.view.getBtnAdd().addActionListener(e -> {
+			openForm(null);
 		});
 		
 		this.view.getBtnEdit().addActionListener(e -> {
 			int row = view.getSelectedRow();
 			if(row == -1) {
-				JOptionPane.showMessageDialog(view, "Selecciona un usuario para editar");
+				JOptionPane.showMessageDialog(view, "Selecciona un usuario");
+				return;
 			}
 			
-			openForm(null);
+			openForm(model.getUserAt(row));
 		});
 	}
 	
@@ -50,8 +51,8 @@ public class UserController {
 		}
 	}
 	
-	private void openForm() {
-		UserFormDialog dialog = new UserFormDialog(null, null);
+	private void openForm(User user) {
+		UserFormDialog dialog = new UserFormDialog(null, user);
 		dialog.setVisible(true);
 		
 		if(dialog.isSaved()) {
