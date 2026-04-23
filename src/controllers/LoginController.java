@@ -24,17 +24,17 @@ public class LoginController {
 		view.getTxtEmail().getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                handleLogin();
+            	handle();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                handleLogin();
+            	handle();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                handleLogin();
+            	handle();
             }
         });
 		
@@ -43,8 +43,23 @@ public class LoginController {
 		view.getBtnRegister().addActionListener(e -> handleBtnRegister());
 	}
 	
+	private void handle() {
+		User user = new User(view.getEmail(), String.valueOf(view.getTxtPassword().getPassword()));
+
+		try {
+			if(validateAndShow(user)) {
+			    JOptionPane.showMessageDialog(view.getWindow(), "Welcome, " + user.getEmail().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
+			    new MainWindow();
+			    view.getWindow().dispose();
+			}
+		} catch (InvalidUserException | InvalidPasswordException e) {
+			//view.getErrPassword().setText("Credenciales Invalidas");
+			//view.getErrPassword().setVisible(true);
+		} 
+	}
+	
+	
 	private void handleLogin() {
-        
 		User user = new User(view.getEmail(), String.valueOf(view.getTxtPassword().getPassword()));
 
 		try {
@@ -64,7 +79,8 @@ public class LoginController {
 		view.getErrPassword().setVisible(false);
 
         boolean isValid = true;
-        
+        boolean throwingmail= false;
+        boolean throwingpass= false;
         String email = user.getEmail();
         String pass = user.getPassword();
         
@@ -77,7 +93,8 @@ public class LoginController {
         	view.getErrEmail().setVisible(true);
         	isValid = false;
         }else if(!email.trim().equals("esoto_24@alu.uabcs.mx")) {
-    		throw new InvalidUserException("");
+    		throwingmail=true;
+        	
     	}
 
         if (pass.isEmpty()) {
@@ -85,14 +102,18 @@ public class LoginController {
         	view.getErrPassword().setVisible(true);
             isValid = false;
         } else if (!pass.equals("asdfasdf")) {
-        	throw new InvalidPasswordException("");
+        	throwingpass=true;
+        	
         }
-        
         view.revalidate();
         view.repaint();
         
+        if (throwingmail) throw new InvalidUserException("");
+        if (throwingpass) throw new InvalidPasswordException("");
         return isValid;
     }
+	
+	
 	
 	private void handleBtnRegister() {
     	new SignUpWindow();
