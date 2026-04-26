@@ -34,6 +34,20 @@ public class UserController {
 			
 			openForm(model.getUserAt(row));
 		});
+		
+		this.view.getBtnDelete().addActionListener(e -> {
+			int row = view.getSelectedRow();
+			if(row == -1) {
+				JOptionPane.showMessageDialog(view, "Selecciona un usuario");
+				return;
+			}
+			try {
+				deleteUser(row);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+				JOptionPane.showMessageDialog(view, ex.getMessage());
+			}
+		});
 	}
 	
 	public void loadUsers() {
@@ -49,6 +63,12 @@ public class UserController {
 		}catch(IOException ex) {
 			JOptionPane.showMessageDialog(view, ex.getMessage());
 		}
+	}
+	
+	private void deleteUser(int index) throws IOException {
+		int row = view.getSelectedRow();
+		repo.delete(row);
+		loadUsers();
 	}
 	
 	private void openForm(User user) {

@@ -24,9 +24,9 @@ public class UsersView extends JPanel{
 		
 		JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        btnAdd = new JButton("Agregar");
-        btnEdit = new JButton("Editar");
-        btnDelete = new JButton("Eliminar");
+        btnAdd = new JButton("Add");
+        btnEdit = new JButton("Edit");
+        btnDelete = new JButton("Delete");
 
         panelButtons.add(btnAdd);
         panelButtons.add(btnEdit);

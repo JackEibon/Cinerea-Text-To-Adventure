@@ -60,6 +60,6 @@ public class HomeController {
 	
 	private void updateMenuState(String viewName) {
 		view.usersBtn.setEnabled(!viewName.equals(MainWindow.USERS));
-		view.homeBtn.setEnabled(!viewName.equals(MainWindow.USERS));
+		view.homeBtn.setEnabled(!viewName.equals(MainWindow.HOME));
 	}
 }

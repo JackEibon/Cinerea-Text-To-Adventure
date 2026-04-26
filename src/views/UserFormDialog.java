@@ -14,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -93,16 +94,16 @@ public class UserFormDialog extends JDialog{
 
 		txtEmail = new JTextField();
 
-		cbGem = new JComboBox<>(new String[]{"Select gem", "Ruby", "Sapphire", "Emerald", "Opaline", "Amethyst"});
+		cbGem = new JComboBox<>(new String[]{"Select a gem", "Ruby", "Sapphire", "Emerald", "Opaline", "Amethyst"});
 
-        cbWeapon = new JComboBox<>(new String[]{"Select weapon", "Spear", "Sword", "Gun"});
+        cbWeapon = new JComboBox<>(new String[]{"Select a weapon", "Spear", "Sword", "Gun"});
 
-        cbElement = new JComboBox<>(new String[]{"Select element", "Fire", "Earth", "Water", "Wind"});
+        cbElement = new JComboBox<>(new String[]{"Select an element", "Fire", "Earth", "Water", "Wind"});
 
 		panel.add(createField("Name:", txtName));
 		panel.add(createField("Email:", txtEmail));
-		panel.add(createField("Arma:", cbWeapon));
 		panel.add(createField("Gem:", cbGem));
+		panel.add(createField("Weapon:", cbWeapon));
 		panel.add(createField("Element:", cbElement));
 
 		loadData();
@@ -144,8 +145,18 @@ public class UserFormDialog extends JDialog{
     	String element = (String) cbElement.getSelectedItem();
     	String weapon = (String) cbWeapon.getSelectedItem();
     	
+    	if(nickname == null || nickname.equals("") || email == null || email.equals("") || gem == "Select a gem" || element == "Select an element" || weapon == "Select a weapon") {
+    		JOptionPane.showMessageDialog(this, "One of the fields is empty");
+    		return;
+    	}
+    	
     	if(user == null) {
     		user = new User();
+    		user.setNickame(nickname);
+    		user.setEmail(email);
+    		user.setGem(gem);
+    		user.setElements(element);
+    		user.setWeapon(weapon);
     	} else {
     		user.setNickame(nickname);
     		user.setEmail(email);
