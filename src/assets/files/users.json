@@ -1,5 +1,9 @@
 {
-	"user": sasdas
+	"users": ["Prueba", "el pepe", "eibon", "eibon", "hugy"],
+	"gmail": ["Prueba@gmail.com", "asdf@", "123@gmail.com", "123@gmail.com", "ftftftft"],
+	"gems": ["Saphire", "Ruby", "Ruby", "Ruby", "Emerald"],
+	"weapons": ["Gun", "Spear", "Spear", "Sword", "Gun"],
+	"elements": ["Water", "Earth", "Fire", "Water", "Earth"]
 	
 	
 	
