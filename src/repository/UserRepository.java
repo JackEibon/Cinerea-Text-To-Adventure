@@ -1,22 +1,22 @@
 package repository;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import models.User;
 
 public class UserRepository {
-	
+
 	private final String FILE = "src/assets/files/users.json";
-	private final ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+	
+	private final ObjectMapper mapper = 
+			new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 	
 	public void save(User user) throws IOException {
 		
@@ -35,9 +35,10 @@ public class UserRepository {
 		}
 		
 		return mapper.readValue(
-				file, 
-				new TypeReference<List<User>>() {}
+			file, 
+			new TypeReference<List<User>>() {}
 		);
+				
 	}
 	
 	public void updateAll(List<User> users) throws IOException {
@@ -55,4 +56,6 @@ public class UserRepository {
 		users.set(index, updatedUser);
 		updateAll(users);
 	}
+	
+			
 }

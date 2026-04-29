@@ -1,10 +1,8 @@
-{
-	"users": ["Prueba", "el pepe", "eibon", "eibon", "hugy"],
-	"gmail": ["Prueba@gmail.com", "asdf@", "123@gmail.com", "123@gmail.com", "ftftftft"],
-	"gems": ["Saphire", "Ruby", "Ruby", "Ruby", "Emerald"],
-	"weapons": ["Gun", "Spear", "Spear", "Sword", "Gun"],
-	"elements": ["Water", "Earth", "Fire", "Water", "Earth"]
-	
-	
-	
-}
+[ {
+  "nickname" : "hola",
+  "email" : "sdfa",
+  "gem" : "Sapphire",
+  "weapon" : "Sword",
+  "elements" : "Fire",
+  "password" : null
+} ]
