@@ -13,6 +13,7 @@ import views.UsersView;
 
 public class UserController {
 
+	//private PDFExporter pdfExp;
 	private UsersView view;
 	private UserRepository repo;
 	private UserTableModel model;
@@ -48,6 +49,15 @@ public class UserController {
 				JOptionPane.showMessageDialog(view, ex.getMessage());
 			}
 		});
+	}
+	
+	public void generatePdf() {
+		File file =view.selectPdfFile();
+		if(file==null) {return;}
+		try{pdfExporter.exportUsers(repo.getUsers(),file);
+			};
+		catch(Exception ex) {ex.printStackTrace();JOptionPane.}
+				
 	}
 	
 	public void loadUsers() {

@@ -1,12 +1,12 @@
 package scenesFiles;
 
-public class SilverCrater extends NodeT1{
+public class GreatForest extends NodeT1{
 	
 	
 
 	
 
-	public SilverCrater(int scene) {
+	public GreatForest(int scene) {
 		super(scene); 
 
 		setExplored(true);
@@ -14,7 +14,7 @@ public class SilverCrater extends NodeT1{
 		setOdorP(15);
 		setFreshBeastBlood(0);
 		setWolfBeenHere(0);
-		this.setaN1(null);
+		setaN1(null);
 		setaN2(null);
 		setaN3(null);
 		setaN4(null);

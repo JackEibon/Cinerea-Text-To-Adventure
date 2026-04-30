@@ -3,9 +3,14 @@ package gamelogic;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Iterator;
-import scenesFiles.SilverCrater;
+
+import scenesFiles.*;
+
+
 
 public class Graph {
+	
+	
 	GameMaster worldDie = new GameMaster(); //GameMaster worldDie; //A random int generator inspired by TTRPGs
 	//Each of the scenes:
 	
@@ -32,12 +37,14 @@ public class Graph {
 	DungeonCave dungeonCave
 	 */
 	
+
 	int 
+	
 	numberPaths=4, //this number decides the quantity of paths that we have available for each Node. It is currently 4, as the other 4 will be leaved for special exits or scripted pathways
 	numberGates= 2, //this number decides maximum quantity of gates for each scene
 	mapSize=5; //this number decides which scenes (by ID) will be on play and which will not. Ex: If it is 4, scenes 001,002,003 and 004 will be on play
-	NodeT1  
 	
+	NodeT1  
 	weaponYard,
 	flowerGarden, //May have an NPC
 	woodCottage, //Has an NPC
@@ -67,9 +74,24 @@ public class Graph {
 	wayWalk5,
 	
 	p,q,r,g;
+	public Graph(){
+		SilverCrater silverCrater= new SilverCrater(0);
+		GreatForest greatForest= new GreatForest(1);
+		
+		silverCrater.setaN1(greatForest);
+		silverCrater.setaN1Cost(2);
+		
+		greatForest.setaN1(silverCrater);
+		greatForest.setaN1Cost(2);
+		}
+
 	
-	SilverCrater silverCrater;
+
+
 }
+
+
+
 		
 	
 
@@ -158,3 +180,8 @@ public class Graph {
 		}
 }
 */
+	
+	
+	
+
+
