@@ -1,18 +1,16 @@
 package scenesFiles;
 
-public class SilverCrater extends NodeT1{
+public class Lake extends NodeT1{
 	
 	
 
 	
 
-	public SilverCrater(int scene) {
+	public Lake(int scene) {
 		super(scene); 
 
-		setExplored(true);
-		setOdorP(15);
+		setBiome("forest");
 		setScene(scene);
-		setBiome("meadow");
 		setMainDescription("The crater in the middle of the earth shines shimmers with moonlight hue");
 		setDistantDescription("A silver light shivers far away");
 		setGoDescriptions("");
