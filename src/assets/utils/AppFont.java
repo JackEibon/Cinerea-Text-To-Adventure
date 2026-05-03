@@ -5,6 +5,7 @@ import java.awt.Font;
 public class AppFont {
 	
 	private static Font base;
+	private static Font secondary;
 	
 	static {
 		try {
@@ -14,8 +15,6 @@ public class AppFont {
 			base = new Font("Arial", Font.PLAIN, 14);
 		}
 	}
-	
-	private static Font secondary;
 	
 	static {
 		try {

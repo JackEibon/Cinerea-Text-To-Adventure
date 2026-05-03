@@ -57,6 +57,7 @@ public class LoginView extends JPanel {
 
         JLabel lblTitle = new JLabel("LOGIN");
         lblTitle.setFont(AppFont.title());
+        lblTitle.setForeground(Color.black);
         lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         centerPanel.add(lblTitle);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 40)));
@@ -126,6 +127,7 @@ public class LoginView extends JPanel {
     private JLabel addFormGroup(JPanel panel, String labelText, JTextField field) {
         JLabel lbl = new JLabel(labelText);
         lbl.setFont(AppFont.normalSecondary());
+        lbl.setForeground(Color.black);
         lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(lbl);
         
@@ -146,7 +148,7 @@ public class LoginView extends JPanel {
     }
 
     private void pixelBorderText(JComponent component) {
-        component.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        component.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, true));
         component.setFont(AppFont.normalSecondary());
         component.setBackground(Color.WHITE);
         component.putClientProperty("JComponent.focusWidth", 0);

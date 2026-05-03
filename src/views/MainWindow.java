@@ -194,8 +194,6 @@ public class MainWindow extends JFrame{
 	    mF.add(mItemExit);
 
 	}
-	
-
     
     public void createNavbar() {
 		JPanel navbar = new JPanel(new FlowLayout(FlowLayout.LEFT));
