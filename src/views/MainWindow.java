@@ -197,9 +197,11 @@ public class MainWindow extends JFrame{
     
     public void createNavbar() {
 		JPanel navbar = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		homeBtn = new JButton("Inicio");usersBtn = new JButton("Usuarios");
+		homeBtn = new JButton("Home");
+		usersBtn = new JButton("Users");
 		
-		navbar.add(homeBtn);navbar.add(usersBtn);
+		navbar.add(homeBtn);
+		navbar.add(usersBtn);
 		
 		add(navbar, BorderLayout.NORTH);
 	}
@@ -208,7 +210,7 @@ public class MainWindow extends JFrame{
 		cardLayout = new CardLayout();
 		container = new JPanel(cardLayout);
 		JPanel homePanel = new JPanel();
-		homePanel.add(new JLabel("Bienvenido al Sistema"));
+		homePanel.add(new JLabel("Welcome"));
 		usersPanel = new UsersView();
 		container.add(homePanel, HOME);
 		container.add(usersPanel, USERS);
@@ -222,8 +224,8 @@ public class MainWindow extends JFrame{
     public int confirmExit() { //pq esto es un int?, naturalmente, JOptionPane es un int
 	    return JOptionPane.showConfirmDialog(
 	        this,
-	        "¿Seguro que deseas regresar? Se perderán todos los datos",
-	        "¿Seguro?",
+	        "¿Are you sure you want to go back? The data will be lost",
+	        "¿Sure?",
 	        JOptionPane.YES_NO_OPTION
 	    );
 	}

@@ -5,4 +5,18 @@
   "weapon" : "Sword",
   "elements" : "Fire",
   "password" : null
+}, {
+  "nickname" : "etneilav",
+  "email" : "etneilav@gmail.com",
+  "gem" : "Emerald",
+  "weapon" : "Sword",
+  "elements" : "Wind",
+  "password" : null
+}, {
+  "nickname" : "elpepe",
+  "email" : "elpepillo@gmailcom",
+  "gem" : "Emerald",
+  "weapon" : "Gun",
+  "elements" : "Fire",
+  "password" : null
 } ]

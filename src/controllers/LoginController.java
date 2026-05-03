@@ -53,8 +53,8 @@ public class LoginController {
 			    view.getWindow().dispose();
 			}
 		} catch (InvalidUserException | InvalidPasswordException e) {
-			//view.getErrPassword().setText("Credenciales Invalidas");
-			//view.getErrPassword().setVisible(true);
+			view.getErrPassword().setText("Invalid Credentials");
+			view.getErrPassword().setVisible(true);
 		} 
 	}
 	
@@ -69,7 +69,7 @@ public class LoginController {
 			    view.getWindow().dispose();
 			}
 		} catch (InvalidUserException | InvalidPasswordException e) {
-			view.getErrPassword().setText("Credenciales Invalidas");
+			view.getErrPassword().setText("Invalid Credentials");
 			view.getErrPassword().setVisible(true);
 		} 
 	}
@@ -92,19 +92,19 @@ public class LoginController {
         	view.getErrEmail().setText("Valid email required"); 
         	view.getErrEmail().setVisible(true);
         	isValid = false;
-        }else if(!email.trim().equals("esoto_24@alu.uabcs.mx")) {
+        }/*else if(!email.trim().equals("esoto_24@alu.uabcs.mx")) {
     		throwingmail=true;
         	
-    	}
+    	}*/
 
         if (pass.isEmpty()) {
         	view.getErrPassword().setText("Password is required");
         	view.getErrPassword().setVisible(true);
             isValid = false;
-        } else if (!pass.equals("asdfasdf")) {
+        } /*else if (!pass.equals("asdfasdf")) {
         	throwingpass=true;
         	
-        }
+        }*/
         view.revalidate();
         view.repaint();
         
@@ -112,8 +112,6 @@ public class LoginController {
         if (throwingpass) throw new InvalidPasswordException("");
         return isValid;
     }
-	
-	
 	
 	private void handleBtnRegister() {
     	new SignUpWindow();
