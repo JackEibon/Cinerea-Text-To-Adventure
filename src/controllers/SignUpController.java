@@ -24,7 +24,7 @@ public class SignUpController {
 
     public SignUpController(SignUpView view) {
         this.view = view;
-        this.repository = new UserRepository();
+        //this.repository = new UserRepository();
         registerListeners();
     }
 

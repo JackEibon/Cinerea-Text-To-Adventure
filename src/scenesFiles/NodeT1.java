@@ -195,6 +195,55 @@ public void setWolfBeenHere(int wolfBeenHere) {
     this.wolfBeenHere = wolfBeenHere;
 }
 
+public void setaN(int aNT, NodeT1 aN, int cost) {
+   
+	switch (aNT) {
+	case 1: {
+		this.aN1 = aN;
+		this.aN1Cost=cost;
+		break;
+	}
+	case 2: {
+		this.aN2 = aN;
+		this.aN2Cost=cost;
+		break;
+	}
+	case 3: {
+		this.aN3 = aN;
+		this.aN3Cost=cost;
+		break;
+	}
+	case 4: {
+		this.aN4 = aN;
+		this.aN4Cost=cost;
+		break;
+	}
+	case 5: {
+		this.aN5 = aN;
+		this.aN5Cost=cost;
+		break;
+	}
+	case 6: {
+		this.aN6 = aN;
+		this.aN6Cost=cost;
+		break;
+	}
+	case 7: {
+		this.aN7 = aN;
+		this.aN7Cost=cost;
+		break;
+	}
+	case 8: {
+		this.aN8 = aN;
+		this.aN8Cost=cost;
+		break;
+	}
+	default:
+		throw new IllegalArgumentException("Unexpected value: " + aNT);
+	}
+	
+}
+
 public void setaN1(NodeT1 aN1) {
     this.aN1 = aN1;
 }

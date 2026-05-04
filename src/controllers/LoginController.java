@@ -48,9 +48,7 @@ public class LoginController {
 
 		try {
 			if(validateAndShow(user)) {
-			    JOptionPane.showMessageDialog(view.getWindow(), "Welcome, " + user.getEmail().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
-			    new MainWindow();
-			    view.getWindow().dispose();
+			    
 			}
 		} catch (InvalidUserException | InvalidPasswordException e) {
 			view.getErrPassword().setText("Invalid Credentials");

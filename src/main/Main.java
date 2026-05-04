@@ -24,8 +24,8 @@ public class Main {
 			e.printStackTrace();
 		}
         */
-    	new HomeController(new MainWindow());
-		//new LoginController(new LoginWindow().getLoginView());
+    	//new HomeController(new MainWindow());
+		new LoginController(new LoginWindow().getLoginView());
 		//new RegistrationController(new RegistrationWindow());
 	}
 

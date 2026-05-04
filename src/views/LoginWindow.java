@@ -6,6 +6,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
+import controllers.LoginController;
+import controllers.SignUpController;
+
 public class LoginWindow extends JFrame {
 
     private LoginView loginView;
@@ -23,6 +26,8 @@ public class LoginWindow extends JFrame {
         
         loginView = new LoginView(this);
         add(loginView);
+        
+        new LoginController(loginView);
         
         addWindowListener(new WindowAdapter() {
             @Override
