@@ -25,14 +25,14 @@ public class Main {
 		}
         */
     	//new HomeController(new MainWindow());
-		new LoginController(new LoginWindow().getLoginView());
+		//new LoginController(new LoginWindow().getLoginView());
 		//new RegistrationController(new RegistrationWindow());
-	}
+	//}
 
         //UIManager.put("Label.font", AppFont.normal());
         
         //SignUpWindow window = new SignUpWindow(); 
-        //LoginWindow window = new LoginWindow(); 
+        LoginWindow window = new LoginWindow(); 
         //new LoginController(window.getLoginView());
-    //}
+    }
 }

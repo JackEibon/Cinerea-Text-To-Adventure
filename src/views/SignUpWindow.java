@@ -31,6 +31,7 @@ public class SignUpWindow extends JFrame {
         new SignUpController(signUpView);
         
         addWindowListener(new WindowAdapter() {
+        	
             @Override
             public void windowIconified(WindowEvent e) {
                 Image poorIcon = Toolkit.getDefaultToolkit().getImage("src/assets/img/pixelesgray.png"); 

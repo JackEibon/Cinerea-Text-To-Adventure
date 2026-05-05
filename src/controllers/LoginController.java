@@ -13,12 +13,15 @@ import views.SignUpWindow;
 
 public class LoginController {
 	
+	private boolean flag=true;
 	private LoginView view;
-
+	
 	public LoginController(LoginView loginView){
 		this.view = loginView;
+		//System.out.println("Controller creado: " + this);
 		registerListeners();
 	}
+	
 	
 	public void registerListeners() {
 		view.getTxtEmail().getDocument().addDocumentListener(new DocumentListener() {
@@ -112,7 +115,13 @@ public class LoginController {
     }
 	
 	private void handleBtnRegister() {
+		if (flag) {
+			//System.out.println(this);
+			//System.out.println(view.getBtnRegister().getActionListeners().length);
+			//System.out.println("a");
     	new SignUpWindow();
     	view.getWindow().dispose();
+		flag=false;
+		}
 	}
-}
+} 
