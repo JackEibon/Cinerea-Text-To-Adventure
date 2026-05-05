@@ -148,7 +148,7 @@ public class LoginView extends JPanel {
     }
 
     private void pixelBorderText(JComponent component) {
-        component.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, true));
+        component.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         component.setFont(AppFont.normalSecondary());
         component.setBackground(Color.WHITE);
         component.putClientProperty("JComponent.focusWidth", 0);

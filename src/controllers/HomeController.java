@@ -1,5 +1,7 @@
 package controllers;
 
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -20,6 +22,7 @@ public class HomeController {
 	public HomeController(MainWindow view) {
 		this.view = view;
 		registerListeners();
+		
 	}
 	
 	public void registerListeners( ) {
@@ -41,6 +44,12 @@ public class HomeController {
 			view.showView(MainWindow.HOME);
 			updateMenuState(MainWindow.HOME);
 		}); //showView pq es el public, clarooo (yo media hora intentando usar create views, que nada que ver)	
+		
+		view.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				handleClose();
+			}
+		});
 	}
 	
 	private void showUsers() {
@@ -61,5 +70,10 @@ public class HomeController {
 	private void updateMenuState(String viewName) {
 		view.usersBtn.setEnabled(!viewName.equals(MainWindow.USERS));
 		view.homeBtn.setEnabled(!viewName.equals(MainWindow.HOME));
+	}
+	
+	private void setWindowPreferences() {
+		Dimension size = view.getSize();
+		Point point = view.getLocation();
 	}
 }

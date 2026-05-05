@@ -247,8 +247,8 @@ public class SignUpController {
         int option = JOptionPane.showConfirmDialog(view.getWindow(), "Cancel Operation?");
         
         if (option == JOptionPane.YES_OPTION) {
+        	view.getWindow().dispose();
             new LoginWindow();
-            view.getWindow().dispose();
         }
     }
 }

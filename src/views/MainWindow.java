@@ -131,6 +131,14 @@ public class MainWindow extends JFrame{
     	//setMenu();
     	return btn;
     }
+    
+    public void setWindowSize(int width, int height) {
+    	setSize(width, height);
+    }
+    
+    public void setWindowLocation(int x, int y) {
+    	setLocation(x, y);
+    }
 
     /*public void setMenu() {
 
