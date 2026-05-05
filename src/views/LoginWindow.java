@@ -25,10 +25,14 @@ public class LoginWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         loginView = new LoginView(this);
+        
         add(loginView);
         
-        new LoginController(loginView);
-        
+        if (loginView.getClientProperty("controller") == null) {
+            loginView.putClientProperty("controller", true);
+            new LoginController(loginView);
+        }
+        //System.out.println("LoginWindow creado: " + this);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowIconified(WindowEvent e) {
