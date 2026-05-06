@@ -8,11 +8,11 @@ import java.awt.event.WindowEvent;
 import utils.Config;
 import views.MainWindow;
 
-public class HomeController {
+public class AdminController {
 	private MainWindow view;
 	private UserController userController;
 	/*Constructor */
-	public HomeController(MainWindow view) {
+	public AdminController(MainWindow view) {
 		this.view = view;
 		
 		loadWindowPreferences();

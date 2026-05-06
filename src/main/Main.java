@@ -1,10 +1,11 @@
 package main;
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 import controllers.HomeController;
 import controllers.LoginController;
+import utils.ThemeManager;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -16,13 +17,8 @@ import views.MainWindow;
 public class Main {
 
     public static void main(String[] args) {
-        
-        try {
-			UIManager.setLookAndFeel(new FlatDarkLaf());
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	//FlatLightLaf.setup();
+    	ThemeManager.applySavedTheme();
         
     	//new HomeController(new MainWindow());
 		//new LoginController(new LoginWindow().getLoginView());

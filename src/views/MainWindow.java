@@ -28,6 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import assets.utils.AppFont;
+import utils.ThemeManager;
 
 public class MainWindow extends JFrame{
 
@@ -40,7 +41,6 @@ public class MainWindow extends JFrame{
 	public UsersView usersPanel;
 	private CardLayout cardLayout; //gestor de diseño
 	private JPanel container; //la caja/panel
-	
 
     public MainWindow() {
         Toolkit tk = Toolkit.getDefaultToolkit(); 
@@ -50,7 +50,7 @@ public class MainWindow extends JFrame{
         setTitle("Cinerea");
         setSize(1000, 750); 
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         	
         initializeCompounds();
@@ -59,7 +59,6 @@ public class MainWindow extends JFrame{
         setMenu();
         createNavbar();
         createViews();
-        
         
         setVisible(true);
     }
@@ -103,6 +102,12 @@ public class MainWindow extends JFrame{
 				resetBackground(btnPlay);
 			}
 		});
+        
+        JMenuItem theme = new JMenuItem("Change theme");
+	    theme.addActionListener(e -> {
+	    	ThemeManager.toggle();
+	    });
+	    bigPanel.add(theme);
         
         centerPanel.add(Box.createRigidArea(new Dimension(0, 40)));
         

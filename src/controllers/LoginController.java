@@ -66,8 +66,8 @@ public class LoginController {
 		try {
 			if(validateAndShow(user)) {
 			    JOptionPane.showMessageDialog(view.getWindow(), "Welcome, " + user.getEmail().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
-			    new MainWindow();
 			    view.getWindow().dispose();
+			    new HomeController(new MainWindow());
 			}
 		} catch (InvalidUserException | InvalidPasswordException e) {
 			view.getErrPassword().setText("Invalid Credentials");
@@ -115,13 +115,13 @@ public class LoginController {
     }
 	
 	private void handleBtnRegister() {
-		if (flag) {
+		//if (flag) {
 			//System.out.println(this);
 			//System.out.println(view.getBtnRegister().getActionListeners().length);
 			//System.out.println("a");
     	new SignUpWindow();
     	view.getWindow().dispose();
-		flag=false;
-		}
+		//flag=false;
+		//}
 	}
 } 

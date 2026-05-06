@@ -7,7 +7,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import controllers.LoginController;
-import controllers.SignUpController;
 
 public class LoginWindow extends JFrame {
 
