@@ -1,25 +1,12 @@
 package scenesFiles;
 
-public class WolfCave extends NodeT1{
-	
-	
-
-	
-
+public class WolfCave extends Cave{
 	public WolfCave(int scene) {
 		super(scene);
-		setWolfBeenHere(100);
-		setCave(true);
-		setBiome("forest");
+		setWolfBeenHere(999);
 		setScene(scene);
-		setMainDescription("The crater in the middle of the earth shines shimmers with moonlight hue");
-		setDistantDescription("A silver light shivers far away");
-		setGoDescriptions("");
-		setTakeDescriptions("");
-		setRestDescriptions("");
-		setTalkDescriptions("") ;
-		setItemsDescriptions("") ;
-		
+		setMainDescription("The cave is dark, the air is cold, the smell is of cursed iron");
+		setDistantDescription("A dark, sinister, cold cave");
 	}
 
 

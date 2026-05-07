@@ -96,64 +96,68 @@ public class Graph {
 		WolfCave wolfCave= new WolfCave(x);x++;
 		Lake silverLake=new Lake(x);x++;
 		IronYard oldBattlefield=new IronYard(x);x++;
+		/*FOREST AND VALLEY*/
+		silverCrater.setaN(1,greatForest,2,"walking along a path");
+		silverCrater.setaN(2,blacksmith,1,"walking towards the noise");
+		silverCrater.setaN(3,flowerGarden,1,"walking across the garden");
 		
-		silverCrater.setaN(1,greatForest,2);
-		silverCrater.setaN(2,blacksmith,1);
-		silverCrater.setaN(3,flowerGarden,1);
+		greatForest.setaN(1,silverCrater,2,"walking towards the shimmer");
+		greatForest.setaN(2,blacksmith,2,"walking towards the noise");
+		greatForest.setaN(3,silverLake,2,"walking towards the water");
+		greatForest.setaN(4,earthenPeak,10,"climbing hard");
 		
-		greatForest.setaN(1,silverCrater,2);
-		greatForest.setaN(2,blacksmith,2);
-		greatForest.setaN(3,silverLake,2);
-		greatForest.setaN(4,earthenPeak,10);
+		blacksmith.setaN(1,greatForest,2,"walking along a path");
+		blacksmith.setaN(2,oldBattlefield,1,"walking towards the rust");
+		blacksmith.setaN(3,silverCrater,1,"walking towards the shimmer");
 		
-		blacksmith.setaN(1,greatForest,2);
-		blacksmith.setaN(2,oldBattlefield,1);
-		blacksmith.setaN(3,silverCrater,1);
+		silverLake.setaN(1,earthenPeak,10,"climbing the earthen rocks");
+		silverLake.setaN(2,heavenPeak,12,"climbing towards the high tall peak");
+		silverLake.setaN(3,greatForest,1,"walking across the trees");
+		silverLake.setaN(4,flowerGarden,1,"following the water");
 		
-		silverLake.setaN(1,earthenPeak,10);
-		silverLake.setaN(2,heavenPeak,12);
-		silverLake.setaN(3,greatForest,1);
-		silverLake.setaN(4,flowerGarden,1);
+		flowerGarden.setaN(1,greatForest,2,"walking across the trees");
+		flowerGarden.setaN(2,silverCrater,1,"following the water");
 		
-		flowerGarden.setaN(1,greatForest,2);
-		flowerGarden.setaN(2,silverCrater,1);
+		oldBattlefield.setaN(1,entrance,1,"walking towards the cave");
+		oldBattlefield.setaN(2,blacksmith,1,"walking towards the noise");
+		oldBattlefield.setaN(3,earthenPeak,5,"walking up the mountain");
 		
-		oldBattlefield.setaN(1,entrance,1);
-		oldBattlefield.setaN(2,blacksmith,1);
-		oldBattlefield.setaN(3,earthenPeak,5);
+		/*MOUNTAINS*/
+		earthenPeak.setaN(1,heavenPeak,7,"walking up the mountain the long way");
+		earthenPeak.setaN(2,bridge,1,"walking across");
+		earthenPeak.setaN(3,greatForest,5,"jumping, falling sliding down the slope");
+		earthenPeak.setaN(4,oldBattlefield,3,"walking down the mountain");
+		earthenPeak.setaN(5,silverLake,2,"swimming gently down the river");
 		
-		earthenPeak.setaN(1,heavenPeak,7);//walking and climbing the long long way up
-		earthenPeak.setaN(2,bridge,1); //walking
-		earthenPeak.setaN(3,greatForest,5); //sliding, climbing and falling down
-		earthenPeak.setaN(4,oldBattlefield,3); //walking the path down
-		earthenPeak.setaN(5,silverLake,2); //swimming to the not so strong river
+		bridge.setaN(1,earthenPeak,1,"walking down");
+		bridge.setaN(2,heavenPeak,1,"walking up");
+		bridge.setaN(3,silverLake,4,"falling into the river and swimming downstream");
 		
-		bridge.setaN(1,earthenPeak,1);//walking
-		bridge.setaN(2,heavenPeak,1); //walking
-		bridge.setaN(3,silverLake,4); //falling and then swimming to the not so strong river
-		
-		heavenPeak.setaN(1,earthenPeak,5); //walking and climbing the long long way down
-		heavenPeak.setaN(2,bridge,1); //walking
-		heavenPeak.setaN(3,mountainHole,3);//falling
-		heavenPeak.setaN(4,silverLake,3);//swimming to the strong river
-		heavenPeak.setaN(5,wolfCave,2); //walking
-		
-		mountainHole.setaN(1,tunnel,1); //walking
-		
-		entrance.setaN(1,oldBattlefield,1);//walking
-		entrance.setaN(2,tunnel,3);//walking up
-		
-		tunnel.setaN(1,mountainHole,1); //walking
-		tunnel.setaN(2,entrance,2); //walking down
-		tunnel.setaN(3,gemRoom,2);//walking up
-		tunnel.setaN(4,howlingHole,3);//walking up
-		
-		gemRoom.setaN(1,tunnel,1);//walking down
-		gemRoom.setaN(2,howlingHole,2);//walking 
-		
-		howlingHole.setaN(1,wolfCave,3); //falling
-		howlingHole.setaN(2,tunnel,1); //walking down
-		howlingHole.setaN(3,gemRoom,2);//walking
+		heavenPeak.setaN(1,earthenPeak,5,"walking the long way down");
+		heavenPeak.setaN(2,bridge,1,"walking across the bridge");
+		heavenPeak.setaN(3,mountainHole,3,"falling into the mountain hole");
+		heavenPeak.setaN(4,silverLake,3,"swimming down as gently as you can");
+		heavenPeak.setaN(5,wolfCave,2,"walking towards the dark cave");
+
+		/*CAVE SYSTEM*/
+		mountainHole.setaN(1,tunnel,1,"walking deeper into the cave");
+
+		entrance.setaN(1,oldBattlefield,1,"walking out towards the rust");
+		entrance.setaN(2,tunnel,3,"walking up through the cave");
+
+		tunnel.setaN(1,mountainHole,1,"walking towards the faint light");
+		tunnel.setaN(2,entrance,2,"walking down towards the exit");
+		tunnel.setaN(3,gemRoom,2,"walking towards the glittering walls");
+		tunnel.setaN(4,howlingHole,3,"walking towards the eerie howls");
+
+		gemRoom.setaN(1,tunnel,1,"walking back through the tunnel");
+		gemRoom.setaN(2,howlingHole,2,"walking towards the distant howls");
+
+		howlingHole.setaN(1,wolfCave,3,"falling into the wolf den");
+		howlingHole.setaN(2,tunnel,1,"walking down through the tunnel");
+		howlingHole.setaN(3,gemRoom,2,"walking towards the glittering walls");
+
+		wolfCave.setaN(2,heavenPeak,3,"walking out unto the mountain peak");
 		
 		}
 

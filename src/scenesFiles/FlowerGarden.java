@@ -11,7 +11,7 @@ public class FlowerGarden extends NodeT1{
 
 		setBiome("forest");
 		setScene(scene);
-		setMainDescription("The crater in the middle of the earth shines shimmers with moonlight hue");
+		setMainDescription("The flowers smell");
 		setDistantDescription("A silver light shivers far away");
 		setGoDescriptions("");
 		setTakeDescriptions("");

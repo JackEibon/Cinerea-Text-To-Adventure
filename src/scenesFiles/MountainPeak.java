@@ -12,13 +12,8 @@ public class MountainPeak extends NodeT1{
 		setBiome("Mountain");
 		setScene(scene);
 		setMainDescription("The crater in the middle of the earth shines shimmers with moonlight hue");
-		setDistantDescription("A silver light shivers far away");
-		setGoDescriptions("");
-		setTakeDescriptions("");
-		setRestDescriptions("");
-		setTalkDescriptions("") ;
-		setItemsDescriptions("") ;
-		
+		setDistantDescription("A giant set of boulders and rocks is the base for a giant peak, partitioning heaven ");
+	
 	}
 
 

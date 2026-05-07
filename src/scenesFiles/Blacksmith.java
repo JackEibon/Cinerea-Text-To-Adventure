@@ -11,8 +11,13 @@ public class Blacksmith extends NodeT1{
 
 		setBiome("forest");
 		setScene(scene);
-		setMainDescription("The crater in the middle of the earth shines shimmers with moonlight hue");
-		setDistantDescription("A silver light shivers far away");
+		setMainDescription("A blacsmith pounds hard against iron ore, he smells of hard, hard work, he says \"for you, silvering ghost"
+				+ " i will offer a fine good work"
+				+ " for little of cost, bring me a spear or sword,"
+				+ " i turn silver into mirror dust,"
+				+ " and gems unto enchantments forgotten and old"
+				+ " from the silvering kin i need no coin\"");
+		setDistantDescription("A faint noise of iron pounding");
 		setGoDescriptions("");
 		setTakeDescriptions("");
 		setRestDescriptions("");
