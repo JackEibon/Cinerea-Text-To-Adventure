@@ -1,6 +1,7 @@
 package models;
 
 public class User {
+	private int id;
 	
 	private String nickname;
 	private String email;
@@ -24,11 +25,15 @@ public class User {
 		this.gem = gem;
 		this.weapon = weapon;
 		this.elements = elements;
+	
 	}
+	
+	
 
 	public String getNickname() {
 		return nickname;
 	}
+	
 
 	public void setNickame(String nickname) {
 		this.nickname = nickname;
