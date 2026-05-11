@@ -12,4 +12,18 @@
   "weapon" : "Gun",
   "elements" : "Earth",
   "password" : null
+}, {
+  "nickname" : "MAquiavelo",
+  "email" : "Gerardo@gmail.com",
+  "gem" : "Opaline",
+  "weapon" : "Spear",
+  "elements" : "Water",
+  "password" : null
+}, {
+  "nickname" : "Calvito",
+  "email" : "CalvoPelonSinPelo@gmail.com",
+  "gem" : "Amethyst",
+  "weapon" : "Sword",
+  "elements" : "Water",
+  "password" : null
 } ]
