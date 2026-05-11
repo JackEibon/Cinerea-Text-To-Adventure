@@ -22,8 +22,6 @@ public class Main {
         
     	//new HomeController(new MainWindow());
 		//new LoginController(new LoginWindow().getLoginView());
-		//new RegistrationController(new RegistrationWindow());
-	//}
 
         //UIManager.put("Label.font", AppFont.normal());
         
