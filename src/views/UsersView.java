@@ -20,6 +20,7 @@ import javax.swing.table.JTableHeader;
 
 import assets.utils.AppFont;
 import tablemodels.UserTableModel;
+import utils.Config;
 
 public class UsersView extends JPanel {
 	private JTable table;
@@ -114,9 +115,12 @@ public class UsersView extends JPanel {
 	}
 
 	public File selectPdfFile() {
-		String path = System.getProperty("user.home");
+		String path = Config.get("pdf.export.lastFolder", System.getProperty("user.home"));
+		
 		JFileChooser chooser = new JFileChooser(path);
-		chooser.setSelectedFile(new File("users-report.pdf"));
+		
+		chooser.setSelectedFile(new File(path, "users-report.pdf")); 
+		
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);
 
@@ -132,6 +136,11 @@ public class UsersView extends JPanel {
 		File file = chooser.getSelectedFile();
 		if (!file.getName().toLowerCase().endsWith(".pdf")) {
 			file = new File(file.getAbsolutePath() + ".pdf");
+		}
+
+		String selectedDirectory = file.getParent();
+		if (selectedDirectory != null) {
+			Config.set("pdf.export.lastFolder", selectedDirectory);
 		}
 
 		return file;
