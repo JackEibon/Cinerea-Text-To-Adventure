@@ -8,11 +8,10 @@ public class Bridge extends NodeT1{
 
 	public Bridge(int scene) {
 		super(scene);
-		setBridge(true);
 		setBiome("river");
 		setScene(scene);
-		setMainDescription("The crater in the middle of the earth shines shimmers with moonlight hue");
-		setDistantDescription("A silver light shivers far away");
+		setMainDescription("The bridge is flawsy, dances side to side, stands above a sligthly fast current, which descends across the mountain unto a faraway lake");
+		setDistantDescription("A wooden bridge stands uniting paths as a shortcut");
 		setGoDescriptions("");
 		setTakeDescriptions("");
 		setRestDescriptions("");

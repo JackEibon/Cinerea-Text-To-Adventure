@@ -46,11 +46,12 @@ takeDescriptions = "",
 restDescriptions = "",
 talkDescriptions = "",
 targetDescriptions = "",
-itemsDescriptions = ""
-;
+itemsDescriptions = "";
 private List<String> names;
 
 public NodeT1(int scene){this.scene=scene;}
+public NodeT1(int scene, List<String> names, String mainD, String distantD){this.scene=scene;this.names=names;setDescriptions(mainD, distantD);}
+public NodeT1(int scene, String mainD, String distantD){this.scene=scene;setDescriptions(mainD, distantD);}
 
 public boolean isExplored() {return explored;}
 public int getScene() {return scene;}
@@ -72,6 +73,7 @@ public String getBiome() {return biome;}
 public String getMainDescription() {return mainDescription;}
 public String getDistantDescription() {return distantDescription;}
 public String getGoDescriptions() {return goDescriptions;}
+public void setDescriptions(String main, String distant) {this.mainDescription=main;this.distantDescription=distant;}
 public String getTakeDescriptions() {return takeDescriptions;}
 public String getRestDescriptions() {return restDescriptions;}
 public String getTalkDescriptions() {return talkDescriptions;}
@@ -87,51 +89,17 @@ public void setWolfBeenHere(int wolfBeenHere) {this.wolfBeenHere = wolfBeenHere;
 public void setaN(int aNT, NodeT1 aN, int cost) {
    
 	switch (aNT) {
-	case 1: {
-		this.aN1 = aN;
-		this.aN1Cost=cost;
-		break;
-	}
-	case 2: {
-		this.aN2 = aN;
-		this.aN2Cost=cost;
-		break;
-	}
-	case 3: {
-		this.aN3 = aN;
-		this.aN3Cost=cost;
-		break;
-	}
-	case 4: {
-		this.aN4 = aN;
-		this.aN4Cost=cost;
-		break;
-	}
-	case 5: {
-		this.aN5 = aN;
-		this.aN5Cost=cost;
-		break;
-	}
-	case 6: {
-		this.aN6 = aN;
-		this.aN6Cost=cost;
-		break;
-	}
-	case 7: {
-		this.aN7 = aN;
-		this.aN7Cost=cost;
-		break;
-	}
-	case 8: {
-		this.aN8 = aN;
-		this.aN8Cost=cost;
-		break;
-	}
-	default:
-		throw new IllegalArgumentException("Unexpected value: " + aNT);
-	}
-	
+	case 1: {this.aN1 = aN;this.aN1Cost=cost;break;}
+	case 2: {this.aN2 = aN;this.aN2Cost=cost;break;}
+	case 3: {this.aN3 = aN;this.aN3Cost=cost;break;}
+	case 4: {this.aN4 = aN;this.aN4Cost=cost;break;}
+	case 5: {this.aN5 = aN;this.aN5Cost=cost;break;}
+	case 6: {this.aN6 = aN;this.aN6Cost=cost;break;}
+	case 7: {this.aN7 = aN;this.aN7Cost=cost;break;}
+	case 8: {this.aN8 = aN;this.aN8Cost=cost;break;}
+	default:throw new IllegalArgumentException("Unexpected value: " + aNT);}
 }
+
 public void setaN(int aNT, NodeT1 aN, int cost, String way) {   
 	switch (aNT) {
 	case 1: {this.aN1 = aN;this.aN1Cost=cost;this.aN1p=way;break;}
@@ -217,8 +185,8 @@ public int getaN5Cost() {return aN5Cost;}
 public int getaN6Cost() {return aN6Cost;}
 public int getaN7Cost() {return aN7Cost;}
 public int getaN8Cost() {return aN8Cost;}
-public NodeT1 getaN(int aNT){
-	   
+
+public NodeT1 getaN(int aNT){   
 	switch (aNT) {
 	case 1: {return this.aN1;}
 	case 2: {return this.aN2;}
@@ -230,7 +198,6 @@ public NodeT1 getaN(int aNT){
 	case 8: {return this.aN8;}
 	default:throw new IllegalArgumentException("Unexpected value: " + aNT);}
 	}
-	
 public int getaNCost(int aNT){
 		switch (aNT) {
 		case 1: {return this.aN1Cost;}

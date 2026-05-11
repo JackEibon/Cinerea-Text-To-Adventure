@@ -183,10 +183,6 @@ public class Graph {
 		wolfCave.setaN(2,heavenPeak,3,"walking out unto the mountain peak");
 		wolfCave.setGoDescriptions();
 		}
-
-	
-
-
 }
 
 
