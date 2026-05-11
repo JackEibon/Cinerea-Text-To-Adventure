@@ -13,7 +13,7 @@ import views.SignUpWindow;
 
 public class LoginController {
 	
-	private boolean flag=true;
+	private boolean flag = true;
 	private LoginView view;
 	
 	public LoginController(LoginView loginView){

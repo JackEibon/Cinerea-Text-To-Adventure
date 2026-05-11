@@ -46,14 +46,14 @@ public class UserFormDialog extends JDialog{
     	
     	setTitle(user == null ? "Agregar usuario" : "Editar usuario");
     	
-    	setSize(400, 500);
+    	setSize(400, 300);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         
         add(createTitlePanel(), BorderLayout.NORTH);
-        add(createButtonPanel());
-        add(createFormPanel(), BorderLayout.SOUTH);
+        add(createFormPanel());
+        add(createButtonPanel(), BorderLayout.SOUTH);
         
     }
     
