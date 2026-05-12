@@ -25,10 +25,24 @@ public class User {
 		this.gem = gem;
 		this.weapon = weapon;
 		this.elements = elements;
-	
 	}
 	
+	public User(int id, String nickname, String email, String gem, String weapon, String elements) {
+		this.id = id;
+		this.nickname = nickname;
+		this.email = email;
+		this.gem = gem;
+		this.weapon = weapon;
+		this.elements = elements;
+	}
 	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getNickname() {
 		return nickname;
@@ -84,7 +98,7 @@ public class User {
 				"\nelements:\n" + elements;
 	}
 	
-	public String toCsv() {
+	/*public String toCsv() {
 		return nickname + "," +
 				email + "," +
 				gem + "," +
@@ -101,6 +115,6 @@ public class User {
 		String elements = data[4];
 		
 		return new User(nickname, email, gem, weapon, elements);
-	}
+	}*/
 	
 }

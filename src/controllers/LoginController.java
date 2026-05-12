@@ -7,6 +7,7 @@ import javax.swing.event.DocumentListener;
 import exceptions.InvalidPasswordException;
 import exceptions.InvalidUserException;
 import models.User;
+import repository.LoginRepository;
 import views.LoginView;
 import views.MainWindow;
 import views.SignUpWindow;
@@ -15,8 +16,10 @@ public class LoginController {
 	
 	private boolean flag = true;
 	private LoginView view;
+	private LoginRepository repository;
 	
 	public LoginController(LoginView loginView){
+		repository = new LoginRepository();
 		this.view = loginView;
 		//System.out.println("Controller creado: " + this);
 		registerListeners();
