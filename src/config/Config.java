@@ -1,4 +1,4 @@
-package utils;
+package config;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,6 +49,4 @@ public class Config {
 			ex.printStackTrace();
 		}
 	}
-	
-	
 }

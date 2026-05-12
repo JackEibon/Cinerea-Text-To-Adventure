@@ -70,7 +70,6 @@ public class LoginController {
 			if(validateAndShow(user)) {
 			    JOptionPane.showMessageDialog(view.getWindow(), "Welcome, " + user.getEmail().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
 			    view.getWindow().dispose();
-			    new HomeController(new MainWindow());
 			}
 		} catch (InvalidUserException | InvalidPasswordException e) {
 			view.getErrPassword().setText("Invalid Credentials");
