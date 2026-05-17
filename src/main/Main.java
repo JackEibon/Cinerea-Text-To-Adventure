@@ -26,7 +26,7 @@ public class Main {
         //UIManager.put("Label.font", AppFont.normal());
         
         //SignUpWindow window = new SignUpWindow(); 
-    	new LoginController(new LoginWindow().getLoginView());
+    	new LoginWindow().getLoginView();
         //new LoginController(window.getLoginView());
     }
 }

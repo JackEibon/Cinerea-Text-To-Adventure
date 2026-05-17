@@ -28,6 +28,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import assets.utils.AppFont;
+import models.User;
+import utils.Session;
 import utils.ThemeManager;
 
 public class MainWindow extends JFrame{
@@ -35,6 +37,7 @@ public class MainWindow extends JFrame{
 	/*Para la tabla de Usuarios*/
 	public static final String HOME = "Home";
 	public static final String USERS = "Users";
+	private User user;
 	public JMenuItem mItemExit;
 	public JButton usersBtn;
 	public JButton homeBtn;

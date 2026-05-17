@@ -224,11 +224,12 @@ public class SignUpController {
 
         if (isValid) {
         	User user = new User(
-        		view.getTxtNickname().getText(),
+        		0, view.getTxtNickname().getText(),
         		view.getTxtEmail().getText(),
         		view.getCbGems().getSelectedItem().toString(),
         		view.getCbWeapon().getSelectedItem().toString(),
-        		view.getCbElement().getSelectedItem().toString()
+        		view.getCbElement().getSelectedItem().toString(),
+        		"ADMIN"
         	);
         	
         	registerUser(user);
