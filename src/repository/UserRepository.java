@@ -26,7 +26,6 @@ public class UserRepository {
 		
 		List<User> users = getUsers();
 		users.add(user);
-		updateAll(users);
 		
 	}
 	
@@ -37,19 +36,19 @@ public class UserRepository {
 		try(
 				Connection connection = DatabaseConnection.getConnection();
 				Statement st = connection.createStatement();
-				ResultSet rs = st.executeQuery("SELECT * FROM users"); 
+				ResultSet rs = st.executeQuery("SELECT * FROM user_cinerea"); 
 			) {
 				
 				while(rs.next()) {
 					
 					User user = new User(
-						rs.getInt("id"), 
+						rs.getInt("id_user_cinerea"), 
 						rs.getString("nickname"), 
 						rs.getString("email"),
 						rs.getString("gem"),
 						rs.getString("weapon"),
-						rs.getString("element"),
-						rs.getString("role")
+						rs.getString("elements"),
+						rs.getString("role_cinerea")
 					);
 					users.add(user);
 				}
@@ -63,7 +62,7 @@ public class UserRepository {
 	
 	public boolean delete(int id) {
 		
-		String sql = "DELETE FROM users WHERE id = ?";
+		String sql = "DELETE FROM user_cinerea WHERE id_user_cinerea = ?";
 		
 		try(Connection connection = DatabaseConnection.getConnection();
 			PreparedStatement pst = connection.prepareStatement(sql)) {
@@ -71,7 +70,7 @@ public class UserRepository {
 			pst.setInt(1, id);
 			int affectedRows = pst.executeUpdate();
 			if(affectedRows > 0) {
-				System.out.println("Se eliminó");
+				System.out.println("It has been deleted");
 				return true;
 			}
 			
@@ -83,7 +82,7 @@ public class UserRepository {
 	}
 	
 	public boolean update(int index, User updatedUser) throws IOException {
-		String sql = "UPDATE user_cinerea SET nickname = ?, email = ?, gem = ?, weapon = ?, elements = ?, role = ? WHERE id = ?";
+		String sql = "UPDATE user_cinerea SET nickname = ?, email = ?, gem = ?, weapon = ?, elements = ?, role_cinerea = ? WHERE id_user_cinerea = ?";
 		
 		try (Connection connection = DatabaseConnection.getConnection();
 				PreparedStatement pst = connection.prepareStatement(sql)) {
@@ -93,7 +92,7 @@ public class UserRepository {
 			pst.setString(3, updatedUser.getGem());
 			pst.setString(4, updatedUser.getWeapon());
 			pst.setString(5, updatedUser.getElements());
-			pst.setString(6, updatedUser.getRole());
+			pst.setString(6, updatedUser.getRole_cinerea());
 			pst.setInt(7, updatedUser.getId());
 			
 			int affectedRows = pst.executeUpdate();

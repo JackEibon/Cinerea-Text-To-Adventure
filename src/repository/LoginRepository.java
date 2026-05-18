@@ -18,7 +18,7 @@ public class LoginRepository {
 		/*String sql = "SELECT id, email, password FROM users WHERE email = '" 
 				+ email + "' AND password = '" + password + "'";*/
 		
-		String sql = "SELECT id, email, wordpass, role, name FROM user_cinerea WHERE email = ?";
+		String sql = "SELECT id_user_cinerea, email, wordpass, role_cinerea, nickname FROM user_cinerea WHERE email = ?";
 		
 		try (
 			Connection conn = DatabaseConnection.getConnection();
@@ -39,10 +39,10 @@ public class LoginRepository {
 					return null;
 				
 				User user = new User();
-				user.setId(rs.getInt("id"));
+				user.setId(rs.getInt("id_user_cinerea"));
 				user.setEmail(rs.getString("email"));
 				user.setNickname(rs.getString("nickname"));
-				user.setRole(rs.getString("role"));
+				user.setRole_cinerea(rs.getString("role_cinerea"));
 
 				return user;
 			}

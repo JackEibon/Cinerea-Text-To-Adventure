@@ -9,7 +9,7 @@ public class User {
 	private String weapon;
 	private String elements;
 	private String password;
-	private String role;
+	private String role_cinerea;
 	
 	public User() {
 		
@@ -20,23 +20,23 @@ public class User {
 		this.password = password;
 	}
 	
-	public User(String nickname, String email, String gem, String weapon, String elements, String role) {
+	public User(String nickname, String email, String gem, String weapon, String elements, String role_cinerea) {
 		this.nickname = nickname;
 		this.email = email;
 		this.gem = gem;
 		this.weapon = weapon;
 		this.elements = elements;
-		this.role = role;
+		this.role_cinerea = role_cinerea;
 	}
 	
-	public User(int id, String nickname, String email, String gem, String weapon, String elements, String role) {
+	public User(int id, String nickname, String email, String gem, String weapon, String elements, String role_cinerea) {
 		this.id = id;
 		this.nickname = nickname;
 		this.email = email;
 		this.gem = gem;
 		this.weapon = weapon;
 		this.elements = elements;
-		this.role = role;
+		this.role_cinerea = role_cinerea;
 	}
 	
 	public int getId() {
@@ -92,21 +92,12 @@ public class User {
 		return password;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRole_cinerea() {
+		return role_cinerea;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		return "Nickname: " + nickname + 
-				"\nEmail: " + email + 
-				"\nGem: " + gem + 
-				"\nWeapon: " + weapon + 
-				"\nelements:\n" + elements;
+	public void setRole_cinerea(String role_cinerea) {
+		this.role_cinerea = role_cinerea;
 	}
 	
 	/*public String toCsv() {

@@ -23,7 +23,7 @@ public class Session {
 	}
 	
 	public static String getRole( ) {
-		return currentUser.getRole();
+		return currentUser.getRole_cinerea();
 	}
 	
 
