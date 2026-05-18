@@ -34,7 +34,7 @@ public class UserController {
 		this.view.getBtnEdit().addActionListener(e -> {
 			int row = view.getSelectedRow();
 			if(row == -1) {
-				JOptionPane.showMessageDialog(view, "Selecciona un usuario");
+				JOptionPane.showMessageDialog(view, "Select an user");
 				return;
 			}
 			
@@ -44,17 +44,11 @@ public class UserController {
 		this.view.getBtnPdf().addActionListener(e -> generatePdf());
 		
 		this.view.getBtnDelete().addActionListener(e -> {
-			int row = view.getSelectedRow();
-			if(row == -1) {
-				JOptionPane.showMessageDialog(view, "Selecciona un usuario");
-				return;
+			boolean deleted = repo.delete(model.getUserAt(view.getSelectedRow()).getId());
+			if(deleted) {
+				model.removeRow(view.getSelectedRow());
 			}
-			try {
-				deleteUser(row);
-			} catch (IOException ex) {
-				ex.printStackTrace();
-				JOptionPane.showMessageDialog(view, ex.getMessage());
-			}
+				
 		});
 	}
 	
@@ -91,12 +85,6 @@ public class UserController {
 		}
 	}
 	
-	private void deleteUser(int index) throws IOException {
-		int row = view.getSelectedRow();
-		repo.delete(row);
-		loadUsers();
-	}
-	
 	private void openForm(User user) {
 		UserFormDialog dialog = new UserFormDialog(null, user);
 		dialog.setVisible(true);
@@ -107,11 +95,14 @@ public class UserController {
 			try {
 				if(user == null) {
 					repo.save(savedUser);
+					model.addRow(savedUser);
 				} else {
 					int row = view.getSelectedRow();
-					repo.update(row, savedUser);
+					boolean updated = repo.update(row, savedUser);
+					if(updated) {
+						model.updateRow(row, savedUser); 
+					}
 				}
-				loadUsers();
 			}catch(Exception e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(view, e.getMessage());

@@ -8,20 +8,19 @@ import exceptions.InvalidPasswordException;
 import exceptions.InvalidUserException;
 import models.User;
 import repository.LoginRepository;
+import utils.Session;
 import views.LoginView;
 import views.MainWindow;
 import views.SignUpWindow;
 
 public class LoginController {
 	
-	private boolean flag = true;
 	private LoginView view;
 	private LoginRepository repository;
 	
 	public LoginController(LoginView loginView){
 		repository = new LoginRepository();
 		this.view = loginView;
-		//System.out.println("Controller creado: " + this);
 		registerListeners();
 	}
 	
@@ -44,7 +43,17 @@ public class LoginController {
             }
         });
 		
-		view.getBtnLogin().addActionListener(e -> handleLogin());
+		view.getBtnLogin().addActionListener(e -> {
+			try {
+				handleLogin();
+			} catch (InvalidUserException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvalidPasswordException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		
 		view.getBtnRegister().addActionListener(e -> handleBtnRegister());
 	}
@@ -63,18 +72,29 @@ public class LoginController {
 	}
 	
 	
-	private void handleLogin() {
-		User user = new User(view.getEmail(), String.valueOf(view.getTxtPassword().getPassword()));
-
-		try {
-			if(validateAndShow(user)) {
-			    JOptionPane.showMessageDialog(view.getWindow(), "Welcome, " + user.getEmail().trim() + "!", "Success", JOptionPane.INFORMATION_MESSAGE);
-			    view.getWindow().dispose();
-			}
-		} catch (InvalidUserException | InvalidPasswordException e) {
+	private void handleLogin() throws InvalidUserException, InvalidPasswordException {
+		if(!validateAndShow(new User(view.getEmail(), view.getPassword()))){
+			return;
+		}
+		
+		User user = repository.login(view.getEmail(), view.getPassword());
+		
+		if(user == null) {
 			view.getErrPassword().setText("Invalid Credentials");
 			view.getErrPassword().setVisible(true);
-		} 
+			return;
+		}
+		
+		Session.login(user);
+		
+		if(Session.getRole().equals("ADMIN")) {
+			new HomeController(new MainWindow());			
+			
+		} else {
+			JOptionPane.showMessageDialog(view.getWindow(), "You don't have permissions");
+		}
+
+		view.getWindow().dispose();
 	}
 	
 	private boolean validateAndShow(User user) throws InvalidUserException, InvalidPasswordException {
@@ -117,13 +137,7 @@ public class LoginController {
     }
 	
 	private void handleBtnRegister() {
-		//if (flag) {
-			//System.out.println(this);
-			//System.out.println(view.getBtnRegister().getActionListeners().length);
-			//System.out.println("a");
     	new SignUpWindow();
     	view.getWindow().dispose();
-		//flag=false;
-		//}
 	}
 } 

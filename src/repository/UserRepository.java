@@ -2,24 +2,25 @@ package repository;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import config.DatabaseConnection;
 import models.User;
 
 public class UserRepository {
 
-	private final String FILE = "."
-			+ File.separator
-			+ "data"
-			+ File.separator
-			+ "users.json";
 	
-	private final ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 	
 	public void save(User user) throws IOException {
 		
@@ -31,38 +32,82 @@ public class UserRepository {
 	
 	public List<User> getUsers() throws IOException {
 		
-		File file = new File(FILE);
+		List<User> users = new ArrayList<User>();
 		
-		file.getParentFile().mkdir();
+		try(
+				Connection connection = DatabaseConnection.getConnection();
+				Statement st = connection.createStatement();
+				ResultSet rs = st.executeQuery("SELECT * FROM users"); 
+			) {
+				
+				while(rs.next()) {
+					
+					User user = new User(
+						rs.getInt("id"), 
+						rs.getString("nickname"), 
+						rs.getString("email"),
+						rs.getString("gem"),
+						rs.getString("weapon"),
+						rs.getString("element"),
+						rs.getString("role")
+					);
+					users.add(user);
+				}
+				
+			}catch(SQLException ex ) {
+				ex.printStackTrace();
+			}
 		
-		if(!file.exists() || file.length() == 0) {
-			return new ArrayList<>();
+		return users;
+	}
+	
+	public boolean delete(int id) {
+		
+		String sql = "DELETE FROM users WHERE id = ?";
+		
+		try(Connection connection = DatabaseConnection.getConnection();
+			PreparedStatement pst = connection.prepareStatement(sql)) {
+			
+			pst.setInt(1, id);
+			int affectedRows = pst.executeUpdate();
+			if(affectedRows > 0) {
+				System.out.println("Se eliminó");
+				return true;
+			}
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
 		}
 		
-		return mapper.readValue(
-			file, 
-			new TypeReference<List<User>>() {}
-		);
-				
+		return false;
 	}
 	
-	public void updateAll(List<User> users) throws IOException {
-		File file = new File(FILE);
-		file.getParentFile().mkdir();
+	public boolean update(int index, User updatedUser) throws IOException {
+		String sql = "UPDATE user_cinerea SET nickname = ?, email = ?, gem = ?, weapon = ?, elements = ?, role = ? WHERE id = ?";
 		
-	    mapper.writeValue(new File(FILE), users);
-	}
-	
-	public void delete(int index) throws IOException {
-		List<User> users = getUsers();
-		users.remove(index);
-		updateAll(users);
-	}
-	
-	public void update(int index, User updatedUser) throws IOException {
-		List<User> users = getUsers();
-		users.set(index, updatedUser);
-		updateAll(users);
+		try (Connection connection = DatabaseConnection.getConnection();
+				PreparedStatement pst = connection.prepareStatement(sql)) {
+			
+			pst.setString(1, updatedUser.getNickname());
+			pst.setString(2, updatedUser.getEmail());
+			pst.setString(3, updatedUser.getGem());
+			pst.setString(4, updatedUser.getWeapon());
+			pst.setString(5, updatedUser.getElements());
+			pst.setString(6, updatedUser.getRole());
+			pst.setInt(7, updatedUser.getId());
+			
+			int affectedRows = pst.executeUpdate();
+			
+			if(affectedRows > 0) {
+				return true;
+			}		
+			
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return false;
 	}
 	
 			

@@ -21,15 +21,15 @@ import javax.swing.border.EmptyBorder;
 
 import assets.utils.AppFont;
 
-public class LoginView extends JPanel {
+public class GameView extends JPanel {
 
-    private LoginWindow window;
+    private GameWindow window;
     private JTextField txtEmail;
     private JPasswordField txtPassword;
     private JLabel errEmail, errPassword;
     private JButton btnLogin, btnRegister;
 
-    public LoginView(LoginWindow window) {
+    public GameView(GameWindow window) {
         this.window = window;
         setLayout(new BorderLayout());
         initializeCompounds();
@@ -154,7 +154,7 @@ public class LoginView extends JPanel {
         component.putClientProperty("JComponent.focusWidth", 0);
     }
 
-    public LoginWindow getWindow() {
+    public GameWindow getWindow() {
         return window;
     }
 
@@ -178,8 +178,8 @@ public class LoginView extends JPanel {
         return txtEmail.getText();
     }
 
-    public String getPassword() {
-        return txtPassword.toString();
+    public char[] getPassword() {
+        return txtPassword.getPassword();
     }
 
     public JButton getBtnLogin() {

@@ -9,6 +9,7 @@ public class User {
 	private String weapon;
 	private String elements;
 	private String password;
+	private String role;
 	
 	public User() {
 		
@@ -19,21 +20,23 @@ public class User {
 		this.password = password;
 	}
 	
-	public User(String nickname, String email, String gem, String weapon, String elements) {
+	public User(String nickname, String email, String gem, String weapon, String elements, String role) {
 		this.nickname = nickname;
 		this.email = email;
 		this.gem = gem;
 		this.weapon = weapon;
 		this.elements = elements;
+		this.role = role;
 	}
 	
-	public User(int id, String nickname, String email, String gem, String weapon, String elements) {
+	public User(int id, String nickname, String email, String gem, String weapon, String elements, String role) {
 		this.id = id;
 		this.nickname = nickname;
 		this.email = email;
 		this.gem = gem;
 		this.weapon = weapon;
 		this.elements = elements;
+		this.role = role;
 	}
 	
 	public int getId() {
@@ -49,7 +52,7 @@ public class User {
 	}
 	
 
-	public void setNickame(String nickname) {
+	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
 
@@ -87,6 +90,14 @@ public class User {
 	
 	public String getPassword() {
 		return password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override

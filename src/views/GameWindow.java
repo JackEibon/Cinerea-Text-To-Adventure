@@ -12,10 +12,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+
+
 public class GameWindow extends JFrame {
     public JTextField commandInput;
     public JTextArea narrationArea;
     public JTextArea minimapArea;
+    private GameView window = new GameView(this);
+
 
     public GameWindow() {
     	System.out.print("here");
@@ -23,9 +27,14 @@ public class GameWindow extends JFrame {
         setSize(1000, 700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+        add(window);
+        
+        
 
-        JPanel root = new JPanel(new BorderLayout(10, 10));
-        root.setBorder(new EmptyBorder(10,10,10,10));
+        JPanel root = new JPanel(new BorderLayout(1000, 1000));
+        root.setBorder(new EmptyBorder(1000,1000,1000,1000));
         root.setBackground(Color.BLACK);
 
         commandInput = new JTextField();
@@ -53,5 +62,9 @@ public class GameWindow extends JFrame {
 
     public void appendText(String text) {
         narrationArea.append("\n\n" + text);
+    }
+    
+    public GameView getGameView() {
+        return window;
     }
 }
