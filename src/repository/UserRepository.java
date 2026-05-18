@@ -81,6 +81,50 @@ public class UserRepository {
 		return false;
 	}
 	
+
+	public boolean add(User user) {
+		//si usamos AUTO Increment, se queda asi, si no, se reemplaza por aquello que diga /*No Auto_increment*/:
+		/*No Auto_increment*/
+		//String sql = "INSERT INTO user_cinerea "+ "(inickname, email, gem, weapon, elements, role_cinerea)+ "VALUES (?,?,?,?,?,?,?)"; "
+		String sql = "INSERT INTO user_cinerea "
+				+ "(id_user_cinerea, nickname, email, gem, weapon, elements, role_cinerea) "
+				+ "VALUES (?,?,?,?,?,?)"; //experimentando con esto. Lo vi en un documento y en un tutorial, se supone es mas a salvo y previene SQL injection. No estoy del todo seguro como funciona, asi que si no funciona, se reemplaza
+		
+		try(Connection connection = DatabaseConnection.getConnection();
+			PreparedStatement pst = connection.prepareStatement(sql)) {
+			/*No Auto_increment*/
+			/*
+			pst.setString(1, user.getId());
+			pst.setString(2, user.getNickname());
+			pst.setString(3, user.getEmail());
+			pst.setString(4, user.getGem());
+			pst.setString(5, user.getWeapon());
+			pst.setString(6, user.getElements());
+			pst.setString(7, user.getRole_cinerea());
+			 * 
+			 * */
+			pst.setString(1, user.getNickname());
+			pst.setString(2, user.getEmail());
+			pst.setString(3, user.getGem());
+			pst.setString(4, user.getWeapon());
+			pst.setString(5, user.getElements());
+			pst.setString(6, user.getRole_cinerea());
+			
+			int affectedRows = pst.executeUpdate();
+			
+			if(affectedRows > 0) {
+				System.out.println("User added successfully");
+				return true;
+			}
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	
 	public boolean update(int index, User updatedUser) throws IOException {
 		String sql = "UPDATE user_cinerea SET nickname = ?, email = ?, gem = ?, weapon = ?, elements = ?, role_cinerea = ? WHERE id_user_cinerea = ?";
 		
