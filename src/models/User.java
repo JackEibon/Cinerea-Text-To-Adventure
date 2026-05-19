@@ -1,8 +1,8 @@
 package models;
 
 public class User {
-	private int id;
 	
+	private int id;
 	private String nickname;
 	private String email;
 	private String gem;
@@ -29,7 +29,7 @@ public class User {
 		this.role_cinerea = role_cinerea;
 	}
 	
-	public User(int id, String nickname, String email, String gem, String weapon, String elements, String role_cinerea) {
+	public User(int id, String nickname, String email, String gem, String weapon, String elements, String role_cinerea, String password) {
 		this.id = id;
 		this.nickname = nickname;
 		this.email = email;
@@ -37,6 +37,7 @@ public class User {
 		this.weapon = weapon;
 		this.elements = elements;
 		this.role_cinerea = role_cinerea;
+		this.password = password;
 	}
 	
 	public int getId() {

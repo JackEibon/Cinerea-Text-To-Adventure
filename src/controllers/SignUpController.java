@@ -122,6 +122,7 @@ public class SignUpController {
     private void registerUser(User user) {
     	try {
     		repository.save(user);
+    		System.out.println("SignupController");
     		JOptionPane.showMessageDialog(view, "Saved");
     	}catch(IOException e) {
     		JOptionPane.showMessageDialog(view, e.getMessage());
@@ -230,7 +231,8 @@ public class SignUpController {
         		view.getCbGems().getSelectedItem().toString(),
         		view.getCbWeapon().getSelectedItem().toString(),
         		view.getCbElement().getSelectedItem().toString(),
-        		"ADMIN"
+        		"ADMIN",
+        		password
         	);
         	
         	registerUser(user);
