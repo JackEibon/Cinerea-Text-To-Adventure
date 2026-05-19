@@ -14,6 +14,7 @@ import javax.swing.event.DocumentListener;
 
 import models.User;
 import repository.UserRepository;
+import utils.PasswordUtils;
 import views.LoginWindow;
 import views.SignUpView;
 
@@ -122,7 +123,6 @@ public class SignUpController {
     private void registerUser(User user) {
     	try {
     		repository.save(user);
-    		System.out.println("SignupController");
     		JOptionPane.showMessageDialog(view, "Saved");
     	}catch(IOException e) {
     		JOptionPane.showMessageDialog(view, e.getMessage());
@@ -222,6 +222,8 @@ public class SignUpController {
             view.getErrConfirm().setVisible(true); 
             isValid = false; 
         }
+        
+        String HashedPassword = PasswordUtils.hashPassword(password);
 
         if (isValid) {
         	User user = new User(
@@ -232,7 +234,7 @@ public class SignUpController {
         		view.getCbWeapon().getSelectedItem().toString(),
         		view.getCbElement().getSelectedItem().toString(),
         		"ADMIN",
-        		password
+        		HashedPassword
         	);
         	
         	registerUser(user);

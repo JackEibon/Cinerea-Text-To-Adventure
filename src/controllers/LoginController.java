@@ -8,6 +8,7 @@ import exceptions.InvalidPasswordException;
 import exceptions.InvalidUserException;
 import models.User;
 import repository.LoginRepository;
+import utils.PasswordUtils;
 import utils.Session;
 import views.LoginView;
 import views.MainWindow;
@@ -88,8 +89,7 @@ public class LoginController {
 		Session.login(user);
 		
 		if(Session.getRole().equals("ADMIN")) {
-			new HomeController(new MainWindow());			
-			
+			new HomeController(new MainWindow());	
 		} else {
 			JOptionPane.showMessageDialog(view.getWindow(), "You don't have permissions");
 		}

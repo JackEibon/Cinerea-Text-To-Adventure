@@ -82,7 +82,6 @@ public class UserRepository {
 				+ "(id_user_cinerea, nickname, email, gem, weapon, elements, role_cinerea) "
 				+ "VALUES (?,?,?,?,?,?)"; //experimentando con esto. Lo vi en un documento y en un tutorial, se supone es mas a salvo y previene SQL injection. No estoy del todo seguro como funciona, asi que si no funciona, se reemplaza
 		*/
-		System.out.println("asdfasdf");
 		
 		try(Connection connection = DatabaseConnection.getConnection();
 			PreparedStatement pst = connection.prepareStatement(sql)) {
