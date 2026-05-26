@@ -117,8 +117,12 @@ public class LoginController {
 		if(Session.getRole().equals("ADMIN")) {
 			new HomeController(new MainWindow());	
 		} else {
-			JOptionPane.showMessageDialog(view.getWindow(), "You don't have permissions");
+			MainWindow mainWindow = new MainWindow();
+			new HomeController(mainWindow);
+			// Si no es admin, igual lo mandamos al apartado normal (USERS)
+			mainWindow.showView(MainWindow.USERS);
 		}
+
 
 		view.getWindow().dispose();
 	}

@@ -233,7 +233,8 @@ public class SignUpController {
         		view.getCbGems().getSelectedItem().toString(),
         		view.getCbWeapon().getSelectedItem().toString(),
         		view.getCbElement().getSelectedItem().toString(),
-        		"ADMIN",
+									"USER",
+
         		HashedPassword
         	);
         	

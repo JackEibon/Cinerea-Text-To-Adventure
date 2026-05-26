@@ -151,7 +151,8 @@ public class UserFormDialog extends JDialog{
     	}
     	
     	if(user == null) {
-    		user = new User(nickname, email, gem, weapon, element, "ADMIN");
+			user = new User(nickname, email, gem, weapon, element, "USER");
+
     	} else {
     		user.setNickname(nickname);
     		user.setEmail(email);
