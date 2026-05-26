@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import gamelogic.GameLogic;
 import views.GameView;
-import views.GameWindow;
 
 public class GameController implements ActionListener {
 
@@ -15,19 +14,15 @@ public class GameController implements ActionListener {
     public GameController(GameView view, GameLogic logic) {
         this.view = view;
         this.logic = logic;
-
-        this.view.commandInput.addActionListener(this);
+        view.hiddenInput.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        String command = view.commandInput.getText();
-
+        String command = view.hiddenInput.getText();
         String response = logic.execute(command);
-
         view.appendText("> " + command + "\n" + response);
-
-        view.commandInput.setText("");
+        view.hiddenInput.setText("");
+        view.reader.repaint();
     }
 }

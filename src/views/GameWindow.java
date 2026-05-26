@@ -16,13 +16,11 @@ public class GameWindow extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GameView gameView = new GameView();
-
+        gameView = new GameView();
         add(gameView);
-
-        GameController controller = new GameController(gameView, new GameLogic());
-
+        new GameController(gameView, new GameLogic());
         setVisible(true);
+        requestFocus();
     }
 
     public GameView getGameView() {
