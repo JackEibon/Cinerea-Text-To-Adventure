@@ -2,7 +2,7 @@ package gamelogic;
 
 public class TextParser {
 
-    public static ParsedCommand parse(String input, Lexicon lexicon) {
+    public ParsedCommand parse(String input, Lexicon lexicon) {
 
         if(input == null || input.isBlank()) {
             return null;

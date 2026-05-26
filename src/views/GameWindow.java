@@ -1,70 +1,31 @@
 package views;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
-
+import controllers.GameController;
+import gamelogic.GameLogic;
 
 public class GameWindow extends JFrame {
-    public JTextField commandInput;
-    public JTextArea narrationArea;
-    public JTextArea minimapArea;
-    private GameView window = new GameView(this);
 
+    private GameView gameView;
 
     public GameWindow() {
-    	System.out.print("here");
+
         setTitle("Cinerea - Adventure");
-        setSize(1000, 700);
+        setSize(1000,700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
-        add(window);
-        
-        
 
-        JPanel root = new JPanel(new BorderLayout(1000, 1000));
-        root.setBorder(new EmptyBorder(1000,1000,1000,1000));
-        root.setBackground(Color.BLACK);
+        GameView gameView = new GameView();
 
-        commandInput = new JTextField();
-        commandInput.setPreferredSize(new Dimension(100, 40));
+        add(gameView);
 
-        narrationArea = new JTextArea();
-        narrationArea.setEditable(false);
-        narrationArea.setLineWrap(true);
-        narrationArea.setWrapStyleWord(true);
-        narrationArea.setText("Welcome to Cinerea. Type commands like: go forest");
+        GameController controller = new GameController(gameView, new GameLogic());
 
-        minimapArea = new JTextArea();
-        minimapArea.setEditable(false);
-        minimapArea.setPreferredSize(new Dimension(220, 200));
-        minimapArea.setText("[ MAP ]\n\n     Mountains\n         ^\nForest <- YOU -> Lake\n         v\n       Cave");
-
-        root.add(commandInput, BorderLayout.NORTH);
-        root.add(new JScrollPane(narrationArea), BorderLayout.CENTER);
-        root.add(minimapArea, BorderLayout.EAST);
-        add(root);
-     
-
-//        SwingUtilities.invokeLater(() -> commandInput.requestFocusInWindow());
+        setVisible(true);
     }
 
-    public void appendText(String text) {
-        narrationArea.append("\n\n" + text);
-    }
-    
     public GameView getGameView() {
-        return window;
+        return gameView;
     }
 }

@@ -1,16 +1,16 @@
 package gamelogic;
-
 public class GameLogic {
 
     private final Lexicon lexicon;
     private String currentLocation = "forest";
-
+    private TextParser parser= new TextParser();
     public GameLogic() {
         lexicon = new Lexicon();
     }
 
     public String execute(String input) {
-        ParsedCommand command = TextParser.parse(input, lexicon);
+    	
+		ParsedCommand command = parser.parse(input, lexicon);
 
         if(command == null) {
             return "The command was not understood.";
