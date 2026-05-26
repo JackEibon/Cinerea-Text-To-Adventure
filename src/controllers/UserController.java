@@ -44,6 +44,11 @@ public class UserController {
 		this.view.getBtnPdf().addActionListener(e -> generatePdf());
 		
 		this.view.getBtnDelete().addActionListener(e -> {
+			int row = view.getSelectedRow();
+			if(row == -1) {
+				JOptionPane.showMessageDialog(view, "Select an user");
+				return;
+			}
 			boolean deleted = repo.delete(model.getUserAt(view.getSelectedRow()).getId());
 			if(deleted) {
 				model.removeRow(view.getSelectedRow());

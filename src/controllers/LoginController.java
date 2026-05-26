@@ -78,7 +78,33 @@ public class LoginController {
 			return;
 		}
 		
-		User user = repository.login(view.getEmail(), view.getPassword());
+		User user = null;
+
+		try {
+			String sql = "SELECT id_user_cinerea, email, wordpass, role_cinerea, nickname FROM user_cinerea WHERE email = ?";
+			try (java.sql.Connection conn = config.DatabaseConnection.getConnection();
+					java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+				stmt.setString(1, view.getEmail()); //stmt es statement
+				try (java.sql.ResultSet rs = stmt.executeQuery()) {
+					if (rs.next()) {
+						String hashedPassword = rs.getString("wordpass");
+						boolean correctPassword = PasswordUtils.checkPassword(view.getPassword(), hashedPassword);
+						if (!correctPassword) {
+							user = null;
+						} else {
+							user = new User();
+							user.setId(rs.getInt("id_user_cinerea"));
+							user.setEmail(rs.getString("email"));
+							user.setNickname(rs.getString("nickname"));
+							user.setRole_cinerea(rs.getString("role_cinerea"));
+						}
+					}
+				}
+			}
+		} catch (java.sql.SQLException ex) {
+			ex.printStackTrace();
+			user = null;
+		}
 		
 		if(user == null) {
 			view.getErrPassword().setText("Invalid Credentials");
@@ -115,19 +141,13 @@ public class LoginController {
         	view.getErrEmail().setText("Valid email required"); 
         	view.getErrEmail().setVisible(true);
         	isValid = false;
-        }/*else if(!email.trim().equals("esoto_24@alu.uabcs.mx")) {
-    		throwingmail=true;
-        	
-    	}*/
+        }
 
         if (pass.isEmpty()) {
         	view.getErrPassword().setText("Password is required");
         	view.getErrPassword().setVisible(true);
             isValid = false;
-        } /*else if (!pass.equals("asdfasdf")) {
-        	throwingpass=true;
-        	
-        }*/
+        } 
         view.revalidate();
         view.repaint();
         

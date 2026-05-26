@@ -179,8 +179,11 @@ public class LoginView extends JPanel {
     }
 
     public String getPassword() {
-        return txtPassword.toString();
+        return new String(txtPassword.getPassword());
     }
+
+
+
 
     public JButton getBtnLogin() {
         return btnLogin;
