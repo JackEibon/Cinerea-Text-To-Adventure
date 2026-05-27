@@ -16,7 +16,7 @@ public class Lexicon {
         "wolf", "blacksmith"
     );
     public static final Set<String> modifiers = Set.of(
-        "quickly", "slowly", "carefully"
+        "quick", "slowly", "carefully"
     );
 
     public static boolean isVerb(String word) {return verbs.contains(word.toLowerCase());}

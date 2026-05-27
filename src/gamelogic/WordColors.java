@@ -7,7 +7,7 @@ public class WordColors {
     public static Color CONCEPT_COLOR = Color.GREEN;
     public static Color ITEM_COLOR = Color.RED;
     public static Color CHARACTER_COLOR = new Color(128, 0, 128); // purple
-    public static Color MODIFIER_COLOR = Color.BLUE;
+    public static Color MODIFIER_COLOR = Color.CYAN;
 
     // Darken helper
     private static Color darken(Color c) {
