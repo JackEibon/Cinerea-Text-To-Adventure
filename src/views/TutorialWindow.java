@@ -4,27 +4,27 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import controllers.SettingsController;
 
-public class SettingsWindow extends JFrame {
+public class TutorialWindow extends JFrame {
 
-	private SettingsView settingsView;
+	private TutorialView TutorialView;
 
-	public SettingsWindow() {
+	public TutorialWindow() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/assets/img/pixeles.png"));
-		setTitle("Cinerea – Settings");
+		setTitle("Cinerea – Tutorial");
 		setSize(600, 520);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		settingsView = new SettingsView(this);
-		add(settingsView);
+		TutorialView = new TutorialView(this);
+		add(TutorialView);
 
-		new SettingsController(settingsView);
+		new TutorialController(TutorialView);
 
 		setVisible(true);
 	}
 
-	public SettingsView getSettingsView() {
-		return settingsView;
+	public TutorialView getTutorialView() {
+		return tutorialView;
 	}
 }

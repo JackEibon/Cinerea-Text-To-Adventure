@@ -174,15 +174,15 @@ public class MainWindow extends JFrame {
 
 		centerPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
-		JButton btnCredits = new JButton();
-		addButtonMain(centerPanel, "Credits", btnCredits);
-		btnCredits.addMouseListener(new MouseAdapter() {
+		JButton btnTutorial = new JButton();
+		addButtonMain(centerPanel, "Tutorial", btnTutorial);
+		btnTutorial.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
-				changeBackground(btnCredits);
+				changeBackground(btnTutorial);
 			}
 
 			public void mouseExited(MouseEvent e) {
-				resetBackground(btnCredits);
+				resetBackground(btnTutorial);
 			}
 		});
 

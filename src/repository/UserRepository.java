@@ -62,7 +62,6 @@ public class UserRepository {
 			pst.setInt(1, id);
 			int affectedRows = pst.executeUpdate();
 			if(affectedRows > 0) {
-				System.out.println("It has been deleted");
 				return true;
 			}
 			
@@ -107,7 +106,6 @@ public class UserRepository {
 		
 		return false;
 	}
-	
 	
 	public boolean update(int index, User updatedUser) throws IOException {
 		String sql = "UPDATE user_cinerea SET nickname = ?, email = ?, gem = ?, weapon = ?, elements = ?, role_cinerea = ? WHERE id_user_cinerea = ?";
