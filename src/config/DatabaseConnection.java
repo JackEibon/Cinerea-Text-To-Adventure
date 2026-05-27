@@ -16,8 +16,11 @@ public class DatabaseConnection {
 			if(connection == null || connection.isClosed()) {
 				Properties props = new Properties();
 				
-				InputStream input = DatabaseConnection.class.getClassLoader().getResourceAsStream("config/database.properties");
-				props.load(input);
+			InputStream input = DatabaseConnection.class.getClassLoader().getResourceAsStream("config/database.properties");
+			if (input == null) {
+				throw new IllegalStateException("No se encontró config/database.properties en el classpath");
+			}
+			props.load(input);
 				
 				String url = props.getProperty("db.url");
 				String user = props.getProperty("db.user");
@@ -31,6 +34,7 @@ public class DatabaseConnection {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+			connection = null;
 		}
 		
 		return connection;

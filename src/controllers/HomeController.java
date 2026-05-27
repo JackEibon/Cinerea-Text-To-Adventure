@@ -21,24 +21,32 @@ public class HomeController {
 	}
 	
 	public void registerListeners( ) {
-		
-		view.mItemExit.addActionListener(e -> handleClose()); //pq es null?
+		// Evita NPE si el menú no fue inicializado en MainWindow.
+		if (view.mItemExit != null) {
+			view.mItemExit.addActionListener(e -> handleClose());
+		}
 		
 		view.addWindowListener(new WindowAdapter() {
+
 			@Override
 			public void windowClosing(WindowEvent e) {
 				handleClose();
 			}
 		});
 		
-		view.usersBtn.addActionListener(e -> {
-			showUsers();
-		});
-		
-		view.homeBtn.addActionListener(e -> {
-			view.showView(MainWindow.HOME);
-			updateMenuState(MainWindow.HOME);
-		}); //showView pq es el public, clarooo (yo media hora intentando usar create views, que nada que ver)	
+		// Navbar/vistas para ADMIN. En caso de usuario normal, estos botones pueden ser null.
+		if (view.usersBtn != null) {
+			view.usersBtn.addActionListener(e -> {
+				showUsers();
+			});
+		}
+		if (view.homeBtn != null) {
+			view.homeBtn.addActionListener(e -> {
+				view.showView(MainWindow.HOME);
+				updateMenuState(MainWindow.HOME);
+			}); //showView pq es el public, clarooo (yo media hora intentando usar create views, que nada que ver)
+		}
+
 		
 		view.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e) {
