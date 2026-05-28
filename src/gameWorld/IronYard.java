@@ -1,4 +1,4 @@
-package scenesFiles;
+package gameWorld;
 
 public class IronYard extends NodeT1{
 	

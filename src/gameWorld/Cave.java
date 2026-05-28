@@ -1,4 +1,4 @@
-package scenesFiles;
+package gameWorld;
 
 public class Cave extends NodeT1{
 	

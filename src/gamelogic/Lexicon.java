@@ -7,10 +7,10 @@ public class Lexicon {
     		"run", "walk", "attack", "drink", "talk", "rest","go", "look", "take"
     		);
     public static final Set<String> directions = Set.of(
-        "north", "south", "east", "west", "up", "down"
+        "north", "south", "east", "west", "up", "down", "here", "ahead", "paths","ways", "around"
     );
     public static final Set<String> items = Set.of(
-        "sword", "garlic", "weapon", "gem"
+        "sword", "garlic", "weapon", "gem", "map","minimap"
     );
     public static final Set<String> characters = Set.of(
         "wolf", "blacksmith"

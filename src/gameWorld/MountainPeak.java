@@ -1,4 +1,4 @@
-package scenesFiles;
+package gameWorld;
 
 public class MountainPeak extends NodeT1{
 	

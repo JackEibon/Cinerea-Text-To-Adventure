@@ -2,11 +2,10 @@ package gameWorld;
 
 import java.util.*;
 
-import scenesFiles.*;
 import gamelogic.*;
 /*
  * WorldGraph
- * V1 created 1241 of 27/5/2026
+ * V1 created 1131 27/5/2026, Finished as of 1341 27/5/2026
  * Description:Main world graph controller.
  * 
  * Responsibilities:
@@ -15,7 +14,6 @@ import gamelogic.*;
  * - Stores world references
  * - Gives utility methods for movement and navigation
  * 
- * IMPORTANT:
  * -This class is NOT procedural generation yet.
  * -This is a handcrafted world graph.
  * -This class still doesnt handle minimap data, but supposedly will
@@ -33,7 +31,6 @@ import gamelogic.*;
  */
 
 public class WorldGraph {
-
     /* =========================================================
      * WORLD VARIABLES
      * ========================================================= */
@@ -278,11 +275,9 @@ public class WorldGraph {
             System.out.println(marker+ " Scene "+ node.getScene()+ " -> ("+ pos[0]+ ", "+ pos[1]+ ")");}
         System.out.println();
     }
-
     /* =========================================================
      * MOVEMENT
      * ========================================================= */
-    
     //placeHolder Print in Console
     public void printNarration(String text) {debugText(text);}
     //Debug
@@ -291,7 +286,7 @@ public class WorldGraph {
      * moveTo(1)
      * moves you to path iD 1, not to Node Id 1
      */
-    public boolean moveTo(int pathId) {
+    public boolean mayMoveTo(int pathId) {
         NodeT1 nextNode = currentNode.getaN(pathId);
         String message = "";
         if (nextNode == null) {message="\nThere is no path there.";printNarration(message);return false;}
@@ -311,17 +306,12 @@ public class WorldGraph {
         }
         printNarration(message);
     }
-
-
     //Prints current scene Description.
     public void printCurrentScene() {
         String message= "\n==============================\n" + currentNode.getMainDescription()+"\n==============================\n";
         printNarration(message);
     }
-
-    /* =========================================================
-     * Getters & Setters
-     * ========================================================= */
+    //Getters & Setters
     public NodeT1 getCurrentNode() {return currentNode;}
     public void setCurrentNode(NodeT1 currentNode) {this.currentNode = currentNode;}
     public HashMap<Integer, NodeT1> getWorldNodes() {return worldNodes;}

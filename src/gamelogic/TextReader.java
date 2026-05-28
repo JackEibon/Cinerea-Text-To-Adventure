@@ -9,13 +9,9 @@ public class TextReader extends JComponent {
     private JTextField input;
 
     public TextReader(JTextField input) {
-
         this.input = input;
-
         setBackground(Color.BLACK);
-
         setPreferredSize(new Dimension(100,40));
-
         setFocusable(false);
     }
 

@@ -1,4 +1,4 @@
-package scenesFiles;
+package gameWorld;
 
 public class Blacksmith extends NodeT1{
 	
@@ -11,7 +11,7 @@ public class Blacksmith extends NodeT1{
 
 		setBiome("forest");
 		setScene(scene);
-		setMainDescription("A blacsmith pounds hard against iron ore, he smells of hard, hard work, he says \"for you, silvering ghost"
+		setMainDescription("A blacksmith pounds hard against iron ore, he smells of hard, hard work, he says \"for you, silvering ghost"
 				+ " i will offer a fine good work"
 				+ " for little of cost, bring me a spear or sword,"
 				+ " i turn silver into mirror dust,"

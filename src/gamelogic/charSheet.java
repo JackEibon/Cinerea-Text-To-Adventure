@@ -11,12 +11,12 @@ public class charSheet {
 	    String name,
 	    //Scene location of the character by name
 	    location,
-	    /*Po. This reads the words put to be sent for the parser and command parser*/
+	    //Po. This reads the words put to be sent for the parser and command parser
 	    fString="", sString="";
 	    private int 
 	  //no function yet. items on hand. may stay unused at first 
 	    mainHand, offHand, 
-	    /*Random Stats & Status Effects Placeholder*/
+	    //Random Stats & Status Effects Placeholder
 	    energy, aroma,maxEnergy, tired, recovery , bleed, aim, dodge,
 	  //id of the character. if the character is NPC or enemy, then the number is negative. if the character is player, then is pulled from the database 
 	    charId, 
@@ -92,13 +92,13 @@ public class charSheet {
 	       name=beastName;
 	       aim=dodge=5;     
 	       resting= false; retreating=false;
-	            currentState = "";
-	            currentScene=5;
+	            //currentState = "";
+	            //currentScene=5;
 	            energy = 150; maxEnergy = 150; recovery = 10; tired = 0;
 	            bleed=0;
-	            charID=3;
+	            charId=-3;
 	            alive= true;
-	            stepsX=stepsY=0;
+	            //stepsX=stepsY=0;
 	            
 	            wolfOptions = new ArrayList<>(Arrays.asList()); // Ir
 	   }
@@ -121,7 +121,7 @@ public class charSheet {
 	        default: return -1; // unknown item name
 	    }
 	}
-	    
+	    /*
 	    public void attack(CharSheet defensor,
 	        Item weapon) {
 	}
@@ -153,10 +153,10 @@ public class charSheet {
 	public void attack(AbstractTarget abstractTarget,
 	        Item weapon, List<String> effects) {
 	}
+*/
 
 
-
-
+/*
 	    public void attack(CharSheet defensor, int effects) {if (getEnergy()>5){
 	   //1=silver
 	   //2=purple
@@ -885,10 +885,12 @@ public class charSheet {
 	    }
 
 	*/ 
-	    
+/*	    
 	    //int i=0, j=0;
 	    //String a=menuOptions[i][j];
-
+*/
+	}
+	
 }
 /*OLD NETBEANS CHARSHEET*/
 

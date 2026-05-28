@@ -1,4 +1,4 @@
-package scenesFiles;
+package gameWorld;
 
 public class WolfCave extends Cave{
 	public WolfCave(int scene) {
