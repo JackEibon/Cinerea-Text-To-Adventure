@@ -21,8 +21,14 @@ public class GameController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = view.hiddenInput.getText();
         String response = logic.execute(command);
-        view.appendText("> " + command + "\n" + response);
+        appendText("> " + command + "\n" + response);
         view.hiddenInput.setText("");
         view.reader.repaint();
+        
+        
     }
+    
+    public void appendText(String text) {
+		view.appendDefault(text);
+	}
 }

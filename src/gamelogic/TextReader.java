@@ -31,41 +31,19 @@ public class TextReader extends JComponent {
             Color base = WordColors.getColorForWord(word,false);
 
             boolean isTarget = false;
-
             if(Lexicon.isNoun(word) || Lexicon.isCharacter(word)) {
-
                 if(coloredCount == 1) {
                     isTarget = true;
                 }
-
                 if(lastVerb != null) {
                     isTarget = true;
                 }
             }
-
-            Color finalColor =
-                    WordColors.getColorForWord(word,isTarget);
-
+            Color finalColor =       WordColors.getColorForWord(word,isTarget);
             g.setColor(finalColor);
-
             g.drawString(word,x,y);
-
-            if(Lexicon.isVerb(word)) {
-                lastVerb = word;
-            }
-
+            if(Lexicon.isVerb(word)) {lastVerb = word;}
             x += g.getFontMetrics().stringWidth(word + " ");
-        }
-
-        /*
-         * Fake caret
-         */
-
-        if(System.currentTimeMillis() % 1000 < 500) {
-
-            g.setColor(Color.WHITE);
-
-            g.drawString("_",x,y);
         }
     }
 
@@ -79,7 +57,6 @@ public class TextReader extends JComponent {
                 count++;
             }
         }
-
         return count;
     }
 }

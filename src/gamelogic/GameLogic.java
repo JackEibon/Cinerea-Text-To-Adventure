@@ -91,7 +91,8 @@ public class GameLogic {
     	if(where == null||where.isBlank()) {
             return getSceneText();}
     	switch (where) {
-		case "paths": case "ahead": case "ways": return getPathsText();
+    	case "ahead": return getDistantDescriptions();
+		case "paths": case "ways": return getPathsText();
 		case"map": case"minimap":return getMinimapText();
 		case"here": case "around":default:return getSceneText();
 		
@@ -106,6 +107,11 @@ public class GameLogic {
         t += world.getCurrentNode().getMainDescription();
         t += "\n==============================\n";
         return t;
+    }
+    
+    private String getDistantDescriptions() {
+        String t = "\n=== PATHS ===\n";
+        return world.getCurrentNode().getGoDescriptions();
     }
 
     private String getPathsText() {

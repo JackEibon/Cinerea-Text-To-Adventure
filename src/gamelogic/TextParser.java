@@ -30,9 +30,12 @@ public class TextParser {
                     break;
                 }
                 case "noun": {
-                    if(parsedTongue.getVerb()==null) {
-                        if(parsedTongue.getTarget()!=null) {return null;}
-                        if(!parsedTongue.maySetTarget(word)) {return null;}
+                    if(parsedTongue.getVerb()!=null) {
+                    	
+                        if(!parsedTongue.maySetTarget(word)) 
+                        {
+                        	if (!parsedTongue.maySetItem(word))return null;
+                        };
                     } else {
                         if(parsedTongue.getItem()!=null) {return null;}
                         if(!parsedTongue.maySetItem(word)) {return null;}

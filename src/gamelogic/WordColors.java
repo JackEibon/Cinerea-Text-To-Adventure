@@ -12,9 +12,17 @@ public class WordColors {
     // Darken helper
     private static Color darken(Color c) {
         return new Color(
-            (int)(c.getRed() * 0.6),
+            (int)(c.getRed() * 0.7),
             (int)(c.getGreen() * 0.6),
             (int)(c.getBlue() * 0.6)
+        );
+    }
+    //brigther helper
+    private static Color brigther(Color c) {
+        return new Color(
+            (int)(c.getRed() * 1.4),
+            (int)(c.getGreen() * 1.5),
+            (int)(c.getBlue() * 1.5)
         );
     }
 
@@ -25,12 +33,12 @@ public class WordColors {
         switch (Lexicon.wordIs(word)) {
 		case "verb": {c = ACTION_COLOR;break;}
 		case "direction":{c = CONCEPT_COLOR;break;}
-		case "noun":{c = ITEM_COLOR;break;}
+		case "noun":{c = ITEM_COLOR;c= darken(c);break;}
 		case "modifier":{c = MODIFIER_COLOR;break;}
 		case "character":{c = CHARACTER_COLOR;break;}
 		default: {c= Color.WHITE;break;}}
         
-        return isTarget ? darken(c) : c;
+        return isTarget ? brigther(c) : c;
     }
 
 

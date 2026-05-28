@@ -22,9 +22,7 @@ public class Blacksmith extends NodeT1{
 		setTakeDescriptions("");
 		setRestDescriptions("");
 		setTalkDescriptions("") ;
-		setItemsDescriptions("") ;
-		
+		setItemsDescriptions("") ;		
 	}
-
 
 }
