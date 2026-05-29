@@ -36,7 +36,6 @@ import utils.WindowPreferences;
 
 public class MainWindow extends JFrame {
 
-	/* Para la tabla de Usuarios */
 	public static final String HOME = "Home";
 	public static final String USERS = "Users";
 	public JMenuItem mItemExit;
@@ -176,6 +175,7 @@ public class MainWindow extends JFrame {
 
 		JButton btnTutorial = new JButton();
 		addButtonMain(centerPanel, "Tutorial", btnTutorial);
+		btnTutorial.addActionListener(e -> new TutorialWindow());
 		btnTutorial.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				changeBackground(btnTutorial);

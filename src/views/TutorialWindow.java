@@ -3,6 +3,7 @@ package views;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import controllers.SettingsController;
+import controllers.TutorialController;
 
 public class TutorialWindow extends JFrame {
 
@@ -25,6 +26,6 @@ public class TutorialWindow extends JFrame {
 	}
 
 	public TutorialView getTutorialView() {
-		return tutorialView;
+		return TutorialView;
 	}
 }
