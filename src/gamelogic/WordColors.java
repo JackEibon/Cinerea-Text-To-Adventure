@@ -40,8 +40,6 @@ public class WordColors {
         
         return isTarget ? brigther(c) : c;
     }
-
-
 }
 
 
