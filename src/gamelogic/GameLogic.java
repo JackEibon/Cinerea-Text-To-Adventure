@@ -8,7 +8,7 @@ public class GameLogic {
     private final WorldGraph world;
     private final Random random = new Random();
     private String lastTarget = "";
-
+    private CharSheet player;
     /* =========================================================
      * CONSTRUCTOR
      * ========================================================= */
@@ -17,6 +17,7 @@ public class GameLogic {
         parser = new TextParser();
         world = new WorldGraph();
         world.getCurrentNode().setExplored(true);
+        player= new CharSheet("name", true);
     }
 
     public String execute(String input) {
@@ -34,6 +35,9 @@ public class GameLogic {
             case "where": return getLocationText();
             /* Combat placeholder */
             case "attack": return interpretAttack(command);
+            
+           /*Take and leave*/
+            case "take": return takeItem(command);
             /* HELP */
             case "help": return getHelpText();
 
@@ -163,6 +167,24 @@ public class GameLogic {
 
         return "You prepare to attack " + target + ".";
     }
+    
+
+    /* =========================================================
+     * Inventory
+     * ========================================================= */
+    private String takeItem(ParsedCommand c) {
+    	String target =c.getTarget();
+    	
+    	if (world.getCurrentNode().removeItem(target)) 
+    	{
+    		if player.addItem();
+    		
+    	}
+    	player.addItem(c);
+    	return "you took"
+    	
+    }
+
 
     /* =========================================================
      * HELP

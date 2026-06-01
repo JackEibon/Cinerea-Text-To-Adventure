@@ -1,14 +1,16 @@
 package gamelogic;
 
 import java.util.ArrayList;
+import gamelogic.Item;
 import java.util.List;
+
 
 public class CharSheet {
 
     private String name, location;
     private boolean alive=true,player=false, resting=false,blessed=false,enchanted=false, retreating=false;
     private int  charId,health=100,maxHealth=100,energy=100,maxEnergy=100,recovery=5,aim=0,dodge=0,tired=0,bleed=0,aroma=0;
-    private List<Integer> inventory=new ArrayList<>();
+    private List<Item> inventory=new ArrayList<>();
     private List<String> statusEffects=new ArrayList<>(),knownWords=new ArrayList<>();
     public CharSheet() {}
     public CharSheet(String name) {this.name=name;}
@@ -52,7 +54,6 @@ public class CharSheet {
     public void setRecovery(int recovery) {this.recovery=recovery;}
 
     public void recoverEnergy() {     setEnergy(energy+(recovery-tired));}
-
     public void useEnergy(int amount) {setEnergy(energy-amount);}
 
     public int getAim() {return aim;}
@@ -96,19 +97,12 @@ public class CharSheet {
     public boolean isEnchanted() {return enchanted;}
     public void setEnchanted(boolean enchanted) {this.enchanted=enchanted;}
 
-    public List<Integer> getInventory() {return inventory;}
-    public void setInventory(List<Integer> inventory) {this.inventory=inventory;}
-
-    public boolean addItem(int itemId) {return inventory.add(itemId);
-    }
-
-    public boolean removeItem(int itemId) {
-        return inventory.remove(Integer.valueOf(itemId));
-    }
-
-    public boolean hasItem(int itemId) {
-        return inventory.contains(itemId);
-    }
+    public List<Item> getInventory() {return inventory;}
+    public void setInventory(List<Item> inventory) {this.inventory=inventory;}
+    public boolean addItem(Item i) {return inventory.add(i);}
+    public boolean removeItem(Item i) {return inventory.remove(i);}
+    public boolean hasItem(Item i) {return inventory.contains(i);}
+    
     public List<String> getStatusEffects() {return statusEffects;}
     public void setStatusEffects(List<String> statusEffects) {
         this.statusEffects=statusEffects;

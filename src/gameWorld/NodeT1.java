@@ -1,6 +1,7 @@
 package gameWorld;
-import java.util.List;
-
+import java.util.*;
+import gamelogic.CharSheet;
+import gamelogic.Item;
 
 
 /*Nodo tipo 1
@@ -12,8 +13,7 @@ import java.util.List;
 public class NodeT1 {
 	boolean explored=false;
 	/*
-	 * 
-    
+	 *     
     int scene = 0, 
     int mayTargets[] = {0, 0, 0};
     String biome = "meadow",
@@ -47,6 +47,8 @@ restDescriptions = "",
 talkDescriptions = "",
 targetDescriptions = "",
 itemsDescriptions = "";
+private List<Item> items=new ArrayList<>();
+private List<CharSheet> characters=new ArrayList<>();
 private List<String> names;
 
 public NodeT1(int scene){this.scene=scene;}
