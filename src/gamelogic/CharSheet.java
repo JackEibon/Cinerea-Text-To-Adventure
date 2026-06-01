@@ -10,6 +10,7 @@ public class CharSheet {
     private String name, location;
     private boolean alive=true,player=false, resting=false,blessed=false,enchanted=false, retreating=false;
     private int  charId,health=100,maxHealth=100,energy=100,maxEnergy=100,recovery=5,aim=0,dodge=0,tired=0,bleed=0,aroma=0;
+    private String description="";
     private List<Item> inventory=new ArrayList<>();
     private List<String> statusEffects=new ArrayList<>(),knownWords=new ArrayList<>();
     public CharSheet() {}
@@ -24,6 +25,9 @@ public class CharSheet {
     public String getLocation() {return location;}
     public void setLocation(String location) {this.location=location;}
 
+    public String getDescription() {return description;}
+    public void setDescription(String descript) {this.description=descript;}
+    
     public boolean isAlive() {return alive;}
     public void setAlive(boolean alive) {this.alive=alive;}
 

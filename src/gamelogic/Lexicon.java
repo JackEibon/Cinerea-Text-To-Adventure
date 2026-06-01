@@ -1,6 +1,11 @@
 package gamelogic;
 
-import java.util.Set;
+import java.util.Set; //while i planned on using only Lists, AI recommended Sets. 
+
+/*
+ * Set: unordered list of unique elements
+ * List: Ordered list of not specifically unique elements
+ * */
 
 public class Lexicon {
     public static final Set<String> verbs = Set.of(

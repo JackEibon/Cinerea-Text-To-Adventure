@@ -12,32 +12,12 @@ import gamelogic.NewItem;
  * especifico*/
 public class NodeT1 {
 	boolean explored=false;
-	/*
-	 *     
-    int scene = 0, 
-    int mayTargets[] = {0, 0, 0};
-    String biome = "meadow",
-           condition1 = "normal",
-           condition2 = "normal",
-           mainDescription = "there doesn’t seem to be anything interesting",
-           distantDescription = "a dense mist can be seen",
-           goDescriptions = "",
-           takeDescriptions = "",
-           restDescriptions = "",
-           talkDescriptions = "",
-           targetDescriptions = "",
-           itemsDescriptions = "",
-           sView = "to the south, a shadow stretches endlessly",
-           nView = "to the north, darkness looms abyssally",
-           eView = "to the east, the blackness devours without end",
-           wView = "to the west, it seems to be the end of the world",
-           text = mainDescription;
-	 * 
-	 * */
+
 private int scene=0, odorP = 0, freshBeastBlood = 0, wolfBeenHere = 0, height=0;
 private NodeT1 aN1= null, aN2= null,aN3= null, aN4= null,aN5= null,aN6= null,aN7= null,aN8= null;
 private int aN1Cost= 999,aN2Cost= 999,aN3Cost= 999,aN4Cost= 999,aN5Cost= 999,aN6Cost= 999,aN7Cost= 999,aN8Cost= 999;
 private String aN1p="none",aN2p="none",aN3p="none",aN4p="none",aN5p="none",aN6p="none",aN7p="none",aN8p="none",
+imagePath="",
 biome = "meadow",
 mainDescription = "there doesn’t seem to be anything interesting",
 distantDescription = "a dense mist can be seen",
@@ -63,7 +43,11 @@ public int getFreshBeastBlood() {return freshBeastBlood;}
 public int getWolfBeenHere() {return wolfBeenHere;}
 
 public boolean addItem(Item i) {return items.add(i);}
-public boolean removeItem(Item i) {return items.remove(i);}
+public boolean addItem(Item i,String tDes) {addTargetDescriptions(tDes);return items.add(i);}
+public boolean dropItem(Item i,String tDes) {addTargetDescriptions(tDes+ " lies there");return items.add(i);}
+public boolean removeItem(Item i) {
+	
+	return items.remove(i);}
 public boolean removeItem(String i) {for (Item ite : items) {if(ite.getName().equalsIgnoreCase(i)) return removeItem(ite);}return false;}
 public Item suchItem(String i){
 	for (Item ite : items) {if(ite.getName().equalsIgnoreCase(i)) return ite;}
@@ -94,6 +78,7 @@ public String getRestDescriptions() {return restDescriptions;}
 public String getTalkDescriptions() {return talkDescriptions;}
 public String getTargetDescriptions() {return targetDescriptions;}
 public String getItemsDescriptions() {return itemsDescriptions;}
+public String getDescriptions() {return mainDescription + "\n" + "\n"+ goDescriptions +"\n"+ "\n"+ targetDescriptions;}
 
 public void setExplored(boolean explored) {this.explored = explored;}
 public void setScene(int scene) {this.scene = scene;}
@@ -168,22 +153,37 @@ public void setGoDescriptions() {
 	int x=1; //counter
 	while(getaN(x)!=null) {
 		setGoDescriptions(getGoDescriptions()+getaN(x).getDistantDescription()+
-				", you can get there by " +this.getaNp(x)+"!\n" );x++;
+				", you can get there by " +this.getaNp(x)+"\n" );x++;
 	}  
 }
-
-
 
 public void setTakeDescriptions(String takeDescriptions) {this.takeDescriptions = takeDescriptions;}
 public void setRestDescriptions(String restDescriptions) {this.restDescriptions = restDescriptions;}
 public void setTalkDescriptions(String talkDescriptions) {this.talkDescriptions = talkDescriptions;}
 public void setTargetDescriptions(String targetDescriptions) {this.targetDescriptions = targetDescriptions;}
+public void setTargetDescriptions() 
+{this.targetDescriptions= "there is ";
+String aux= "";
+	for (CharSheet charac : characters) {
+		if (!(charac.getDescription().equals("")))aux+="\n"+charac.getDescription()+"\n";}
+	if (!(aux.equals("")))aux+="\n";
+	for (Item i : items) {
+		if (!(i.getDescription().equals("")))aux+="\n"+i.getDescription()+"\n";	}
+	aux=(aux.equals("")) ? "nothing":": \n" + aux;
+	targetDescriptions+=aux;
+}
+public void addTargetDescriptions(String tD) {this.targetDescriptions+= "\n" + tD;}
 public void setItemsDescriptions(String itemsDescriptions) {this.itemsDescriptions = itemsDescriptions;}
+public void setItems(List<Item> items) {this.items = items;}
+
+public List<CharSheet> getCharacters() {return characters;}
+public void setCharacters(List<CharSheet> characters) {this.characters = characters;}
 
 public void setaN1Cost(int aN1Cost) {this.aN1Cost = aN1Cost;}
 public void setaN2Cost(int aN2Cost) {this.aN2Cost = aN2Cost;}
 public void setaN3Cost(int aN3Cost) {this.aN3Cost = aN3Cost;}
 public void setaN4Cost(int aN4Cost) {this.aN4Cost = aN4Cost;}
+public void setaN5Cost(int aN5Cost) {this.aN5Cost = aN5Cost;}
 public void setaN6Cost(int aN6Cost) {this.aN6Cost = aN6Cost;}
 public void setaN7Cost(int aN7Cost) {this.aN7Cost = aN7Cost;}
 public void setaN8Cost(int aN8Cost) {this.aN8Cost = aN8Cost;}
@@ -233,4 +233,7 @@ public String getaNp(int aNT){
 	case 8: {return this.aN8p;}
 	default:throw new IllegalArgumentException("Unexpected value: " + aNT);}	
 	}
+public String getImagePath() {return imagePath;}
+public void setImagePath(String imagePath) {this.imagePath = imagePath;}
+
 }

@@ -109,7 +109,7 @@ public class GameLogic {
     private String getSceneText() {
     	String t = "";
         t += "\n==============================\n";
-        t += world.getCurrentNode().getMainDescription();
+        t += world.getCurrentNode().getDescriptions();
         t += "\n==============================\n";
         return t;
     }
@@ -178,7 +178,10 @@ public class GameLogic {
     	Item x=world.getCurrentNode().suchItem(target);
     	if (x != null){
     		if (world.getCurrentNode().removeItem(target)) {
-    			if (player.addItem(x)) return "You took " + target;
+    			
+    			if (player.addItem(x)) 
+    			{world.getCurrentNode().setTargetDescriptions();
+    				return "You took the " + target;}
     			world.getCurrentNode().addItem(x);
     			return "You couldnt take it";}
     		return "you cant take it";}
@@ -190,7 +193,9 @@ public class GameLogic {
     	Item x=player.thisItem(target);
     	if (x != null){
     		if (world.getCurrentNode().addItem(x)) {
-    			if (player.removeItem(x)) return "You dropped " + target;
+    			if (player.removeItem(x)) {
+    				world.getCurrentNode().setTargetDescriptions();
+    				return "You dropped " + target;}
     			world.getCurrentNode().removeItem(x);
     			return "You couldnt drop it";}
     		return "you cant drop it here";}

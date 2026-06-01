@@ -1,9 +1,14 @@
 package gamelogic;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Item {
 
 	private int id;
     private String fullName,name, description;
+    private List<String> tags=new ArrayList<>();
     /*
      * fullName is displayed name if nessesary, i dont think we`ll reach those needs but
      * "Silver Sword" etc.
@@ -21,6 +26,7 @@ public class Item {
 
     public Item(String name,String description) {this.name=name;this.description=description;}
 
+    public List<String> getTags(){return tags;}
     public String getName() {return name;}
     public void setName(String name) {this.name=name;}
     public String getDescription() {return description;}

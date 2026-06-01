@@ -13,7 +13,7 @@ public class IronYard extends NodeT1{
 		setMainDescription("War leaves behind few things of value, other than memories, blood and teachings. "
 				+ "This old battlefield is full of red and iron");
 		setDistantDescription("Some rusty and broken weapons start showing up on this path");
-		addItem(NewItem.sword());
+		addItem(NewItem.sword(), "\n the only still usable weapon is a lone sword");
 	}
 
 
