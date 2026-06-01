@@ -38,6 +38,7 @@ public class GameLogic {
             
            /*Take and leave*/
             case "take": return takeItem(command);
+            case "leave": return dropItem(command);
             /* HELP */
             case "help": return getHelpText();
 
@@ -174,16 +175,28 @@ public class GameLogic {
      * ========================================================= */
     private String takeItem(ParsedCommand c) {
     	String target =c.getTarget();
-    	
-    	if (world.getCurrentNode().removeItem(target)) 
-    	{
-    		if player.addItem();
-    		
-    	}
-    	player.addItem(c);
-    	return "you took"
-    	
+    	Item x=world.getCurrentNode().suchItem(target);
+    	if (x != null){
+    		if (world.getCurrentNode().removeItem(target)) {
+    			if (player.addItem(x)) return "You took " + target;
+    			world.getCurrentNode().addItem(x);
+    			return "You couldnt take it";}
+    		return "you cant take it";}
+    	return "no such thing in place";
     }
+    
+    private String dropItem(ParsedCommand c) {
+    	String target =c.getTarget();
+    	Item x=player.thisItem(target);
+    	if (x != null){
+    		if (world.getCurrentNode().addItem(x)) {
+    			if (player.removeItem(x)) return "You dropped " + target;
+    			world.getCurrentNode().removeItem(x);
+    			return "You couldnt drop it";}
+    		return "you cant drop it here";}
+    	return "you have no such thing";
+    }
+
 
 
     /* =========================================================

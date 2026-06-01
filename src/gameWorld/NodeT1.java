@@ -2,7 +2,7 @@ package gameWorld;
 import java.util.*;
 import gamelogic.CharSheet;
 import gamelogic.Item;
-
+import gamelogic.NewItem;
 
 /*Nodo tipo 1
  * Autor Eibon
@@ -62,6 +62,19 @@ public int getOdorP() {return odorP;}
 public int getFreshBeastBlood() {return freshBeastBlood;}
 public int getWolfBeenHere() {return wolfBeenHere;}
 
+public boolean addItem(Item i) {return items.add(i);}
+public boolean removeItem(Item i) {return items.remove(i);}
+public boolean removeItem(String i) {for (Item ite : items) {if(ite.getName().equalsIgnoreCase(i)) return removeItem(ite);}return false;}
+public Item suchItem(String i){
+	for (Item ite : items) {if(ite.getName().equalsIgnoreCase(i)) return ite;}
+	return null;
+}
+public List<Item> getItems(){return items;}
+
+public void addChar(CharSheet i) {characters.add(i);}
+public void removeChar(CharSheet i) {characters.remove(i);}
+public List<CharSheet> getChar(){return characters;}
+
 public NodeT1 getaN1() {return aN1;}
 public NodeT1 getaN2() {return aN2;}
 public NodeT1 getaN3() {return aN3;}
@@ -89,7 +102,6 @@ public void setFreshBeastBlood(int freshBeastBlood) {this.freshBeastBlood = fres
 public void setWolfBeenHere(int wolfBeenHere) {this.wolfBeenHere = wolfBeenHere;}
 
 public void setaN(int aNT, NodeT1 aN, int cost) {
-   
 	switch (aNT) {
 	case 1: {this.aN1 = aN;this.aN1Cost=cost;break;}
 	case 2: {this.aN2 = aN;this.aN2Cost=cost;break;}
@@ -142,8 +154,6 @@ public void setaN7p(String aN7p) {this.aN7p = aN7p;}
 public String getaN8p() {return aN8p;}
 public void setaN8p(String aN8p) {this.aN8p = aN8p;}
 
-
-
 public List<String> getNames() {return names;}
 public void setNames(List<String> names) {this.names = names;}
 
@@ -174,7 +184,6 @@ public void setaN1Cost(int aN1Cost) {this.aN1Cost = aN1Cost;}
 public void setaN2Cost(int aN2Cost) {this.aN2Cost = aN2Cost;}
 public void setaN3Cost(int aN3Cost) {this.aN3Cost = aN3Cost;}
 public void setaN4Cost(int aN4Cost) {this.aN4Cost = aN4Cost;}
-public void setaN5Cost(int aN5Cost) {this.aN5Cost = aN5Cost;}
 public void setaN6Cost(int aN6Cost) {this.aN6Cost = aN6Cost;}
 public void setaN7Cost(int aN7Cost) {this.aN7Cost = aN7Cost;}
 public void setaN8Cost(int aN8Cost) {this.aN8Cost = aN8Cost;}

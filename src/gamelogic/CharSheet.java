@@ -102,6 +102,19 @@ public class CharSheet {
     public boolean addItem(Item i) {return inventory.add(i);}
     public boolean removeItem(Item i) {return inventory.remove(i);}
     public boolean hasItem(Item i) {return inventory.contains(i);}
+    public boolean hasItem(String i) {
+    	for (Item ite : inventory) {
+			if (ite.getName().equalsIgnoreCase(i))return true;}
+    	return false;
+    	}
+    public Item thisItem(String i) {
+    	for (Item ite : inventory) {
+			if (ite.getName().equalsIgnoreCase(i))return ite;}
+    	return null;
+    	}
+    public boolean removeItem(String i) {
+    	for (Item ite : inventory) {if(ite.getName().equalsIgnoreCase(i)) return removeItem(ite);}
+    	return false;}
     
     public List<String> getStatusEffects() {return statusEffects;}
     public void setStatusEffects(List<String> statusEffects) {

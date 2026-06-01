@@ -19,6 +19,9 @@ public class TextParser {
                         case "run":
                             word = "go";
                         break;
+                        case "grab":
+                        	word= "take";
+                        break;
                     }
                     if(parsedTongue.getVerb()!=null) {return null;}
                     if(!parsedTongue.maySetVerb(word)) {return null;}

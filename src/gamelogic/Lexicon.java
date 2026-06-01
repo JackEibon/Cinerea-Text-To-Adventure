@@ -4,10 +4,10 @@ import java.util.Set;
 
 public class Lexicon {
     public static final Set<String> verbs = Set.of(
-    		"run", "walk", "attack", "drink", "talk", "rest","go", "look", "take"
+    		"run", "walk", "attack", "drink", "talk", "rest","go", "look", "take", "grab", "leave"
     		);
     public static final Set<String> directions = Set.of(
-        "north", "south", "east", "west", "up", "down", "here", "ahead", "paths","ways", "around"
+        "north", "south", "east", "west", "up", "down", "here", "ahead", "paths","ways", "around", "1","2","3","4","5","6"
     );
     public static final Set<String> items = Set.of(
         "sword", "garlic", "weapon", "gem", "map","minimap"

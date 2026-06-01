@@ -1,5 +1,5 @@
 package gameWorld;
-
+import gamelogic.NewItem;
 public class IronYard extends NodeT1{
 	
 	
@@ -13,7 +13,7 @@ public class IronYard extends NodeT1{
 		setMainDescription("War leaves behind few things of value, other than memories, blood and teachings. "
 				+ "This old battlefield is full of red and iron");
 		setDistantDescription("Some rusty and broken weapons start showing up on this path");
-		
+		addItem(NewItem.sword());
 	}
 
 
