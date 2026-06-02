@@ -5,28 +5,47 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.*;
 
+import gamelogic.Lexicon;
 import gamelogic.TextReader;
+import gamelogic.WordColors;
 
 public class GameView extends JPanel {
 
 	public JTextField hiddenInput = new JTextField();
 	public TextReader reader;
 	public JTextPane narrationPane = new JTextPane();
-	public JTextArea minimap = new JTextArea();
+	public JTextArea minimap = new JTextArea();//placeholder
+	public JLabel item1= new JLabel();
+	public JLabel item2= new JLabel();
+	public JLabel item3= new JLabel();
+	public JLabel item4= new JLabel();
+	public JLabel item5= new JLabel();
+	public JLabel item6= new JLabel();
+	
 	private StyledDocument narrationDocument; //this is what makes it look smooth
 	//and allows for a certain personalization (placeholder)
 	private Style defaultStyle;
-	/*
-	private Style systemStyle;
+	private Style actionStyle;
 	private Style itemStyle;
-	private Style conceptStyle;
-	private Style combatStyle;
-	*/
+	private Style directionStyle;
+	private Style modifierStyle;
+	private Style characterStyle;
+	
 	public GameView() {
-
 		setLayout(new BorderLayout(10,10));
 		setBorder(new EmptyBorder(10,10,10,10));
 		setBackground(Color.BLACK);
+		
+		ImageIcon icon = new ImageIcon(
+				getClass().getResource("/assets/sprites/item/item40.gif")
+			            );
+
+			item1.setIcon(icon);
+			item2.setIcon(icon);
+		
+		add(item1,BorderLayout.EAST);
+		add(item2,item1.SOUTH);
+	
 
 		//Hidden input
 		hiddenInput.setOpaque(false);
@@ -50,30 +69,18 @@ public class GameView extends JPanel {
 		StyleConstants.setForeground(defaultStyle,Color.WHITE);
 		StyleConstants.setFontFamily(defaultStyle,"Consolas");
 		StyleConstants.setFontSize(defaultStyle,18);
-		/*
-		systemStyle = narrationPane.addStyle("system",null);
-		StyleConstants.setForeground(systemStyle,Color.GRAY);
-		StyleConstants.setItalic(systemStyle,true);
-		StyleConstants.setFontFamily(systemStyle,"Consolas");
-		StyleConstants.setFontSize(systemStyle,18);
-
-		itemStyle = narrationPane.addStyle("item",null);
-		StyleConstants.setForeground(itemStyle,Color.RED);
-		StyleConstants.setBold(itemStyle,true);
-		StyleConstants.setFontFamily(itemStyle,"Consolas");
-		StyleConstants.setFontSize(itemStyle,18);
-
-		conceptStyle = narrationPane.addStyle("concept",null);
-		StyleConstants.setForeground(conceptStyle,Color.GREEN);
-		StyleConstants.setFontFamily(conceptStyle,"Consolas");
-		StyleConstants.setFontSize(conceptStyle,18);
-
-		combatStyle = narrationPane.addStyle("combat",null);
-		StyleConstants.setForeground(combatStyle,Color.ORANGE);
-		StyleConstants.setBold(combatStyle,true);
-		StyleConstants.setFontFamily(combatStyle,"Consolas");
-		StyleConstants.setFontSize(combatStyle,18);
-		*/
+		
+		itemStyle = narrationPane.addStyle("item", null);
+		StyleConstants.setForeground(itemStyle, Color.RED);
+		directionStyle = narrationPane.addStyle("direction", null);
+		StyleConstants.setForeground(directionStyle, Color.GREEN);
+		actionStyle = narrationPane.addStyle("action", null);
+		StyleConstants.setForeground(actionStyle, Color.YELLOW);
+		modifierStyle = narrationPane.addStyle("modifier", null);
+		StyleConstants.setForeground(modifierStyle, Color.cyan);
+		characterStyle = narrationPane.addStyle("character", null);
+		StyleConstants.setForeground(characterStyle, Color.MAGENTA);
+		
 		JScrollPane narrationScroll = new JScrollPane(narrationPane);
 		narrationScroll.setBorder(null);
 		add(narrationScroll,BorderLayout.CENTER);
@@ -85,7 +92,7 @@ public class GameView extends JPanel {
 		minimap.setPreferredSize(new Dimension(220,200));
 		minimap.setFont(new Font("Consolas",Font.BOLD,16));
 		minimap.setBorder(null);
-		add(minimap,BorderLayout.EAST);
+		//add(minimap,BorderLayout.EAST);
 		//Repaint while typing
 		hiddenInput.addKeyListener(new java.awt.event.KeyAdapter() {
 			@Override
@@ -106,17 +113,8 @@ public class GameView extends JPanel {
 		});
 	}
 
-	public void appendDefault(String text) 
-	{
-		
-		appendStyledText(text + "\n",defaultStyle);}
+	public void appendDefault(String text) {appendStyledText(text + "\n",defaultStyle);}
 
-	/*
-	public void appendSystem(String text) {appendStyledText(text + "\n",systemStyle);}
-	public void appendCombat(String text) {appendStyledText(text + "\n",combatStyle);}
-	public void appendItem(String text) {appendStyledText(text + "\n",itemStyle);}
-	public void appendConcept(String text) {appendStyledText(text + "\n",conceptStyle);}
-	*/
 	public void appendStyledText(String text,Style style) {
 		try {
 			narrationDocument.insertString(
@@ -128,5 +126,22 @@ public class GameView extends JPanel {
 		} catch(BadLocationException e) {
 			e.printStackTrace();
 		}
+	}
+	public void appendColoredText(String text){
+	    String[] words = text.split(" ");
+	    Style still;
+	    for(String word : words)
+	    {still = getStyleForWord(word);appendStyledText(word + " ", still);}
+	    appendStyledText("\n", defaultStyle);
+	}
+	private Style getStyleForWord(String word)
+	{switch(Lexicon.wordIs(word.toLowerCase()))
+	    {case "character":return characterStyle;
+	     case "noun":return itemStyle;
+	     case "verb":return actionStyle;
+	     case "modifier": return modifierStyle;
+	     case "direction": return directionStyle;
+	     default:return defaultStyle;
+	    }
 	}
 }

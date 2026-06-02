@@ -29,15 +29,10 @@ public class TextReader extends JComponent {
         int coloredCount = countColored(words);
         for(String word : words) {
             Color base = WordColors.getColorForWord(word,false);
-
             boolean isTarget = false;
             if(Lexicon.isNoun(word) || Lexicon.isCharacter(word)) {
-                if(coloredCount == 1) {
-                    isTarget = true;
-                }
-                if(lastVerb != null) {
-                    isTarget = true;
-                }
+                if(coloredCount == 1) isTarget = true;
+                else if(lastVerb != null) isTarget = true;
             }
             Color finalColor =       WordColors.getColorForWord(word,isTarget);
             g.setColor(finalColor);
@@ -48,15 +43,8 @@ public class TextReader extends JComponent {
     }
 
     private int countColored(String[] words) {
-
         int count = 0;
-
-        for(String w : words) {
-
-            if(!Lexicon.wordIs(w).equals("non")) {
-                count++;
-            }
-        }
+        for(String w : words) {if(!Lexicon.wordIs(w).equals("non")) {count++;}}
         return count;
     }
 }

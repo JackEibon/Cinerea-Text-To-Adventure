@@ -100,10 +100,7 @@ public class GameLogic {
 		case "paths": case "ways": return getPathsText();
 		case"map": case"minimap":return getMinimapText();
 		case"here": case "around":default:return getSceneText();
-		
     	}
-    	
-
     }
     
     private String getSceneText() {

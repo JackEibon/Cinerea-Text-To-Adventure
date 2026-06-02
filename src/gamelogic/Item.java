@@ -7,7 +7,7 @@ import java.util.List;
 public class Item {
 
 	private int id;
-    private String fullName,name, description;
+    private String fullName,name, description, imagePath;
     private List<String> tags=new ArrayList<>();
     /*
      * fullName is displayed name if nessesary, i dont think we`ll reach those needs but
@@ -25,6 +25,7 @@ public class Item {
     public Item(String name) {this.name=name;this.description="";}
 
     public Item(String name,String description) {this.name=name;this.description=description;}
+    public void setImagePath(String p) {this.imagePath=p;}
 
     public List<String> getTags(){return tags;}
     public String getName() {return name;}

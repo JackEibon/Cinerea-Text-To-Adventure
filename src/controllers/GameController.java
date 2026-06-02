@@ -15,20 +15,23 @@ public class GameController implements ActionListener {
         this.view = view;
         this.logic = logic;
         view.hiddenInput.addActionListener(this);
+        appendText(
+        		"\nYou are falling across the dark, on a sea of black."+   
+        		"\nSuddenly, you crash against something frail, and it breaks."+ 
+        		"\nA thousand pieces fall by your side, and you fall unto the unwanted ground."
+        		
++"\n\n\n"
++" look around  "
+        		);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = view.hiddenInput.getText();
         String response = logic.execute(command);
-        appendText("> " + command + "\n" + response);
+        appendText("> " + command + " \n" + response);
         view.hiddenInput.setText("");
-        view.reader.repaint();
-        
-        
-    }
-    
-    public void appendText(String text) {
-		view.appendDefault(text);
-	}
+        view.reader.repaint();       
+    }   
+    public void appendText(String text) {view.appendColoredText(text);}
 }

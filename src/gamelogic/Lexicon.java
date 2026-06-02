@@ -9,7 +9,13 @@ import java.util.Set; //while i planned on using only Lists, AI recommended Sets
 
 public class Lexicon {
     public static final Set<String> verbs = Set.of(
-    		"run", "walk", "attack", "drink", "talk", "rest","go", "look", "take", "grab", "leave"
+    		"run", "walk", "go",
+    		"rest",
+    		"drink","eat",
+    		"look","search",
+    		"attack", "talk", 
+    		"take", "grab", 
+    		"drop","leave"
     		);
     public static final Set<String> directions = Set.of(
         "north", "south", "east", "west", "up", "down", "here", "ahead", "paths","ways", "around", "1","2","3","4","5","6"

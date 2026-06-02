@@ -45,9 +45,7 @@ public int getWolfBeenHere() {return wolfBeenHere;}
 public boolean addItem(Item i) {return items.add(i);}
 public boolean addItem(Item i,String tDes) {addTargetDescriptions(tDes);return items.add(i);}
 public boolean dropItem(Item i,String tDes) {addTargetDescriptions(tDes+ " lies there");return items.add(i);}
-public boolean removeItem(Item i) {
-	
-	return items.remove(i);}
+public boolean removeItem(Item i) {return items.remove(i);}
 public boolean removeItem(String i) {for (Item ite : items) {if(ite.getName().equalsIgnoreCase(i)) return removeItem(ite);}return false;}
 public Item suchItem(String i){
 	for (Item ite : items) {if(ite.getName().equalsIgnoreCase(i)) return ite;}
@@ -78,7 +76,7 @@ public String getRestDescriptions() {return restDescriptions;}
 public String getTalkDescriptions() {return talkDescriptions;}
 public String getTargetDescriptions() {return targetDescriptions;}
 public String getItemsDescriptions() {return itemsDescriptions;}
-public String getDescriptions() {return mainDescription + "\n" + "\n"+ goDescriptions +"\n"+ "\n"+ targetDescriptions;}
+public String getDescriptions() {return mainDescription + " \n " + " \n"+ goDescriptions +" \n"+ "\n"+ targetDescriptions + " ";}
 
 public void setExplored(boolean explored) {this.explored = explored;}
 public void setScene(int scene) {this.scene = scene;}
