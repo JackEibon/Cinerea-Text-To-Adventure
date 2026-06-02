@@ -39,12 +39,20 @@ public class GameView extends JPanel {
 		ImageIcon icon = new ImageIcon(
 				getClass().getResource("/assets/sprites/item/item40.gif")
 			            );
-
 			item1.setIcon(icon);
 			item2.setIcon(icon);
+			item3.setIcon(icon);
+			item4.setIcon(icon);
+			item5.setIcon(icon);
+			item6.setIcon(icon);
 		
 		add(item1,BorderLayout.EAST);
-		add(item2,item1.SOUTH);
+		//add(item2,x.);
+		//add(item3,x.);
+		//add(item4,x.);
+		//add(item5,x.);
+		//add(item6,x.);
+		
 	
 
 		//Hidden input
