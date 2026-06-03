@@ -1,30 +1,26 @@
 package tablemodels;
 
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
-
-import models.User;
+import models.Status;
 
 public class StatusTableModel extends AbstractTableModel {
 
-	private List<User> users;
+	private List<Status> statuses;
 
-	private final String[] columns = {"ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role"};
+	private final String[] columns = {"ID", "Effect Name", "Duration"};
 
-	public StatusTableModel(List<User> users) {
-		this.users = users;
+	public StatusTableModel(List<Status> statuses) {
+		this.statuses = statuses;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return users.size();
+		return statuses.size();
 	}
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return columns.length;
 	}
 
@@ -34,50 +30,41 @@ public class StatusTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		User user = users.get(rowIndex);
+		Status status = statuses.get(rowIndex);
 
 		switch (columnIndex) {
 		case 0:
-			return user.getId();
+			return status.getIdStatus();
 		case 1:
-			return user.getNickname();
+			return status.getEffectName();
 		case 2:
-			return user.getEmail();
-		case 3:
-			return user.getGem();
-		case 4:
-			return user.getWeapon();
-		case 5:
-			return user.getElements();
-		case 6:
-			return user.getRole_cinerea();
+			return status.getDuration();
 		}
-		return user;
+		return status;
 	}
 
-	public User getUserAt(int row) {
-		return users.get(row);
+	public Status getStatusAt(int row) {
+		return statuses.get(row);
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setStatuses(List<Status> statuses) {
+		this.statuses = statuses;
 		fireTableDataChanged();
 	}
 
 	public void removeRow(int row) {
-		users.remove(row);
+		statuses.remove(row);
 		fireTableRowsDeleted(row, row);
 	}
 
-	public void addRow(User user) {
-		int row = users.size();
-		users.add(user);
+	public void addRow(Status status) {
+		int row = statuses.size();
+		statuses.add(status);
 		fireTableRowsInserted(row, row);
 	}
 
-	public void updateRow(int row, User user) {
-		users.set(row, user);
+	public void updateRow(int row, Status status) {
+		statuses.set(row, status);
 		fireTableRowsUpdated(row, row);
 	}
-
 }

@@ -43,24 +43,29 @@ public class MainWindow extends JFrame {
 	public static final String ITEM = "Items";
 	public static final String STATUS = "Statuses";
 	public static final String NPC = "NPCs";
+	public static final String INVENTORY = "Inventories";
+	
 	public JMenuItem mItemExit;
-	public JButton usersBtn;
+	
 	public JButton homeBtn;
+	public JButton usersBtn;
 	public JButton configBtn;
 	public JButton scoreBtn;
 	public JButton itemBtn;
 	public JButton statusBtn;
 	public JButton npcBtn;
+	public JButton inventoryBtn;
 	
 	public UsersView usersPanel;
-	public UsersView configPanel;
-	public UsersView scorePanel;
-	public UsersView itemPanel;
-	public UsersView statusPanel;
-	public UsersView npcPanel;
+	public ConfigView configPanel;
+	public ScoreView scorePanel;
+	public ItemView itemPanel;
+	public StatusView statusPanel;
+	public NpcView npcPanel;
+	public UserInventoryView inventoryPanel;
 	
-	private CardLayout cardLayout; // gestor de diseño
-	private JPanel container; // la caja/panel
+	private CardLayout cardLayout; 
+	private JPanel container; 
 	private JPanel bigPanel, midPanel, centerPanel;
 	private JLabel lblTitle;
 
@@ -159,8 +164,8 @@ public class MainWindow extends JFrame {
 		JButton btnPlay = new JButton("Start");
 		addButtonMain(centerPanel, "Start", btnPlay);
 		btnPlay.addActionListener(e -> {
-		    new GameWindow();
-		    dispose();
+			new GameWindow();
+			dispose();
 		});
 
 		btnPlay.addMouseListener(new MouseAdapter() {
@@ -254,16 +259,32 @@ public class MainWindow extends JFrame {
 
 	public void createNavbar() {
 		JPanel navbar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		
 		homeBtn = new JButton("Home");
+		homeBtn.setFocusable(false);
 		usersBtn = new JButton("Users");
+		usersBtn.setFocusable(false);
 		configBtn = new JButton("Configs");
+		configBtn.setFocusable(false);
 		scoreBtn = new JButton("Scores");
+		scoreBtn.setFocusable(false);
 		itemBtn = new JButton("Items");
+		itemBtn.setFocusable(false);
 		statusBtn = new JButton("Statuses");
+		statusBtn.setFocusable(false);
 		npcBtn = new JButton("NPCs");
+		npcBtn.setFocusable(false);
+		inventoryBtn = new JButton("Inventories");
+		inventoryBtn.setFocusable(false);
 
 		navbar.add(homeBtn);
 		navbar.add(usersBtn);
+		navbar.add(configBtn);
+		navbar.add(scoreBtn);
+		navbar.add(itemBtn);
+		navbar.add(statusBtn);
+		navbar.add(npcBtn);
+		navbar.add(inventoryBtn);
 
 		add(navbar, BorderLayout.NORTH);
 	}
@@ -271,14 +292,18 @@ public class MainWindow extends JFrame {
 	private void createViews() {
 		cardLayout = new CardLayout();
 		container = new JPanel(cardLayout);
+		
 		JPanel homePanel = new JPanel();
 		homePanel.add(new JLabel("Welcome"));
+		
 		usersPanel = new UsersView();
 		configPanel = new ConfigView();
 		scorePanel = new ScoreView();
 		itemPanel = new ItemView();
 		statusPanel = new StatusView();
 		npcPanel = new NpcView();
+		inventoryPanel = new UserInventoryView();
+		
 		container.add(homePanel, HOME);
 		container.add(usersPanel, USERS);
 		container.add(configPanel, CONFIG);
@@ -286,6 +311,8 @@ public class MainWindow extends JFrame {
 		container.add(itemPanel, ITEM);
 		container.add(statusPanel, STATUS);
 		container.add(npcPanel, NPC);
+		container.add(inventoryPanel, INVENTORY);
+		
 		add(container, BorderLayout.CENTER);
 	}
 
@@ -332,12 +359,19 @@ public class MainWindow extends JFrame {
 				revalidate();
 				repaint();
 			}
+			
+			if (inventoryPanel != null && (INVENTORY.equals(view) || "Inventories".equals(view))) {
+				getContentPane().removeAll();
+				add(inventoryPanel, BorderLayout.CENTER);
+				revalidate();
+				repaint();
+			}
 			return;
 		}
-		cardLayout.show(container, view); // usaremos el panel container, nice, segun el view (Home o Users)
+		cardLayout.show(container, view); 
 	}
 
-	public int confirmExit() { // pq esto es un int?, naturalmente, JOptionPane es un int
+	public int confirmExit() { 
 		return JOptionPane.showConfirmDialog(this, "¿Are you sure you want to go back? The data will be lost", "¿Sure?",
 				JOptionPane.YES_NO_OPTION);
 	}

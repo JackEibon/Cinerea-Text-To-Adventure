@@ -1,30 +1,29 @@
 package tablemodels;
 
 import java.util.List;
-
+import java.util.Map;
 import javax.swing.table.AbstractTableModel;
-
-import models.User;
+import models.Score;
 
 public class ScoreTableModel extends AbstractTableModel {
 
-	private List<User> users;
+	private List<Score> scores;
+	private Map<Integer, String> userNames;
 
-	private final String[] columns = {"ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role"};
+	private final String[] columns = {"ID", "User", "Best Score", "Last Score"};
 
-	public ScoreTableModel(List<User> users) {
-		this.users = users;
+	public ScoreTableModel(List<Score> scores, Map<Integer, String> userNames) {
+		this.scores = scores;
+		this.userNames = userNames;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return users.size();
+		return scores.size();
 	}
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return columns.length;
 	}
 
@@ -34,50 +33,51 @@ public class ScoreTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		User user = users.get(rowIndex);
+		Score score = scores.get(rowIndex);
 
 		switch (columnIndex) {
 		case 0:
-			return user.getId();
+			return score.getIdScore();
 		case 1:
-			return user.getNickname();
+			if (userNames != null && userNames.containsKey(score.getIdUser())) {
+				return userNames.get(score.getIdUser());
+			}
+			return "ID: " + score.getIdUser();
 		case 2:
-			return user.getEmail();
+			return score.getBestScore();
 		case 3:
-			return user.getGem();
-		case 4:
-			return user.getWeapon();
-		case 5:
-			return user.getElements();
-		case 6:
-			return user.getRole_cinerea();
+			return score.getLastScore();
 		}
-		return user;
+		return score;
 	}
 
-	public User getUserAt(int row) {
-		return users.get(row);
+	public Score getScoreAt(int row) {
+		return scores.get(row);
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
+		fireTableDataChanged();
+	}
+
+	public void setUserNames(Map<Integer, String> userNames) {
+		this.userNames = userNames;
 		fireTableDataChanged();
 	}
 
 	public void removeRow(int row) {
-		users.remove(row);
+		scores.remove(row);
 		fireTableRowsDeleted(row, row);
 	}
 
-	public void addRow(User user) {
-		int row = users.size();
-		users.add(user);
+	public void addRow(Score score) {
+		int row = scores.size();
+		scores.add(score);
 		fireTableRowsInserted(row, row);
 	}
 
-	public void updateRow(int row, User user) {
-		users.set(row, user);
+	public void updateRow(int row, Score score) {
+		scores.set(row, score);
 		fireTableRowsUpdated(row, row);
 	}
-
 }

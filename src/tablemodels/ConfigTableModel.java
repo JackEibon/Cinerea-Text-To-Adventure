@@ -1,30 +1,29 @@
 package tablemodels;
 
 import java.util.List;
-
+import java.util.Map;
 import javax.swing.table.AbstractTableModel;
-
-import models.User;
+import models.Config;
 
 public class ConfigTableModel extends AbstractTableModel {
 
-	private List<User> users;
+	private List<Config> configs;
+	private Map<Integer, String> userNames; // Diccionario para los nombres
 
-	private final String[] columns = {"ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role"};
+	private final String[] columns = {"ID", "User", "Setting Key", "Setting Value"};
 
-	public ConfigTableModel(List<User> users) {
-		this.users = users;
+	public ConfigTableModel(List<Config> configs, Map<Integer, String> userNames) {
+		this.configs = configs;
+		this.userNames = userNames;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return users.size();
+		return configs.size();
 	}
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return columns.length;
 	}
 
@@ -34,50 +33,51 @@ public class ConfigTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		User user = users.get(rowIndex);
+		Config config = configs.get(rowIndex);
 
 		switch (columnIndex) {
 		case 0:
-			return user.getId();
+			return config.getIdConfig();
 		case 1:
-			return user.getNickname();
+			if (userNames != null && userNames.containsKey(config.getIdUser())) {
+				return userNames.get(config.getIdUser());
+			}
+			return "ID: " + config.getIdUser();
 		case 2:
-			return user.getEmail();
+			return config.getSettingKey();
 		case 3:
-			return user.getGem();
-		case 4:
-			return user.getWeapon();
-		case 5:
-			return user.getElements();
-		case 6:
-			return user.getRole_cinerea();
+			return config.getSettingValue();
 		}
-		return user;
+		return config;
 	}
 
-	public User getUserAt(int row) {
-		return users.get(row);
+	public Config getConfigAt(int row) {
+		return configs.get(row);
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setConfigs(List<Config> configs) {
+		this.configs = configs;
+		fireTableDataChanged();
+	}
+
+	public void setUserNames(Map<Integer, String> userNames) {
+		this.userNames = userNames;
 		fireTableDataChanged();
 	}
 
 	public void removeRow(int row) {
-		users.remove(row);
+		configs.remove(row);
 		fireTableRowsDeleted(row, row);
 	}
 
-	public void addRow(User user) {
-		int row = users.size();
-		users.add(user);
+	public void addRow(Config config) {
+		int row = configs.size();
+		configs.add(config);
 		fireTableRowsInserted(row, row);
 	}
 
-	public void updateRow(int row, User user) {
-		users.set(row, user);
+	public void updateRow(int row, Config config) {
+		configs.set(row, config);
 		fireTableRowsUpdated(row, row);
 	}
-
 }

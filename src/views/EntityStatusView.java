@@ -18,22 +18,24 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 import assets.utils.AppFont;
-import tablemodels.ScoreTableModel;
+import tablemodels.EntityStatusTableModel;
 import config.Config;
 
-public class ScoreView extends JPanel {
+public class EntityStatusView extends JPanel {
 	private JTable table;
 	private JButton btnEdit;
 	private JButton btnAdd;
 	private JButton btnDelete;
 	private JButton btnPdf;
 
-	public ScoreView() {
+	public EntityStatusView() {
 		setLayout(new BorderLayout());
 		table = new JTable();
+
 		add(new JScrollPane(table), BorderLayout.CENTER);
 
 		JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
 		btnAdd = new JButton("Add");
 		btnEdit = new JButton("Edit");
 		btnDelete = new JButton("Delete");
@@ -68,12 +70,15 @@ public class ScoreView extends JPanel {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
 				if (!isSelected) {
 					c.setBackground(row % 2 == 0 ? Color.WHITE : new Color(245, 245, 245));
 					c.setForeground(Color.BLACK);
 				}
+
 				c.setFont(AppFont.normal());
 				if(column == 1 && !isSelected) c.setForeground(new Color(41, 128, 185));
+				
 				return c;
 			}
 		});
@@ -82,7 +87,7 @@ public class ScoreView extends JPanel {
 	public File selectPdfFile() {
 		String path = Config.get("pdf.export.lastFolder", System.getProperty("user.home"));
 		JFileChooser chooser = new JFileChooser(path);
-		chooser.setSelectedFile(new File(path, "scores-report.pdf")); 
+		chooser.setSelectedFile(new File(path, "entitystatuses-report.pdf")); 
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);
 
@@ -90,7 +95,7 @@ public class ScoreView extends JPanel {
 		chooser.addChoosableFileFilter(filter);
 		chooser.setFileFilter(filter);
 
-		int option = chooser.showDialog(this, "Export scores PDF");
+		int option = chooser.showDialog(this, "Export entity statuses PDF");
 		if (option != JFileChooser.APPROVE_OPTION) return null;
 
 		File file = chooser.getSelectedFile();
@@ -101,7 +106,7 @@ public class ScoreView extends JPanel {
 		return file;
 	}
 
-	public void setTableModel(ScoreTableModel model) {
+	public void setTableModel(EntityStatusTableModel model) {
 		table.setModel(model);
 		if(table.getColumnCount() >= 1) table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		if(table.getColumnCount() >= 2) table.getColumnModel().getColumn(1).setPreferredWidth(200);

@@ -1,30 +1,26 @@
 package tablemodels;
 
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
-
-import models.User;
+import models.Npc;
 
 public class NpcTableModel extends AbstractTableModel {
 
-	private List<User> users;
+	private List<Npc> npcs;
 
-	private final String[] columns = {"ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role"};
+	private final String[] columns = {"ID", "Name", "Role", "Location"};
 
-	public NpcTableModel(List<User> users) {
-		this.users = users;
+	public NpcTableModel(List<Npc> npcs) {
+		this.npcs = npcs;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return users.size();
+		return npcs.size();
 	}
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return columns.length;
 	}
 
@@ -34,50 +30,43 @@ public class NpcTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		User user = users.get(rowIndex);
+		Npc npc = npcs.get(rowIndex);
 
 		switch (columnIndex) {
 		case 0:
-			return user.getId();
+			return npc.getIdNpc();
 		case 1:
-			return user.getNickname();
+			return npc.getNpcName();
 		case 2:
-			return user.getEmail();
+			return npc.getNpcRole();
 		case 3:
-			return user.getGem();
-		case 4:
-			return user.getWeapon();
-		case 5:
-			return user.getElements();
-		case 6:
-			return user.getRole_cinerea();
+			return npc.getLocation();
 		}
-		return user;
+		return npc;
 	}
 
-	public User getUserAt(int row) {
-		return users.get(row);
+	public Npc getNpcAt(int row) {
+		return npcs.get(row);
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setNpcs(List<Npc> npcs) {
+		this.npcs = npcs;
 		fireTableDataChanged();
 	}
 
 	public void removeRow(int row) {
-		users.remove(row);
+		npcs.remove(row);
 		fireTableRowsDeleted(row, row);
 	}
 
-	public void addRow(User user) {
-		int row = users.size();
-		users.add(user);
+	public void addRow(Npc npc) {
+		int row = npcs.size();
+		npcs.add(npc);
 		fireTableRowsInserted(row, row);
 	}
 
-	public void updateRow(int row, User user) {
-		users.set(row, user);
+	public void updateRow(int row, Npc npc) {
+		npcs.set(row, npc);
 		fireTableRowsUpdated(row, row);
 	}
-
 }

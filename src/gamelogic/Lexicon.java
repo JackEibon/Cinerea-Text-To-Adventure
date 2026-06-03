@@ -25,7 +25,7 @@ public class Lexicon {
         "sword", "garlic", "weapon", "gem", "map","minimap","gun","spear"
     );
     public static final Set<String> characters = Set.of(
-    "wolf", "blacksmith"
+    	"wolf", "blacksmith"
     );
     public static final Set<String> modifiers = Set.of(
         "quick", "slowly", "carefully"

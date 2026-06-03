@@ -44,7 +44,7 @@ public class UserFormDialog extends JDialog{
     	
     	this.user = user;
     	
-    	setTitle(user == null ? "Agregar usuario" : "Editar usuario");
+    	setTitle(user == null ? "Add user" : "Edit user");
     	
     	setSize(400, 300);
         setLocationRelativeTo(parent);
@@ -59,7 +59,7 @@ public class UserFormDialog extends JDialog{
     
     private JPanel createTitlePanel() {
         JPanel panel = new JPanel();
-        panel.add(new JLabel("Formulario de Usuario"));
+        panel.add(new JLabel("User Form"));
         return panel;
     }
     
@@ -67,8 +67,8 @@ public class UserFormDialog extends JDialog{
 
         JPanel panel = new JPanel();
 
-        btnSave = new JButton("Guardar");
-        btnCancel = new JButton("Cancelar");
+        btnSave = new JButton("Save");
+        btnCancel = new JButton("Cancel");
 
         panel.add(btnSave);
         panel.add(btnCancel);

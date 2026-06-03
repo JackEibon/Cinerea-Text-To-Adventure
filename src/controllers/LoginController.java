@@ -79,7 +79,8 @@ public class LoginController {
 		User user = null;
 
 		try {
-			String sql = "SELECT id_user_cinerea, email, wordpass, role_cinerea, nickname FROM user_cinerea WHERE email = ?";
+			// SOLUCIÓN: Se agregaron weapon, gem y elements a la consulta SQL
+			String sql = "SELECT id_user_cinerea, email, wordpass, role_cinerea, nickname, weapon, gem, elements FROM user_cinerea WHERE email = ?";
 			java.sql.Connection conn = config.DatabaseConnection.getConnection();
 			if (conn == null) {
 				view.getErrPassword().setText("Connection with database failed");
@@ -87,7 +88,7 @@ public class LoginController {
 				return;
 			}
 			try (java.sql.Connection c = conn; java.sql.PreparedStatement stmt = c.prepareStatement(sql)) {
-				stmt.setString(1, view.getEmail()); // stmt es statement
+				stmt.setString(1, view.getEmail()); 
 				try (java.sql.ResultSet rs = stmt.executeQuery()) {
 					if (rs.next()) {
 						String hashedPassword = rs.getString("wordpass");

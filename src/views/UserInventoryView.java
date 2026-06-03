@@ -18,17 +18,17 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 import assets.utils.AppFont;
-import tablemodels.ScoreTableModel;
+import tablemodels.UserInventoryTableModel;
 import config.Config;
 
-public class ScoreView extends JPanel {
+public class UserInventoryView extends JPanel {
 	private JTable table;
 	private JButton btnEdit;
 	private JButton btnAdd;
 	private JButton btnDelete;
 	private JButton btnPdf;
 
-	public ScoreView() {
+	public UserInventoryView() {
 		setLayout(new BorderLayout());
 		table = new JTable();
 		add(new JScrollPane(table), BorderLayout.CENTER);
@@ -82,7 +82,7 @@ public class ScoreView extends JPanel {
 	public File selectPdfFile() {
 		String path = Config.get("pdf.export.lastFolder", System.getProperty("user.home"));
 		JFileChooser chooser = new JFileChooser(path);
-		chooser.setSelectedFile(new File(path, "scores-report.pdf")); 
+		chooser.setSelectedFile(new File(path, "userinventory-report.pdf")); 
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);
 
@@ -90,7 +90,7 @@ public class ScoreView extends JPanel {
 		chooser.addChoosableFileFilter(filter);
 		chooser.setFileFilter(filter);
 
-		int option = chooser.showDialog(this, "Export scores PDF");
+		int option = chooser.showDialog(this, "Export inventory PDF");
 		if (option != JFileChooser.APPROVE_OPTION) return null;
 
 		File file = chooser.getSelectedFile();
@@ -101,7 +101,7 @@ public class ScoreView extends JPanel {
 		return file;
 	}
 
-	public void setTableModel(ScoreTableModel model) {
+	public void setTableModel(UserInventoryTableModel model) {
 		table.setModel(model);
 		if(table.getColumnCount() >= 1) table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		if(table.getColumnCount() >= 2) table.getColumnModel().getColumn(1).setPreferredWidth(200);

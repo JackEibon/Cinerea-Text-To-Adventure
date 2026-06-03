@@ -1,30 +1,26 @@
 package tablemodels;
 
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
-
-import models.User;
+import models.Item;
 
 public class ItemTableModel extends AbstractTableModel {
 
-	private List<User> users;
+	private List<Item> items;
 
-	private final String[] columns = {"ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role"};
+	private final String[] columns = {"ID", "Name", "Type", "Description"};
 
-	public ItemTableModel(List<User> users) {
-		this.users = users;
+	public ItemTableModel(List<Item> items) {
+		this.items = items;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return users.size();
+		return items.size();
 	}
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return columns.length;
 	}
 
@@ -34,50 +30,43 @@ public class ItemTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		User user = users.get(rowIndex);
+		Item item = items.get(rowIndex);
 
 		switch (columnIndex) {
 		case 0:
-			return user.getId();
+			return item.getIdItem();
 		case 1:
-			return user.getNickname();
+			return item.getItemName();
 		case 2:
-			return user.getEmail();
+			return item.getItemType();
 		case 3:
-			return user.getGem();
-		case 4:
-			return user.getWeapon();
-		case 5:
-			return user.getElements();
-		case 6:
-			return user.getRole_cinerea();
+			return item.getDescription();
 		}
-		return user;
+		return item;
 	}
 
-	public User getUserAt(int row) {
-		return users.get(row);
+	public Item getItemAt(int row) {
+		return items.get(row);
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setItems(List<Item> items) {
+		this.items = items;
 		fireTableDataChanged();
 	}
 
 	public void removeRow(int row) {
-		users.remove(row);
+		items.remove(row);
 		fireTableRowsDeleted(row, row);
 	}
 
-	public void addRow(User user) {
-		int row = users.size();
-		users.add(user);
+	public void addRow(Item item) {
+		int row = items.size();
+		items.add(item);
 		fireTableRowsInserted(row, row);
 	}
 
-	public void updateRow(int row, User user) {
-		users.set(row, user);
+	public void updateRow(int row, Item item) {
+		items.set(row, item);
 		fireTableRowsUpdated(row, row);
 	}
-
 }
