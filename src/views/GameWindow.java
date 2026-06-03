@@ -7,23 +7,23 @@ import gamelogic.GameLogic;
 
 public class GameWindow extends JFrame {
 
-    private GameView gameView;
+	private GameView gameView;
 
-    public GameWindow() {
+	public GameWindow() {
 
-        setTitle("Cinerea - Adventure");
-        setSize(1000,700);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Cinerea - Adventure");
+		setSize(1000, 700);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        gameView = new GameView();
-        add(gameView);
-        new GameController(gameView, new GameLogic());
-        setVisible(true);
-        requestFocus();
-    }
+		gameView = new GameView();
+		add(gameView);
+		new GameController(gameView, new GameLogic());
+		setVisible(true);
+		requestFocus();
+	}
 
-    public GameView getGameView() {
-        return gameView;
-    }
+	public GameView getGameView() {
+		return gameView;
+	}
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GameCanvas extends JPanel {
 
-    private int frameCount = 0;
+	private int frameCount = 0;
 
     /*
      * Inventory contains item IDs.
@@ -204,4 +204,5 @@ public class GameCanvas extends JPanel {
 
         return frameCount;
     }
+
 }

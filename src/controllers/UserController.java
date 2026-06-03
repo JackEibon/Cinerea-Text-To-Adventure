@@ -16,99 +16,99 @@ import services.PDFExporter;
 
 public class UserController {
 
-	//private PDFExporter pdfExp;
+	// private PDFExporter pdfExp;
 	private UsersView view;
 	private UserRepository repo;
 	private UserTableModel model;
 	private PDFExporter pdfExporter;
-	
+
 	public UserController(UsersView view) {
 		this.view = view;
 		repo = new UserRepository();
 		pdfExporter = new PDFExporter();
-		
+
 		this.view.getBtnAdd().addActionListener(e -> {
 			openForm(null);
 		});
-		
+
 		this.view.getBtnEdit().addActionListener(e -> {
 			int row = view.getSelectedRow();
-			if(row == -1) {
+			if (row == -1) {
 				JOptionPane.showMessageDialog(view, "Select an user");
 				return;
 			}
-			
+
 			openForm(model.getUserAt(row));
 		});
-		
+
 		this.view.getBtnPdf().addActionListener(e -> generatePdf());
-		
+
 		this.view.getBtnDelete().addActionListener(e -> {
 			int row = view.getSelectedRow();
-			if(row == -1) {
+			if (row == -1) {
 				JOptionPane.showMessageDialog(view, "Select an user");
 				return;
 			}
 			boolean deleted = repo.delete(model.getUserAt(view.getSelectedRow()).getId());
-			if(deleted) {
+			if (deleted) {
 				model.removeRow(view.getSelectedRow());
 			}
-				
+
 		});
 	}
-	
+
 	public void generatePdf() {
 		File file = view.selectPdfFile();
 
-		if(file == null) {
+		if (file == null) {
 			return;
 		}
 
 		try {
 			pdfExporter.exportUsers(repo.getUsers(), file);
-			if(Desktop.isDesktopSupported()) {
+			if (Desktop.isDesktopSupported()) {
 				Desktop.getDesktop().open(file);
 			}
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			JOptionPane.showMessageDialog(view, "Exporting Error");
 		}
 	}
-	
+
 	public void loadUsers() {
 		try {
 			List<User> users = repo.getUsers();
-			
-			if(model == null) {
+
+			if (model == null) {
 				model = new UserTableModel(users);
 				view.setTableModel(model);
-			}else {
+			} else {
 				model.setUsers(users);
 			}
-		}catch(IOException ex) {
+		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(view, ex.getMessage());
 		}
 	}
-	
+
 	private void openForm(User user) {
 		UserFormDialog dialog = new UserFormDialog(null, user);
 		dialog.setVisible(true);
-		
-		if(dialog.isSaved()) {
+
+		if (dialog.isSaved()) {
 			User savedUser = dialog.getUser();
-			
+
 			try {
-				if(user == null) {
+				if (user == null) {
 					repo.save(savedUser);
 					model.addRow(savedUser);
 				} else {
 					int row = view.getSelectedRow();
 					boolean updated = repo.update(row, savedUser);
-					if(updated) {
-						model.updateRow(row, savedUser); 
+					if (updated) {
+						model.updateRow(row, savedUser);
 					}
 				}
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(view, e.getMessage());
 			}

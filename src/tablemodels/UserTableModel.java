@@ -10,7 +10,7 @@ public class UserTableModel extends AbstractTableModel {
 
 	private List<User> users;
 
-	private final String[] columns = { "Nickname", "Email", "Gem", "Weapon", "Element" };
+	private final String[] columns = { "ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role" };
 
 	public UserTableModel(List<User> users) {
 		this.users = users;
@@ -38,15 +38,19 @@ public class UserTableModel extends AbstractTableModel {
 
 		switch (columnIndex) {
 		case 0:
-			return user.getNickname();
+			return user.getId();
 		case 1:
-			return user.getEmail();
+			return user.getNickname();
 		case 2:
-			return user.getGem();
+			return user.getEmail();
 		case 3:
-			return user.getWeapon();
+			return user.getGem();
 		case 4:
+			return user.getWeapon();
+		case 5:
 			return user.getElements();
+		case 6:
+			return user.getRole_cinerea();
 		}
 		return user;
 	}

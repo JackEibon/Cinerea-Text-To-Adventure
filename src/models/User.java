@@ -1,7 +1,7 @@
 package models;
 
 public class User {
-	
+
 	private int id;
 	private String nickname;
 	private String email;
@@ -10,16 +10,16 @@ public class User {
 	private String elements;
 	private String password;
 	private String role_cinerea;
-	
+
 	public User() {
-		
+
 	}
-	
+
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
-	
+
 	public User(String nickname, String email, String gem, String weapon, String elements, String role_cinerea) {
 		this.nickname = nickname;
 		this.email = email;
@@ -28,8 +28,9 @@ public class User {
 		this.elements = elements;
 		this.role_cinerea = role_cinerea;
 	}
-	
-	public User(int id, String nickname, String email, String gem, String weapon, String elements, String role_cinerea, String password) {
+
+	public User(int id, String nickname, String email, String gem, String weapon, String elements, String role_cinerea,
+			String password) {
 		this.id = id;
 		this.nickname = nickname;
 		this.email = email;
@@ -39,11 +40,11 @@ public class User {
 		this.role_cinerea = role_cinerea;
 		this.password = password;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -51,7 +52,6 @@ public class User {
 	public String getNickname() {
 		return nickname;
 	}
-	
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
@@ -80,7 +80,7 @@ public class User {
 	public void setWeapon(String weapon) {
 		this.weapon = weapon;
 	}
-	
+
 	public String getElements() {
 		return elements;
 	}
@@ -88,7 +88,7 @@ public class User {
 	public void setElements(String elements) {
 		this.elements = elements;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -100,24 +100,16 @@ public class User {
 	public void setRole_cinerea(String role_cinerea) {
 		this.role_cinerea = role_cinerea;
 	}
-	
-	/*public String toCsv() {
-		return nickname + "," +
-				email + "," +
-				gem + "," +
-				weapon + "," +
-				elements;
-	}
-	
-	public static User fromCsv(String userData) {
-		String data[] = userData.split(",");
-		String nickname = data[0];
-		String email = data[1];
-		String gem = data[2];
-		String weapon = data[3];
-		String elements = data[4];
-		
-		return new User(nickname, email, gem, weapon, elements);
-	}*/
-	
+
+	/*
+	 * public String toCsv() { return nickname + "," + email + "," + gem + "," +
+	 * weapon + "," + elements; }
+	 * 
+	 * public static User fromCsv(String userData) { String data[] =
+	 * userData.split(","); String nickname = data[0]; String email = data[1];
+	 * String gem = data[2]; String weapon = data[3]; String elements = data[4];
+	 * 
+	 * return new User(nickname, email, gem, weapon, elements); }
+	 */
+
 }

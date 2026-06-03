@@ -13,20 +13,21 @@ import javax.swing.UnsupportedLookAndFeelException;
 import assets.utils.AppFont;
 
 import views.*;
+
 public class Main {
 
-    public static void main(String[] args) {
-    	//FlatLightLaf.setup();
-    	ThemeManager.applySavedTheme();
-        
-    	//new HomeController(new MainWindow());
-		//new LoginController(new LoginWindow().getLoginView());
+	public static void main(String[] args) {
+		// FlatLightLaf.setup();
+		ThemeManager.applySavedTheme();
 
-        //UIManager.put("Label.font", AppFont.normal());
-        
-        //SignUpWindow window = new SignUpWindow(); 
-    	new GameWindow();
-    	//new LoginWindow().getLoginView();
-        //new LoginController(window.getLoginView());
-    }
+		// new HomeController(new MainWindow());
+		// new LoginController(new LoginWindow().getLoginView());
+
+		// UIManager.put("Label.font", AppFont.normal());
+
+		// SignUpWindow window = new SignUpWindow();
+		// new GameWindow();
+		new LoginWindow().getLoginView();
+		// new LoginController(window.getLoginView());
+	}
 }

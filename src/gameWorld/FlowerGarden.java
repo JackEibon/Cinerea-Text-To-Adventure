@@ -1,13 +1,9 @@
 package gameWorld;
 
-public class FlowerGarden extends NodeT1{
-	
-	
-
-	
+public class FlowerGarden extends NodeT1 {
 
 	public FlowerGarden(int scene) {
-		super(scene); 
+		super(scene);
 
 		setBiome("forest");
 		setScene(scene);
@@ -16,10 +12,9 @@ public class FlowerGarden extends NodeT1{
 		setGoDescriptions("");
 		setTakeDescriptions("");
 		setRestDescriptions("");
-		setTalkDescriptions("") ;
-		setItemsDescriptions("") ;
-		
-	}
+		setTalkDescriptions("");
+		setItemsDescriptions("");
 
+	}
 
 }

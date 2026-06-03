@@ -10,7 +10,7 @@ public class PasswordUtils {
     }
 
     // Verifica el hash
-    public static boolean checkPassword(String plainPassword, String hashedPassword) {
-        return BCrypt.checkpw(plainPassword, hashedPassword);
-    }
+	public static boolean checkPassword(String plainPassword, String hashedPassword) {
+		return BCrypt.checkpw(plainPassword, hashedPassword);
+	}
 }
