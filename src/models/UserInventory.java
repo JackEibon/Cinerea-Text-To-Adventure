@@ -1,22 +1,25 @@
 package models;
 
 public class UserInventory {
-	
+
 	private int idInventory;
 	private int idUser;
 	private int idItem;
 	private int quantity;
 	
+	private String nickname;
+	private String itemName;
+
 	public UserInventory() {
-		
+
 	}
-	
+
 	public UserInventory(int idUser, int idItem, int quantity) {
 		this.idUser = idUser;
 		this.idItem = idItem;
 		this.quantity = quantity;
 	}
-	
+
 	public UserInventory(int idInventory, int idUser, int idItem, int quantity) {
 		this.idInventory = idInventory;
 		this.idUser = idUser;
@@ -54,5 +57,21 @@ public class UserInventory {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 }

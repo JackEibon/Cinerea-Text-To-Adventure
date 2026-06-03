@@ -108,7 +108,7 @@ public class ScoreFormDialog extends JDialog {
 	}
 
 	private void loadData() {
-		if(score != null) {
+		if (score != null) {
 			txtIdUser.setText(String.valueOf(score.getIdUser()));
 			txtBestScore.setText(String.valueOf(score.getBestScore()));
 			txtLastScore.setText(String.valueOf(score.getLastScore()));
@@ -120,7 +120,8 @@ public class ScoreFormDialog extends JDialog {
 		String bestScoreStr = txtBestScore.getText();
 		String lastScoreStr = txtLastScore.getText();
 
-		if(idUserStr == null || idUserStr.equals("") || bestScoreStr == null || bestScoreStr.equals("") || lastScoreStr == null || lastScoreStr.equals("")) {
+		if (idUserStr == null || idUserStr.equals("") || bestScoreStr == null || bestScoreStr.equals("")
+				|| lastScoreStr == null || lastScoreStr.equals("")) {
 			JOptionPane.showMessageDialog(this, "One of the fields is empty");
 			return;
 		}
@@ -130,7 +131,7 @@ public class ScoreFormDialog extends JDialog {
 			int bestScore = Integer.parseInt(bestScoreStr);
 			int lastScore = Integer.parseInt(lastScoreStr);
 
-			if(score == null) {
+			if (score == null) {
 				score = new Score(idUser, bestScore, lastScore);
 			} else {
 				score.setIdUser(idUser);

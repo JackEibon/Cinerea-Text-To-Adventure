@@ -10,7 +10,7 @@ public class UserTableModel extends AbstractTableModel {
 
 	private List<User> users;
 
-	private final String[] columns = {"ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role"};
+	private final String[] columns = { "ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role" };
 
 	public UserTableModel(List<User> users) {
 		this.users = users;

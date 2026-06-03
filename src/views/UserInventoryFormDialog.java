@@ -108,7 +108,7 @@ public class UserInventoryFormDialog extends JDialog {
 	}
 
 	private void loadData() {
-		if(userInventory != null) {
+		if (userInventory != null) {
 			txtIdUser.setText(String.valueOf(userInventory.getIdUser()));
 			txtIdItem.setText(String.valueOf(userInventory.getIdItem()));
 			txtQuantity.setText(String.valueOf(userInventory.getQuantity()));
@@ -120,7 +120,8 @@ public class UserInventoryFormDialog extends JDialog {
 		String idItemStr = txtIdItem.getText();
 		String quantityStr = txtQuantity.getText();
 
-		if(idUserStr == null || idUserStr.equals("") || idItemStr == null || idItemStr.equals("") || quantityStr == null || quantityStr.equals("")) {
+		if (idUserStr == null || idUserStr.equals("") || idItemStr == null || idItemStr.equals("")
+				|| quantityStr == null || quantityStr.equals("")) {
 			JOptionPane.showMessageDialog(this, "One of the fields is empty");
 			return;
 		}
@@ -130,7 +131,7 @@ public class UserInventoryFormDialog extends JDialog {
 			int idItem = Integer.parseInt(idItemStr);
 			int quantity = Integer.parseInt(quantityStr);
 
-			if(userInventory == null) {
+			if (userInventory == null) {
 				userInventory = new UserInventory(idUser, idItem, quantity);
 			} else {
 				userInventory.setIdUser(idUser);

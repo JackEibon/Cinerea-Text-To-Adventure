@@ -108,7 +108,7 @@ public class ConfigFormDialog extends JDialog {
 	}
 
 	private void loadData() {
-		if(config != null) {
+		if (config != null) {
 			txtIdUser.setText(String.valueOf(config.getIdUser()));
 			txtSettingKey.setText(config.getSettingKey());
 			txtSettingValue.setText(config.getSettingValue());
@@ -120,7 +120,8 @@ public class ConfigFormDialog extends JDialog {
 		String settingKey = txtSettingKey.getText();
 		String settingValue = txtSettingValue.getText();
 
-		if(idUserStr == null || idUserStr.equals("") || settingKey == null || settingKey.equals("") || settingValue == null || settingValue.equals("")) {
+		if (idUserStr == null || idUserStr.equals("") || settingKey == null || settingKey.equals("")
+				|| settingValue == null || settingValue.equals("")) {
 			JOptionPane.showMessageDialog(this, "One of the fields is empty");
 			return;
 		}
@@ -128,7 +129,7 @@ public class ConfigFormDialog extends JDialog {
 		try {
 			int idUser = Integer.parseInt(idUserStr);
 
-			if(config == null) {
+			if (config == null) {
 				config = new Config(idUser, settingKey, settingValue);
 			} else {
 				config.setIdUser(idUser);

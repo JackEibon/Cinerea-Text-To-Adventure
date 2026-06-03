@@ -12,12 +12,10 @@ public class EntityStatusTableModel extends AbstractTableModel {
 	private Map<Integer, String> npcNames;
 	private Map<Integer, String> effectNames;
 
-	private final String[] columns = {"ID", "User", "NPC", "Status Effect"};
+	private final String[] columns = { "ID", "User", "NPC", "Status Effect" };
 
-	public EntityStatusTableModel(List<EntityStatus> entityStatuses, 
-			Map<Integer, String> userNames, 
-			Map<Integer, String> npcNames, 
-			Map<Integer, String> effectNames) {
+	public EntityStatusTableModel(List<EntityStatus> entityStatuses, Map<Integer, String> userNames,
+			Map<Integer, String> npcNames, Map<Integer, String> effectNames) {
 		this.entityStatuses = entityStatuses;
 		this.userNames = userNames;
 		this.npcNames = npcNames;
@@ -47,19 +45,21 @@ public class EntityStatusTableModel extends AbstractTableModel {
 			return status.getIdEntityStatus();
 		case 1:
 			if (status.getIdUser() != null) {
-				return (userNames != null && userNames.containsKey(status.getIdUser())) 
-						? userNames.get(status.getIdUser()) : "ID: " + status.getIdUser();
+				return (userNames != null && userNames.containsKey(status.getIdUser()))
+						? userNames.get(status.getIdUser())
+						: "ID: " + status.getIdUser();
 			}
 			return "N/A";
 		case 2:
 			if (status.getIdNpc() != null) {
-				return (npcNames != null && npcNames.containsKey(status.getIdNpc())) 
-						? npcNames.get(status.getIdNpc()) : "ID: " + status.getIdNpc();
+				return (npcNames != null && npcNames.containsKey(status.getIdNpc())) ? npcNames.get(status.getIdNpc())
+						: "ID: " + status.getIdNpc();
 			}
 			return "N/A";
 		case 3:
-			return (effectNames != null && effectNames.containsKey(status.getIdStatusEffect())) 
-					? effectNames.get(status.getIdStatusEffect()) : "ID: " + status.getIdStatusEffect();
+			return (effectNames != null && effectNames.containsKey(status.getIdStatusEffect()))
+					? effectNames.get(status.getIdStatusEffect())
+					: "ID: " + status.getIdStatusEffect();
 		}
 		return status;
 	}
@@ -73,7 +73,8 @@ public class EntityStatusTableModel extends AbstractTableModel {
 		fireTableDataChanged();
 	}
 
-	public void setDictionaries(Map<Integer, String> userNames, Map<Integer, String> npcNames, Map<Integer, String> effectNames) {
+	public void setDictionaries(Map<Integer, String> userNames, Map<Integer, String> npcNames,
+			Map<Integer, String> effectNames) {
 		this.userNames = userNames;
 		this.npcNames = npcNames;
 		this.effectNames = effectNames;

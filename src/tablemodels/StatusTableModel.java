@@ -8,7 +8,7 @@ public class StatusTableModel extends AbstractTableModel {
 
 	private List<Status> statuses;
 
-	private final String[] columns = {"ID", "Effect Name", "Duration"};
+	private final String[] columns = { "ID", "Effect Name", "Duration" };
 
 	public StatusTableModel(List<Status> statuses) {
 		this.statuses = statuses;

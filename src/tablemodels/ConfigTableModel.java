@@ -1,20 +1,17 @@
 package tablemodels;
 
 import java.util.List;
-import java.util.Map;
 import javax.swing.table.AbstractTableModel;
 import models.Config;
 
 public class ConfigTableModel extends AbstractTableModel {
 
 	private List<Config> configs;
-	private Map<Integer, String> userNames; // Diccionario para los nombres
 
-	private final String[] columns = {"ID", "User", "Setting Key", "Setting Value"};
+	private final String[] columns = { "ID", "User", "Setting Key", "Setting Value" };
 
-	public ConfigTableModel(List<Config> configs, Map<Integer, String> userNames) {
+	public ConfigTableModel(List<Config> configs) {
 		this.configs = configs;
-		this.userNames = userNames;
 	}
 
 	@Override
@@ -39,10 +36,7 @@ public class ConfigTableModel extends AbstractTableModel {
 		case 0:
 			return config.getIdConfig();
 		case 1:
-			if (userNames != null && userNames.containsKey(config.getIdUser())) {
-				return userNames.get(config.getIdUser());
-			}
-			return "ID: " + config.getIdUser();
+			return config.getNickname() != null ? config.getNickname() : "ID: " + config.getIdUser();
 		case 2:
 			return config.getSettingKey();
 		case 3:
@@ -57,11 +51,6 @@ public class ConfigTableModel extends AbstractTableModel {
 
 	public void setConfigs(List<Config> configs) {
 		this.configs = configs;
-		fireTableDataChanged();
-	}
-
-	public void setUserNames(Map<Integer, String> userNames) {
-		this.userNames = userNames;
 		fireTableDataChanged();
 	}
 

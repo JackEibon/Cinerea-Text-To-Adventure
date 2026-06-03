@@ -1,22 +1,22 @@
 package models;
 
 public class Item {
-	
+
 	private int idItem;
 	private String itemName;
 	private String itemType;
 	private String description;
-	
+
 	public Item() {
-		
+
 	}
-	
+
 	public Item(String itemName, String itemType, String description) {
 		this.itemName = itemName;
 		this.itemType = itemType;
 		this.description = description;
 	}
-	
+
 	public Item(int idItem, String itemName, String itemType, String description) {
 		this.idItem = idItem;
 		this.itemName = itemName;

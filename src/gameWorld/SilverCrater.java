@@ -1,13 +1,9 @@
 package gameWorld;
 
-public class SilverCrater extends NodeT1{
-	
-	
-
-	
+public class SilverCrater extends NodeT1 {
 
 	public SilverCrater(int scene) {
-		super(scene); 
+		super(scene);
 
 		setExplored(true);
 		setOdorP(15);
@@ -18,10 +14,9 @@ public class SilverCrater extends NodeT1{
 		setGoDescriptions("");
 		setTakeDescriptions("");
 		setRestDescriptions("");
-		setTalkDescriptions("") ;
-		setItemsDescriptions("") ;
-		
-	}
+		setTalkDescriptions("");
+		setItemsDescriptions("");
 
+	}
 
 }

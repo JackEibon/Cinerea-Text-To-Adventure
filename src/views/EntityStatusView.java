@@ -47,7 +47,7 @@ public class EntityStatusView extends JPanel {
 		panelButtons.add(btnPdf);
 		add(panelButtons, BorderLayout.NORTH);
 	}
-	
+
 	public void styleTable() {
 		table.setRowHeight(35);
 		table.setShowGrid(true);
@@ -68,7 +68,8 @@ public class EntityStatusView extends JPanel {
 
 		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column) {
 				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 				if (!isSelected) {
@@ -77,8 +78,9 @@ public class EntityStatusView extends JPanel {
 				}
 
 				c.setFont(AppFont.normal());
-				if(column == 1 && !isSelected) c.setForeground(new Color(41, 128, 185));
-				
+				if (column == 1 && !isSelected)
+					c.setForeground(new Color(41, 128, 185));
+
 				return c;
 			}
 		});
@@ -87,7 +89,7 @@ public class EntityStatusView extends JPanel {
 	public File selectPdfFile() {
 		String path = Config.get("pdf.export.lastFolder", System.getProperty("user.home"));
 		JFileChooser chooser = new JFileChooser(path);
-		chooser.setSelectedFile(new File(path, "entitystatuses-report.pdf")); 
+		chooser.setSelectedFile(new File(path, "entitystatuses-report.pdf"));
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);
 
@@ -96,33 +98,55 @@ public class EntityStatusView extends JPanel {
 		chooser.setFileFilter(filter);
 
 		int option = chooser.showDialog(this, "Export entity statuses PDF");
-		if (option != JFileChooser.APPROVE_OPTION) return null;
+		if (option != JFileChooser.APPROVE_OPTION)
+			return null;
 
 		File file = chooser.getSelectedFile();
-		if (!file.getName().toLowerCase().endsWith(".pdf")) file = new File(file.getAbsolutePath() + ".pdf");
+		if (!file.getName().toLowerCase().endsWith(".pdf"))
+			file = new File(file.getAbsolutePath() + ".pdf");
 		String selectedDirectory = file.getParent();
-		if (selectedDirectory != null) Config.set("pdf.export.lastFolder", selectedDirectory);
+		if (selectedDirectory != null)
+			Config.set("pdf.export.lastFolder", selectedDirectory);
 
 		return file;
 	}
 
 	public void setTableModel(EntityStatusTableModel model) {
 		table.setModel(model);
-		if(table.getColumnCount() >= 1) table.getColumnModel().getColumn(0).setPreferredWidth(80);
-		if(table.getColumnCount() >= 2) table.getColumnModel().getColumn(1).setPreferredWidth(200);
-		if(table.getColumnCount() >= 3) table.getColumnModel().getColumn(2).setPreferredWidth(50);
+		if (table.getColumnCount() >= 1)
+			table.getColumnModel().getColumn(0).setPreferredWidth(80);
+		if (table.getColumnCount() >= 2)
+			table.getColumnModel().getColumn(1).setPreferredWidth(200);
+		if (table.getColumnCount() >= 3)
+			table.getColumnModel().getColumn(2).setPreferredWidth(50);
 
 		DefaultTableCellRenderer center = new DefaultTableCellRenderer();
 		center.setHorizontalAlignment(SwingConstants.CENTER);
-		if(table.getColumnCount() >= 1) table.getColumnModel().getColumn(0).setCellRenderer(center);
+		if (table.getColumnCount() >= 1)
+			table.getColumnModel().getColumn(0).setCellRenderer(center);
 	}
 
-	public JTable getTable() { return table; }
-	public JButton getBtnAdd() { return btnAdd; }
-	public JButton getBtnEdit() { return btnEdit; }
-	public JButton getBtnDelete() { return btnDelete; }
-	public JButton getBtnPdf() { return btnPdf; }
-	public int getSelectedRow() { return table.getSelectedRow(); }
+	public JTable getTable() {
+		return table;
+	}
+
+	public JButton getBtnAdd() {
+		return btnAdd;
+	}
+
+	public JButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public JButton getBtnPdf() {
+		return btnPdf;
+	}
+
+	public int getSelectedRow() {
+		return table.getSelectedRow();
+	}
 }
-
-

@@ -105,7 +105,7 @@ public class StatusFormDialog extends JDialog {
 	}
 
 	private void loadData() {
-		if(status != null) {
+		if (status != null) {
 			txtEffectName.setText(status.getEffectName());
 			txtDuration.setText(String.valueOf(status.getDuration()));
 		}
@@ -115,7 +115,7 @@ public class StatusFormDialog extends JDialog {
 		String effectName = txtEffectName.getText();
 		String durationStr = txtDuration.getText();
 
-		if(effectName == null || effectName.equals("") || durationStr == null || durationStr.equals("")) {
+		if (effectName == null || effectName.equals("") || durationStr == null || durationStr.equals("")) {
 			JOptionPane.showMessageDialog(this, "One of the fields is empty");
 			return;
 		}
@@ -123,7 +123,7 @@ public class StatusFormDialog extends JDialog {
 		try {
 			int duration = Integer.parseInt(durationStr);
 
-			if(status == null) {
+			if (status == null) {
 				status = new Status(effectName, duration);
 			} else {
 				status.setEffectName(effectName);

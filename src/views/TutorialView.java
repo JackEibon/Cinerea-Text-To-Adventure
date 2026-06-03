@@ -32,7 +32,7 @@ public class TutorialView extends JPanel {
 	private static final Color DARK_BG = new Color(22, 30, 70);
 	private static final Color DARK_BIG = new Color(8, 12, 38);
 	private static final Color DARK_MID = new Color(14, 22, 55);
-	
+
 	public TutorialView(TutorialWindow window) {
 		this.window = window;
 		setLayout(new BorderLayout());

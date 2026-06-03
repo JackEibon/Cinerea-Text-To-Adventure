@@ -108,7 +108,7 @@ public class NpcFormDialog extends JDialog {
 	}
 
 	private void loadData() {
-		if(npc != null) {
+		if (npc != null) {
 			txtNpcName.setText(npc.getNpcName());
 			txtNpcRole.setText(npc.getNpcRole());
 			txtLocation.setText(npc.getLocation());
@@ -120,12 +120,12 @@ public class NpcFormDialog extends JDialog {
 		String npcRole = txtNpcRole.getText();
 		String location = txtLocation.getText();
 
-		if(npcName == null || npcName.equals("") || npcRole == null || npcRole.equals("")) {
+		if (npcName == null || npcName.equals("") || npcRole == null || npcRole.equals("")) {
 			JOptionPane.showMessageDialog(this, "Name and Role fields cannot be empty");
 			return;
 		}
 
-		if(npc == null) {
+		if (npc == null) {
 			npc = new Npc(npcName, npcRole, location);
 		} else {
 			npc.setNpcName(npcName);

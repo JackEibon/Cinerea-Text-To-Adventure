@@ -108,7 +108,7 @@ public class EntityStatusFormDialog extends JDialog {
 	}
 
 	private void loadData() {
-		if(entityStatus != null) {
+		if (entityStatus != null) {
 			txtIdUser.setText(entityStatus.getIdUser() != null ? String.valueOf(entityStatus.getIdUser()) : "");
 			txtIdNpc.setText(entityStatus.getIdNpc() != null ? String.valueOf(entityStatus.getIdNpc()) : "");
 			txtIdStatusEffect.setText(String.valueOf(entityStatus.getIdStatusEffect()));
@@ -120,12 +120,12 @@ public class EntityStatusFormDialog extends JDialog {
 		String idNpcStr = txtIdNpc.getText().trim();
 		String idStatusEffectStr = txtIdStatusEffect.getText().trim();
 
-		if(idStatusEffectStr.equals("")) {
+		if (idStatusEffectStr.equals("")) {
 			JOptionPane.showMessageDialog(this, "Status Effect ID cannot be empty");
 			return;
 		}
 
-		if(idUserStr.equals("") && idNpcStr.equals("")) {
+		if (idUserStr.equals("") && idNpcStr.equals("")) {
 			JOptionPane.showMessageDialog(this, "You must specify either a User ID or an NPC ID");
 			return;
 		}
@@ -135,7 +135,7 @@ public class EntityStatusFormDialog extends JDialog {
 			Integer idNpc = idNpcStr.isEmpty() ? null : Integer.parseInt(idNpcStr);
 			int idStatusEffect = Integer.parseInt(idStatusEffectStr);
 
-			if(entityStatus == null) {
+			if (entityStatus == null) {
 				entityStatus = new EntityStatus(idUser, idNpc, idStatusEffect);
 			} else {
 				entityStatus.setIdUser(idUser);

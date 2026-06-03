@@ -88,7 +88,7 @@ public class LoginController {
 				return;
 			}
 			try (java.sql.Connection c = conn; java.sql.PreparedStatement stmt = c.prepareStatement(sql)) {
-				stmt.setString(1, view.getEmail()); 
+				stmt.setString(1, view.getEmail());
 				try (java.sql.ResultSet rs = stmt.executeQuery()) {
 					if (rs.next()) {
 						String hashedPassword = rs.getString("wordpass");

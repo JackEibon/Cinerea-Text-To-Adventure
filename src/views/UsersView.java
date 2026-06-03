@@ -48,7 +48,7 @@ public class UsersView extends JPanel {
 		panelButtons.add(btnPdf);
 		add(panelButtons, BorderLayout.NORTH);
 	}
-	
+
 	public void styleTable() {
 		table.setRowHeight(35);
 		table.setShowGrid(true);
@@ -71,42 +71,30 @@ public class UsersView extends JPanel {
 
 		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 
-            @Override
-            public Component getTableCellRendererComponent(
-                    JTable table,
-                    Object value,
-                    boolean isSelected,
-                    boolean hasFocus,
-                    int row,
-                    int column) {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column) {
 
-                Component c = super.getTableCellRendererComponent(
-                        table,
-                        value,
-                        isSelected,
-                        hasFocus,
-                        row,
-                        column);
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-                if (!isSelected) {
-                    if (row % 2 == 0) {
-                        c.setBackground(Color.WHITE);
-                    } else {
-                        c.setBackground(new Color(245, 245, 245));
-                    }
+				if (!isSelected) {
+					if (row % 2 == 0) {
+						c.setBackground(Color.WHITE);
+					} else {
+						c.setBackground(new Color(245, 245, 245));
+					}
 
-                    c.setForeground(Color.BLACK);
-                }
+					c.setForeground(Color.BLACK);
+				}
 
-				if(column == 1) {
+				if (column == 1) {
 					c.setFont(AppFont.normal());
-					if(!isSelected) {
+					if (!isSelected) {
 						c.setForeground(new Color(41, 128, 185));
 					}
 				} else {
 					c.setFont(AppFont.normal());
 				}
-
 
 				return c;
 
@@ -116,11 +104,11 @@ public class UsersView extends JPanel {
 
 	public File selectPdfFile() {
 		String path = Config.get("pdf.export.lastFolder", System.getProperty("user.home"));
-		
+
 		JFileChooser chooser = new JFileChooser(path);
-		
-		chooser.setSelectedFile(new File(path, "users-report.pdf")); 
-		
+
+		chooser.setSelectedFile(new File(path, "users-report.pdf"));
+
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);
 
@@ -152,22 +140,22 @@ public class UsersView extends JPanel {
 	public void setTableModel(UserTableModel model) {
 		table.setModel(model);
 
-		if(table.getColumnCount() >= 1) {
+		if (table.getColumnCount() >= 1) {
 			table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		}
 
-		if(table.getColumnCount() >= 2) {
+		if (table.getColumnCount() >= 2) {
 			table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		}
 
-		if(table.getColumnCount() >= 3) {
+		if (table.getColumnCount() >= 3) {
 			table.getColumnModel().getColumn(2).setPreferredWidth(50);
 		}
 
 		DefaultTableCellRenderer center = new DefaultTableCellRenderer();
 		center.setHorizontalAlignment(SwingConstants.CENTER);
 
-		if(table.getColumnCount() >= 1) {
+		if (table.getColumnCount() >= 1) {
 			table.getColumnModel().getColumn(0).setCellRenderer(center);
 		}
 	}
@@ -177,22 +165,22 @@ public class UsersView extends JPanel {
 	}
 
 	public JButton getBtnAdd() {
-        return btnAdd;
-    }
+		return btnAdd;
+	}
 
-    public JButton getBtnEdit() {
-        return btnEdit;
-    }
+	public JButton getBtnEdit() {
+		return btnEdit;
+	}
 
-    public JButton getBtnDelete() {
-        return btnDelete;
-    }
-    
-    public JButton getBtnPdf() {
-    	return btnPdf;
-    }
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
 
-    public int getSelectedRow() {
-    	return table.getSelectedRow();
-    }
+	public JButton getBtnPdf() {
+		return btnPdf;
+	}
+
+	public int getSelectedRow() {
+		return table.getSelectedRow();
+	}
 }

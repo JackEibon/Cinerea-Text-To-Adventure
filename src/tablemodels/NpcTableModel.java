@@ -8,7 +8,7 @@ public class NpcTableModel extends AbstractTableModel {
 
 	private List<Npc> npcs;
 
-	private final String[] columns = {"ID", "Name", "Role", "Location"};
+	private final String[] columns = { "ID", "Name", "Role", "Location" };
 
 	public NpcTableModel(List<Npc> npcs) {
 		this.npcs = npcs;

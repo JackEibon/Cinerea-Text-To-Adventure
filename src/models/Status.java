@@ -1,20 +1,20 @@
 package models;
 
 public class Status {
-	
+
 	private int idStatus;
 	private String effectName;
 	private int duration;
-	
+
 	public Status() {
-		
+
 	}
-	
+
 	public Status(String effectName, int duration) {
 		this.effectName = effectName;
 		this.duration = duration;
 	}
-	
+
 	public Status(int idStatus, String effectName, int duration) {
 		this.idStatus = idStatus;
 		this.effectName = effectName;

@@ -18,85 +18,86 @@ public class ConfigController {
 	private ConfigRepository repo;
 	private ConfigTableModel model;
 	private PDFExporter pdfExporter;
-	
+
 	public ConfigController(ConfigView view) {
 		this.view = view;
 		repo = new ConfigRepository();
 		pdfExporter = new PDFExporter();
-		
+
 		this.view.getBtnAdd().addActionListener(e -> openForm(null));
-		
+
 		this.view.getBtnEdit().addActionListener(e -> {
 			int row = view.getSelectedRow();
-			if(row == -1) {
+			if (row == -1) {
 				JOptionPane.showMessageDialog(view, "Select a config");
 				return;
 			}
 			openForm(model.getConfigAt(row));
 		});
-		
+
 		this.view.getBtnPdf().addActionListener(e -> generatePdf());
-		
+
 		this.view.getBtnDelete().addActionListener(e -> {
 			int row = view.getSelectedRow();
-			if(row == -1) {
+			if (row == -1) {
 				JOptionPane.showMessageDialog(view, "Select a config");
 				return;
 			}
 			boolean deleted = repo.delete(model.getConfigAt(row).getIdConfig());
-			if(deleted) {
+			if (deleted) {
 				model.removeRow(row);
 			}
 		});
 	}
-	
+
 	public void generatePdf() {
 		File file = view.selectPdfFile();
-		if(file == null) return;
+		if (file == null)
+			return;
 
 		try {
 			pdfExporter.exportConfigs(repo.getConfigs(), file);
-			if(Desktop.isDesktopSupported()) {
+			if (Desktop.isDesktopSupported()) {
 				Desktop.getDesktop().open(file);
 			}
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			JOptionPane.showMessageDialog(view, "Exporting Error");
 		}
 	}
-	
+
 	public void loadConfigs() {
 		try {
 			List<Config> configs = repo.getConfigs();
-			if(model == null) {
-				model = new ConfigTableModel(configs, null);
+			if (model == null) {
+				model = new ConfigTableModel(configs);
 				view.setTableModel(model);
-			}else {
+			} else {
 				model.setConfigs(configs);
 			}
-		}catch(IOException ex) { 
+		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(view, ex.getMessage());
 		}
 	}
-	
+
 	private void openForm(Config config) {
 		ConfigFormDialog dialog = new ConfigFormDialog(null, config);
 		dialog.setVisible(true);
-		
-		if(dialog.isSaved()) {
+
+		if (dialog.isSaved()) {
 			Config savedConfig = dialog.getConfig();
 			try {
-				if(config == null) {
+				if (config == null) {
 					repo.save(savedConfig);
-					model.addRow(savedConfig);
+					loadConfigs();
 				} else {
 					int row = view.getSelectedRow();
 					boolean updated = repo.update(row, savedConfig);
-					if(updated) {
-						model.updateRow(row, savedConfig); 
+					if (updated) {
+						loadConfigs();
 					}
 				}
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(view, e.getMessage());
 			}

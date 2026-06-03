@@ -1,24 +1,17 @@
 package tablemodels;
 
 import java.util.List;
-import java.util.Map;
 import javax.swing.table.AbstractTableModel;
 import models.UserInventory;
 
 public class UserInventoryTableModel extends AbstractTableModel {
 
 	private List<UserInventory> inventories;
-	private Map<Integer, String> userNames;
-	private Map<Integer, String> itemNames;
 
 	private final String[] columns = {"ID", "User", "Item", "Quantity"};
 
-	public UserInventoryTableModel(List<UserInventory> inventories, 
-			Map<Integer, String> userNames, 
-			Map<Integer, String> itemNames) {
+	public UserInventoryTableModel(List<UserInventory> inventories) {
 		this.inventories = inventories;
-		this.userNames = userNames;
-		this.itemNames = itemNames;
 	}
 
 	@Override
@@ -43,15 +36,9 @@ public class UserInventoryTableModel extends AbstractTableModel {
 		case 0:
 			return inventory.getIdInventory();
 		case 1:
-			if (userNames != null && userNames.containsKey(inventory.getIdUser())) {
-				return userNames.get(inventory.getIdUser());
-			}
-			return "ID: " + inventory.getIdUser();
+			return inventory.getNickname() != null ? inventory.getNickname() : "ID: " + inventory.getIdUser();
 		case 2:
-			if (itemNames != null && itemNames.containsKey(inventory.getIdItem())) {
-				return itemNames.get(inventory.getIdItem());
-			}
-			return "ID: " + inventory.getIdItem();
+			return inventory.getItemName() != null ? inventory.getItemName() : "ID: " + inventory.getIdItem();
 		case 3:
 			return inventory.getQuantity();
 		}
@@ -64,12 +51,6 @@ public class UserInventoryTableModel extends AbstractTableModel {
 
 	public void setInventories(List<UserInventory> inventories) {
 		this.inventories = inventories;
-		fireTableDataChanged();
-	}
-
-	public void setDictionaries(Map<Integer, String> userNames, Map<Integer, String> itemNames) {
-		this.userNames = userNames;
-		this.itemNames = itemNames;
 		fireTableDataChanged();
 	}
 

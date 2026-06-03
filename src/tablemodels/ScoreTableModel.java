@@ -1,20 +1,17 @@
 package tablemodels;
 
 import java.util.List;
-import java.util.Map;
 import javax.swing.table.AbstractTableModel;
 import models.Score;
 
 public class ScoreTableModel extends AbstractTableModel {
 
 	private List<Score> scores;
-	private Map<Integer, String> userNames;
 
-	private final String[] columns = {"ID", "User", "Best Score", "Last Score"};
+	private final String[] columns = { "ID", "User", "Best Score", "Last Score" };
 
-	public ScoreTableModel(List<Score> scores, Map<Integer, String> userNames) {
+	public ScoreTableModel(List<Score> scores) {
 		this.scores = scores;
-		this.userNames = userNames;
 	}
 
 	@Override
@@ -39,10 +36,7 @@ public class ScoreTableModel extends AbstractTableModel {
 		case 0:
 			return score.getIdScore();
 		case 1:
-			if (userNames != null && userNames.containsKey(score.getIdUser())) {
-				return userNames.get(score.getIdUser());
-			}
-			return "ID: " + score.getIdUser();
+			return score.getNickname() != null ? score.getNickname() : "ID: " + score.getIdUser();
 		case 2:
 			return score.getBestScore();
 		case 3:
@@ -57,11 +51,6 @@ public class ScoreTableModel extends AbstractTableModel {
 
 	public void setScores(List<Score> scores) {
 		this.scores = scores;
-		fireTableDataChanged();
-	}
-
-	public void setUserNames(Map<Integer, String> userNames) {
-		this.userNames = userNames;
 		fireTableDataChanged();
 	}
 

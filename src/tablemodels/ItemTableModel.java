@@ -8,7 +8,7 @@ public class ItemTableModel extends AbstractTableModel {
 
 	private List<Item> items;
 
-	private final String[] columns = {"ID", "Name", "Type", "Description"};
+	private final String[] columns = { "ID", "Name", "Type", "Description" };
 
 	public ItemTableModel(List<Item> items) {
 		this.items = items;

@@ -1,22 +1,24 @@
 package models;
 
 public class Config {
-	
+
 	private int idConfig;
 	private int idUser;
 	private String settingKey;
 	private String settingValue;
 	
+	private String nickname;
+
 	public Config() {
-		
+
 	}
-	
+
 	public Config(int idUser, String settingKey, String settingValue) {
 		this.idUser = idUser;
 		this.settingKey = settingKey;
 		this.settingValue = settingValue;
 	}
-	
+
 	public Config(int idConfig, int idUser, String settingKey, String settingValue) {
 		this.idConfig = idConfig;
 		this.idUser = idUser;
@@ -54,5 +56,13 @@ public class Config {
 
 	public void setSettingValue(String settingValue) {
 		this.settingValue = settingValue;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }

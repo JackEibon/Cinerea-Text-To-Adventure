@@ -1,22 +1,22 @@
 package models;
 
 public class EntityStatus {
-	
+
 	private int idEntityStatus;
-	private Integer idUser; 
+	private Integer idUser;
 	private Integer idNpc;
 	private int idStatusEffect;
-	
+
 	public EntityStatus() {
-		
+
 	}
-	
+
 	public EntityStatus(Integer idUser, Integer idNpc, int idStatusEffect) {
 		this.idUser = idUser;
 		this.idNpc = idNpc;
 		this.idStatusEffect = idStatusEffect;
 	}
-	
+
 	public EntityStatus(int idEntityStatus, Integer idUser, Integer idNpc, int idStatusEffect) {
 		this.idEntityStatus = idEntityStatus;
 		this.idUser = idUser;

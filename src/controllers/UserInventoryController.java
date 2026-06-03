@@ -18,77 +18,81 @@ public class UserInventoryController {
 	private UserInventoryRepository repo;
 	private UserInventoryTableModel model;
 	private PDFExporter pdfExporter;
-	
+
 	public UserInventoryController(UserInventoryView view) {
 		this.view = view;
 		repo = new UserInventoryRepository();
 		pdfExporter = new PDFExporter();
-		
+
 		this.view.getBtnAdd().addActionListener(e -> openForm(null));
-		
+
 		this.view.getBtnEdit().addActionListener(e -> {
 			int row = view.getSelectedRow();
-			if(row == -1) {
+			if (row == -1) {
 				JOptionPane.showMessageDialog(view, "Select an inventory record");
 				return;
 			}
 			openForm(model.getUserInventoryAt(row));
 		});
-		
+
 		this.view.getBtnPdf().addActionListener(e -> generatePdf());
-		
+
 		this.view.getBtnDelete().addActionListener(e -> {
 			int row = view.getSelectedRow();
-			if(row == -1) {
+			if (row == -1) {
 				JOptionPane.showMessageDialog(view, "Select an inventory record");
 				return;
 			}
 			boolean deleted = repo.delete(model.getUserInventoryAt(row).getIdInventory());
-			if(deleted) model.removeRow(row);
+			if (deleted)
+				model.removeRow(row);
 		});
 	}
-	
+
 	public void generatePdf() {
 		File file = view.selectPdfFile();
-		if(file == null) return;
+		if (file == null)
+			return;
 		try {
 			pdfExporter.exportUserInventories(repo.getUserInventories(), file);
-			if(Desktop.isDesktopSupported()) Desktop.getDesktop().open(file);
-		}catch(Exception ex) {
+			if (Desktop.isDesktopSupported())
+				Desktop.getDesktop().open(file);
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			JOptionPane.showMessageDialog(view, "Exporting Error");
 		}
 	}
-	
+
 	public void loadUserInventories() {
 		try {
 			List<UserInventory> inventories = repo.getUserInventories();
-			if(model == null) {
-				model = new UserInventoryTableModel(inventories, null, null); 
+			if (model == null) {
+				model = new UserInventoryTableModel(inventories);
 				view.setTableModel(model);
-			}else {
+			} else {
 				model.setInventories(inventories);
 			}
-		}catch(IOException ex) {
+		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(view, ex.getMessage());
 		}
 	}
-	
+
 	private void openForm(UserInventory inventory) {
 		UserInventoryFormDialog dialog = new UserInventoryFormDialog(null, inventory);
 		dialog.setVisible(true);
-		if(dialog.isSaved()) {
+		if (dialog.isSaved()) {
 			UserInventory savedInventory = dialog.getUserInventory();
 			try {
-				if(inventory == null) {
+				if (inventory == null) {
 					repo.save(savedInventory);
-					model.addRow(savedInventory);
+					loadUserInventories(); 
 				} else {
 					int row = view.getSelectedRow();
 					boolean updated = repo.update(row, savedInventory);
-					if(updated) model.updateRow(row, savedInventory); 
+					if (updated)
+						loadUserInventories(); 
 				}
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(view, e.getMessage());
 			}
