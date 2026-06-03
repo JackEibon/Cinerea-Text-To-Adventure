@@ -9,7 +9,7 @@ import java.util.Set; //while i planned on using only Lists, AI recommended Sets
 
 public class Lexicon {
     public static final Set<String> verbs = Set.of(
-    		"run", "walk", "go",
+    		"climb","run", "walk", "go",
     		"rest",
     		"drink","eat",
     		"look","search",
@@ -22,10 +22,10 @@ public class Lexicon {
         "north", "south", "east", "west", "up", "down", "here", "ahead", "paths","ways", "around", "1","2","3","4","5","6"
     );
     public static final Set<String> items = Set.of(
-        "sword", "garlic", "weapon", "gem", "map","minimap"
+        "sword", "garlic", "weapon", "gem", "map","minimap","gun","spear"
     );
     public static final Set<String> characters = Set.of(
-        "wolf", "blacksmith"
+    "wolf", "blacksmith"
     );
     public static final Set<String> modifiers = Set.of(
         "quick", "slowly", "carefully"
