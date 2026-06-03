@@ -40,7 +40,6 @@ public class ThemeManager {
 				SwingUtilities.updateComponentTreeUI(w);
 			}
 
-			// 2. Notifica a cada view para que actualice sus colores hardcodeados
 			for (Runnable listener : themeListeners) {
 				listener.run();
 			}

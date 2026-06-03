@@ -38,10 +38,27 @@ public class MainWindow extends JFrame {
 
 	public static final String HOME = "Home";
 	public static final String USERS = "Users";
+	public static final String CONFIG = "Configs";
+	public static final String SCORE = "Scores";
+	public static final String ITEM = "Items";
+	public static final String STATUS = "Statuses";
+	public static final String NPC = "NPCs";
 	public JMenuItem mItemExit;
 	public JButton usersBtn;
 	public JButton homeBtn;
+	public JButton configBtn;
+	public JButton scoreBtn;
+	public JButton itemBtn;
+	public JButton statusBtn;
+	public JButton npcBtn;
+	
 	public UsersView usersPanel;
+	public UsersView configPanel;
+	public UsersView scorePanel;
+	public UsersView itemPanel;
+	public UsersView statusPanel;
+	public UsersView npcPanel;
+	
 	private CardLayout cardLayout; // gestor de diseño
 	private JPanel container; // la caja/panel
 	private JPanel bigPanel, midPanel, centerPanel;
@@ -239,6 +256,11 @@ public class MainWindow extends JFrame {
 		JPanel navbar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		homeBtn = new JButton("Home");
 		usersBtn = new JButton("Users");
+		configBtn = new JButton("Configs");
+		scoreBtn = new JButton("Scores");
+		itemBtn = new JButton("Items");
+		statusBtn = new JButton("Statuses");
+		npcBtn = new JButton("NPCs");
 
 		navbar.add(homeBtn);
 		navbar.add(usersBtn);
@@ -252,8 +274,18 @@ public class MainWindow extends JFrame {
 		JPanel homePanel = new JPanel();
 		homePanel.add(new JLabel("Welcome"));
 		usersPanel = new UsersView();
+		configPanel = new ConfigView();
+		scorePanel = new ScoreView();
+		itemPanel = new ItemView();
+		statusPanel = new StatusView();
+		npcPanel = new NpcView();
 		container.add(homePanel, HOME);
 		container.add(usersPanel, USERS);
+		container.add(configPanel, CONFIG);
+		container.add(scorePanel, SCORE);
+		container.add(itemPanel, ITEM);
+		container.add(statusPanel, STATUS);
+		container.add(npcPanel, NPC);
 		add(container, BorderLayout.CENTER);
 	}
 
@@ -262,6 +294,41 @@ public class MainWindow extends JFrame {
 			if (usersPanel != null && (USERS.equals(view) || "Users".equals(view))) {
 				getContentPane().removeAll();
 				add(usersPanel, BorderLayout.CENTER);
+				revalidate();
+				repaint();
+			}
+			
+			if (configPanel != null && (CONFIG.equals(view) || "Configs".equals(view))) {
+				getContentPane().removeAll();
+				add(configPanel, BorderLayout.CENTER);
+				revalidate();
+				repaint();
+			}
+			
+			if (scorePanel != null && (SCORE.equals(view) || "Scores".equals(view))) {
+				getContentPane().removeAll();
+				add(scorePanel, BorderLayout.CENTER);
+				revalidate();
+				repaint();
+			}
+			
+			if (itemPanel != null && (ITEM.equals(view) || "Items".equals(view))) {
+				getContentPane().removeAll();
+				add(itemPanel, BorderLayout.CENTER);
+				revalidate();
+				repaint();
+			}
+			
+			if (statusPanel != null && (STATUS.equals(view) || "Statuses".equals(view))) {
+				getContentPane().removeAll();
+				add(statusPanel, BorderLayout.CENTER);
+				revalidate();
+				repaint();
+			}
+			
+			if (npcPanel != null && (NPC.equals(view) || "NPCs".equals(view))) {
+				getContentPane().removeAll();
+				add(npcPanel, BorderLayout.CENTER);
 				revalidate();
 				repaint();
 			}

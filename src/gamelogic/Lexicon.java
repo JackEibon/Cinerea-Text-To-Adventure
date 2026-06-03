@@ -17,6 +17,7 @@ public class Lexicon {
     		"take", "grab", 
     		"drop","leave"
     		);
+    
     public static final Set<String> directions = Set.of(
         "north", "south", "east", "west", "up", "down", "here", "ahead", "paths","ways", "around", "1","2","3","4","5","6"
     );
@@ -37,11 +38,16 @@ public class Lexicon {
     public static boolean isCharacter(String word) {return characters.contains(word.toLowerCase());}
     
     public static String wordIs(String word) {
-    	if(isVerb(word))return "verb";
-    	if(isNoun(word))return "noun";
-    	if(isDirection(word))return "direction";
-    	if(isModifier(word))return "modifier";
-    	if(isCharacter(word))return "character";
+    	if(isVerb(word))
+    		return "verb";
+    	if(isNoun(word))
+    		return "noun";
+    	if(isDirection(word))
+    		return "direction";
+    	if(isModifier(word))
+    		return "modifier";
+    	if(isCharacter(word))
+    		return "character";
     	return "non";}
 }
 

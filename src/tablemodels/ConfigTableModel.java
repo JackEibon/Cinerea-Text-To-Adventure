@@ -6,13 +6,13 @@ import javax.swing.table.AbstractTableModel;
 
 import models.User;
 
-public class UserTableModel extends AbstractTableModel {
+public class ConfigTableModel extends AbstractTableModel {
 
 	private List<User> users;
 
 	private final String[] columns = {"ID", "Nickname", "Email", "Gem", "Weapon", "Element", "Role"};
 
-	public UserTableModel(List<User> users) {
+	public ConfigTableModel(List<User> users) {
 		this.users = users;
 	}
 
