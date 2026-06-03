@@ -7,7 +7,7 @@ import java.util.List;
 public class Item {
 
 	private int id;
-    private String fullName,name, description, imagePath;
+    private String fullName,name, description, codename;
     private List<String> tags=new ArrayList<>();
     /*
      * fullName is displayed name if nessesary, i dont think we`ll reach those needs but
@@ -19,15 +19,26 @@ public class Item {
     public Item(int iD, String name, String fullname, String description) {
     	this.id=iD;this.name=name;this.description=description;this.fullName=fullname;}
     
+    public Item(int iD, String name, String fullname, String coden, String description,List<String> characteristics) {
+    	this.id=iD;this.name=name;this.description=description;this.fullName=fullname;this.codename=coden; 
+    	this.tags=characteristics;}
+    
     public Item(String name, String description, String fullName) {
     	this.name=name;this.description=description;this.fullName=fullName;}
     
     public Item(String name) {this.name=name;this.description="";}
 
     public Item(String name,String description) {this.name=name;this.description=description;}
-    public void setImagePath(String p) {this.imagePath=p;}
+    public void setCodename(String p) {this.codename=p;}
+    
 
-    public List<String> getTags(){return tags;}
+    public String getCodename() {
+		return codename;
+	}
+
+	public void setTags(List<String> tags) {this.tags = tags;}
+
+	public List<String> getTags(){return tags;}
     public String getName() {return name;}
     public void setName(String name) {this.name=name;}
     public String getDescription() {return description;}

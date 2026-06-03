@@ -100,6 +100,9 @@ public class LoginController {
 							user.setEmail(rs.getString("email"));
 							user.setNickname(rs.getString("nickname"));
 							user.setRole_cinerea(rs.getString("role_cinerea"));
+							user.setWeapon(rs.getString("weapon"));
+							user.setGem(rs.getString("gem"));
+							user.setElements(rs.getString("elements"));
 						}
 					}
 				}
