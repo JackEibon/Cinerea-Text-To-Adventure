@@ -15,7 +15,7 @@ public class NewItem {
 	
 	public static Item sword() {
 		Item x=new Item(
-				40,//id
+				4,//id
 				"sword",//command name
 				"Rusted Sword", //full name
 				"rustedSword",
@@ -29,7 +29,7 @@ public class NewItem {
 	
 	public static Item spear() {
 		Item x=new Item(
-				43,//id
+				8,//id
 				"spear",//command name
 				"Rusted Spear", //full name
 				"rustedSpear",
@@ -43,7 +43,7 @@ public class NewItem {
 	
 	public static Item gun() {
 		Item x=new Item(
-				46,//id
+				9,//id
 				"gun",//command name
 				"Rusted gun", //full name
 				"rustedGun",

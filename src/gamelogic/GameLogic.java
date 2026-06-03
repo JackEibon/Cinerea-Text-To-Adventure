@@ -1,6 +1,7 @@
 package gamelogic;
 import java.util.Random;
 import gameWorld.*;
+import views.GameCanvas;
 
 public class GameLogic {
     private final Lexicon lexicon;
@@ -9,6 +10,7 @@ public class GameLogic {
     private final Random random = new Random();
     private String lastTarget = "";
     private CharSheet player;
+    public static GameCanvas canvas=new GameCanvas();
     /* =========================================================
      * CONSTRUCTOR
      * ========================================================= */
@@ -177,7 +179,12 @@ public class GameLogic {
     		if (world.getCurrentNode().removeItem(target)) {
     			
     			if (player.addItem(x)) 
-    			{world.getCurrentNode().setTargetDescriptions();
+    			{
+    				world.getCurrentNode().setTargetDescriptions();
+    				canvas.addInventoryById(x.getId());
+    			
+    				
+    			
     				return "You took the " + target;}
     			world.getCurrentNode().addItem(x);
     			return "You couldnt take it";}
