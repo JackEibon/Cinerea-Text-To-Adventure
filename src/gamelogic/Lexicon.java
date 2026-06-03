@@ -8,11 +8,18 @@ import java.util.Set; //while i planned on using only Lists, AI recommended Sets
  * */
 
 public class Lexicon {
-	public static final Set<String> verbs = Set.of("climb", "run", "walk", "go", "rest", "drink", "eat", "look",
-			"search", "attack", "talk", "take", "grab", "drop", "leave");
+	public static final Set<String> verbs = Set.of(
+			"climb", "run", "walk", "go", 
+			//"rest", "drink", "eat", 
+			"search","look",
+			//"attack", "talk", 
+			"take", "grab", 
+			"drop", "leave");
 
-	public static final Set<String> directions = Set.of("north", "south", "east", "west", "up", "down", "here", "ahead",
-			"paths", "ways", "around", "1", "2", "3", "4", "5", "6");
+	public static final Set<String> directions = Set.of("north", "south", "east", "west", "up", "down", 
+			"paths","ways",  "ahead",
+			"around", "here",
+			"1", "2", "3", "4", "5", "6");
 	public static final Set<String> items = Set.of("sword", "garlic", "weapon", "gem", "map", "minimap", "gun",
 			"spear");
 	public static final Set<String> characters = Set.of("wolf", "blacksmith");

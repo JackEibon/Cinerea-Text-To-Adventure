@@ -19,7 +19,7 @@ public class GameCanvas extends JPanel {
      * 41 = Rusted Spear
      * 42 = Revolver
      */
-    private List<Integer> inventoryById = new ArrayList<>();
+	private static final List<Integer> inventoryById = new ArrayList<>();
 
     /*
      * Sprite cache.
@@ -31,8 +31,7 @@ public class GameCanvas extends JPanel {
      * Item403.png
      */
     private HashMap<String, BufferedImage> sprites = new HashMap<>();
-
-    private static final int ICON_SIZE = 64;
+    private static final int ICON_SIZE = 60;
     private static final int ICON_SPACING = 10;
     private static final int COLUMNS = 2;
 
@@ -56,14 +55,6 @@ public class GameCanvas extends JPanel {
 
         String id;
 
-        /*
-         * Loads:
-         *
-         * Item400.png
-         * Item401.png
-         * ...
-         * Item609.png
-         */
 
         for (int itemId = 0; itemId <= 60; itemId++) {
             for (int frame = 0; frame <= 9; frame++) {
@@ -112,6 +103,8 @@ public class GameCanvas extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
 
         drawInventory(g2);
+        
+        if (frameCount>100) frameCount=0; 
     }
 
     private void drawInventory(Graphics2D g) {
@@ -173,19 +166,31 @@ public class GameCanvas extends JPanel {
     }
 
     public void addInventoryById(int id) {
-
-        inventoryById.add(id);
-
+        if(inventoryById.add(Integer.valueOf(id))) System.out.println("added item " +id);
+        else System.out.println("not added item " +id);
         repaint();
     }
 
     public void removeInventoryById(int id) {
 
-        inventoryById.remove(
-                Integer.valueOf(id)
-        );
-
+    	inventoryById.remove( Integer.valueOf(id));
         repaint();
+        boolean there=false;
+    	for (int i=0; i<5;i++) {
+    		if (frameCount%5==0 && !there) {
+    		inventoryById.add( Integer.valueOf(id));
+    		there=true;
+    		}
+            else if(there && frameCount%2==0) { 
+            	inventoryById.remove( Integer.valueOf(id));
+            	there=false;
+            }
+            repaint();
+    	}
+    	if (there) {
+    	inventoryById.remove( Integer.valueOf(id));
+        repaint();}
+    	there=false;
     }
 
     public void clearInventory() {

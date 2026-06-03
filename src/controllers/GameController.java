@@ -19,14 +19,14 @@ public class GameController implements ActionListener {
 				+ "\nSuddenly, you crash against something frail, and it breaks."
 				+ "\nA thousand pieces fall by your side, and you fall unto the unwanted ground."
 
-				+ "\n\n\n" + " look around  ");
+				+ "\n\n\n" + "look around  ");
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = view.hiddenInput.getText();
 		String response = logic.execute(command);
-		appendText("> " + command + " \n" + response);
+		appendText("> " + command + "\n" + response);
 		view.hiddenInput.setText("");
 		view.reader.repaint();
 	}

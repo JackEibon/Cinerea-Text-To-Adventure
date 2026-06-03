@@ -16,16 +16,16 @@ public class GameView extends JPanel {
 	public TextReader reader;
 	public JTextPane narrationPane = new JTextPane();
 
-	public JTextArea minimap = new JTextArea();//placeholder
-	public JLabel item1= new JLabel();
-	public JLabel item2= new JLabel();
-	public JLabel item3= new JLabel();
-	public JLabel item4= new JLabel();
-	public JLabel item5= new JLabel();
-	public JLabel item6= new JLabel();
-	public GameCanvas canvas= GameLogic.canvas;
-	private StyledDocument narrationDocument; //this is what makes it look smooth
-	//and allows for a certain personalization (placeholder)
+	public JTextArea minimap = new JTextArea();// placeholder
+	public JLabel item1 = new JLabel();
+	public JLabel item2 = new JLabel();
+	public JLabel item3 = new JLabel();
+	public JLabel item4 = new JLabel();
+	public JLabel item5 = new JLabel();
+	public JLabel item6 = new JLabel();
+	//public GameCanvas canvas = GameLogic.getCanva();
+	private StyledDocument narrationDocument; // this is what makes it look smooth
+	// and allows for a certain personalization (placeholder)
 
 	private Style defaultStyle;
 	private Style actionStyle;
@@ -33,28 +33,26 @@ public class GameView extends JPanel {
 	private Style directionStyle;
 	private Style modifierStyle;
 	private Style characterStyle;
-	
+
 	public GameView() {
-		setLayout(new BorderLayout(10,10));
-		setBorder(new EmptyBorder(10,10,10,10));
+		setLayout(new BorderLayout(10, 10));
+		setBorder(new EmptyBorder(10, 10, 10, 10));
 		setBackground(Color.BLACK);
-		
-		ImageIcon icon = new ImageIcon(
-				getClass().getResource("/assets/sprites/item/item40.gif")
-			            );
-			item1.setIcon(icon);
-			item2.setIcon(icon);
-			item3.setIcon(icon);
-			item4.setIcon(icon);
-			item5.setIcon(icon);
-			item6.setIcon(icon);
-		
-		add(canvas,BorderLayout.EAST);
-		//add(item2,x.);
-		//add(item3,x.);
-		//add(item4,x.);
-		//add(item5,x.);
-		//add(item6,x.);
+
+		ImageIcon icon = new ImageIcon(getClass().getResource("/assets/sprites/item/item40.gif"));
+		item1.setIcon(icon);
+		item2.setIcon(icon);
+		item3.setIcon(icon);
+		item4.setIcon(icon);
+		item5.setIcon(icon);
+		item6.setIcon(icon);
+
+		add(GameLogic.getCanva(), BorderLayout.EAST);
+		// add(item2,x.);
+		// add(item3,x.);
+		// add(item4,x.);
+		// add(item5,x.);
+		// add(item6,x.);
 
 		// Hidden input
 		hiddenInput.setOpaque(false);
@@ -134,11 +132,26 @@ public class GameView extends JPanel {
 	}
 
 	public void appendColoredText(String text) {
-		String[] words = text.split(" ");
+
+		String[] words = text.split("(?=\\n)|(?<=\\n)|(?=[,.])|(?<=[,.])|\\s+");
 		Style still;
+		int i = -1;
 		for (String word : words) {
+			i++;
+			if (word.isBlank() && !word.equals("\n")) {
+				continue;
+			}
+
+			if (word.equals("\n")) {
+				appendStyledText("\n", defaultStyle);
+				continue;
+			}
 			still = getStyleForWord(word);
-			appendStyledText(word + " ", still);
+			appendStyledText(word, still);
+			if (!(word.matches("[,.]"))) {
+				appendStyledText(" ", defaultStyle);
+			}
+
 		}
 		appendStyledText("\n", defaultStyle);
 	}

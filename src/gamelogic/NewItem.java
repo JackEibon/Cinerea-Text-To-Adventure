@@ -43,7 +43,7 @@ public class NewItem {
 	
 	public static Item gun() {
 		Item x=new Item(
-				9,//id
+				11,//id
 				"gun",//command name
 				"Rusted gun", //full name
 				"rustedGun",

@@ -3,9 +3,10 @@ package gamelogic;
 import java.util.ArrayList;
 import gamelogic.Item;
 import java.util.List;
-
+import views.GameCanvas;
 public class CharSheet {
 
+	//public static GameCanvas canva= new GameCanvas();
 	private String name, location;
 	private boolean alive = true, player = false, resting = false, blessed = false, enchanted = false, retreating = false;
 	private int charId, health = 100, maxHealth = 100, energy = 100, maxEnergy = 100, recovery = 5, aim = 0, dodge = 0, tired = 0, bleed = 0, aroma = 0;
@@ -40,6 +41,7 @@ public class CharSheet {
 	public void setCharId(int charId) {
 		this.charId = charId;
 	}
+
 
 	public String getLocation() {
 		return location;
@@ -249,12 +251,14 @@ public class CharSheet {
 	}
 
 	public boolean addItem(Item i) {
+		//if(inventory.add(i)) {inventory.remove(i);canva.addInventoryById(i.getId());}
 		return inventory.add(i);
 	}
-
 	public boolean removeItem(Item i) {
+		//if(inventory.remove(i)) {inventory.add(i);canva.removeInventoryById(i.getId());}
 		return inventory.remove(i);
 	}
+
 
 	public boolean hasItem(Item i) {
 		return inventory.contains(i);

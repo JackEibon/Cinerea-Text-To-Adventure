@@ -10,8 +10,9 @@ public class GameLogic {
     private final WorldGraph world;
     private final Random random = new Random();
     private String lastTarget = "";
-    private CharSheet player;
-    public static GameCanvas canvas=new GameCanvas();
+    private static CharSheet player;
+    private static final GameCanvas canvas = new GameCanvas();
+  //  public static GameCanvas canvas= new GameCanvas();
     /* =========================================================
      * CONSTRUCTOR
      * ========================================================= */
@@ -21,6 +22,7 @@ public class GameLogic {
         world = new WorldGraph();
         world.getCurrentNode().setExplored(true);
         player= new CharSheet("name", true);
+       // canvas= player.canva
     }
 
 
@@ -51,9 +53,9 @@ public class GameLogic {
 			return interpretAttack(command);
 
 		/* Take and leave */
-		case "take":
+		case "grab": case "take":
 			return takeItem(command);
-		case "leave":
+		case "drop": case "leave":
 			return dropItem(command);
 		/* HELP */
 		case "help":
@@ -205,7 +207,9 @@ public class GameLogic {
     		if (world.getCurrentNode().addItem(x)) {
     			if (player.removeItem(x)) {
     				world.getCurrentNode().setTargetDescriptions();
-    				return "You dropped " + target;}
+    				canvas.removeInventoryById(x.getId()); 
+    				return "You dropped " + target;
+    				}
     			world.getCurrentNode().removeItem(x);
     			return "You couldnt drop it";}
     		return "you cant drop it here";}
@@ -251,4 +255,10 @@ public class GameLogic {
 	public WorldGraph getWorld() {
 		return world;
 	}
+	
+	public static GameCanvas getCanva() {
+
+	    return canvas;
+	}
+	
 }
