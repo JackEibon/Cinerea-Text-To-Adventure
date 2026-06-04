@@ -43,7 +43,7 @@ public class ItemController {
 				JOptionPane.showMessageDialog(view, "Select an item");
 				return;
 			}
-			boolean deleted = repo.delete(model.getItemAt(row).getIdItem());
+			boolean deleted = repo.delete(model.getItemAt(row).getId());
 			if (deleted)
 				model.removeRow(row);
 		});
