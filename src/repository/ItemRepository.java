@@ -26,8 +26,8 @@ public class ItemRepository {
 				ResultSet rs = st.executeQuery("SELECT * FROM item");) {
 
 			while (rs.next()) {
-				Item item = new Item(rs.getInt("id_item"), rs.getString("item_name"), rs.getString("item_type"),
-						rs.getString("description"));
+				Item item = new Item(rs.getInt("id_item"), rs.getString("item_name"),
+						rs.getString("description"),rs.getString("item_tags"));
 				items.add(item);
 			}
 
@@ -63,9 +63,9 @@ public class ItemRepository {
 		try (Connection connection = DatabaseConnection.getConnection();
 				PreparedStatement pst = connection.prepareStatement(sql)) {
 
-			pst.setString(1, item.getItemName());
-			pst.setString(2, item.getItemType());
-			pst.setString(3, item.getDescription());
+			pst.setString(1, item.getName());
+			pst.setString(2, item.getDescription());
+			pst.setString(3, item.getTagList());
 
 			int affectedRows = pst.executeUpdate();
 
@@ -87,10 +87,10 @@ public class ItemRepository {
 		try (Connection connection = DatabaseConnection.getConnection();
 				PreparedStatement pst = connection.prepareStatement(sql)) {
 
-			pst.setString(1, updatedItem.getItemName());
-			pst.setString(2, updatedItem.getItemType());
-			pst.setString(3, updatedItem.getDescription());
-			pst.setInt(4, updatedItem.getIdItem());
+			pst.setString(1, updatedItem.getName());
+			pst.setString(2, updatedItem.getDescription());
+			pst.setString(3, updatedItem.getTagList());
+			pst.setInt(4, updatedItem.getId());
 
 			int affectedRows = pst.executeUpdate();
 

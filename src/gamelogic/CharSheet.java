@@ -1,7 +1,7 @@
 package gamelogic;
 
 import java.util.ArrayList;
-import gamelogic.Item;
+import models.Item;
 import java.util.List;
 import views.GameCanvas;
 public class CharSheet {

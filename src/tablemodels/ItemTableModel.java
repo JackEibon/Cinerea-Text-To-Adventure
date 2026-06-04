@@ -8,7 +8,7 @@ public class ItemTableModel extends AbstractTableModel {
 
 	private List<Item> items;
 
-	private final String[] columns = { "ID", "Name", "Type", "Description" };
+	private final String[] columns = { "ID", "Name", "Description","Tags" };
 
 	public ItemTableModel(List<Item> items) {
 		this.items = items;
@@ -34,13 +34,13 @@ public class ItemTableModel extends AbstractTableModel {
 
 		switch (columnIndex) {
 		case 0:
-			return item.getIdItem();
+			return item.getId();
 		case 1:
-			return item.getItemName();
+			return item.getName();
 		case 2:
-			return item.getItemType();
-		case 3:
 			return item.getDescription();
+		case 3:
+			return item.getTagList();
 		}
 		return item;
 	}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewItem {
-	
+	/*
 	public static Item nothing() {return new Item(
 				0,//id
 				"Nothing",//command name
@@ -55,5 +55,5 @@ public class NewItem {
 				                "projectile")));	
 		return x;}
 		
-
+*/
 }

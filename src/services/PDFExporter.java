@@ -200,10 +200,10 @@ public class PDFExporter {
 			for (Item item : items) {
 				table.addCell(
 						new Cell().setTextAlignment(TextAlignment.CENTER).add(new Paragraph(String.valueOf(indx))));
-				table.addCell(new Cell().setTextAlignment(TextAlignment.LEFT).add(new Paragraph(item.getItemName())));
-				table.addCell(new Cell().setTextAlignment(TextAlignment.CENTER).add(new Paragraph(item.getItemType())));
+				table.addCell(new Cell().setTextAlignment(TextAlignment.LEFT).add(new Paragraph(item.getName())));
+				table.addCell(new Cell().setTextAlignment(TextAlignment.CENTER).add(new Paragraph(item.getDescription())));
 				table.addCell(
-						new Cell().setTextAlignment(TextAlignment.LEFT).add(new Paragraph(item.getDescription())));
+						new Cell().setTextAlignment(TextAlignment.LEFT).add(new Paragraph(item.getTagList())));
 				indx++;
 			}
 			doc.add(table);

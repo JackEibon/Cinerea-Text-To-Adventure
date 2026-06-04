@@ -3,7 +3,7 @@ package gamelogic;
 import java.util.Random;
 import gameWorld.*;
 import views.GameCanvas;
-
+import models.Item;
 public class GameLogic {
     private final Lexicon lexicon;
     private final TextParser parser;

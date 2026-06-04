@@ -21,8 +21,8 @@ import models.Item;
 public class ItemFormDialog extends JDialog {
 
 	private JTextField txtItemName;
-	private JTextField txtItemType;
 	private JTextField txtDescription;
+	private JTextField txtTags;
 
 	private JButton btnSave;
 	private JButton btnCancel;
@@ -79,12 +79,12 @@ public class ItemFormDialog extends JDialog {
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
 
 		txtItemName = new JTextField();
-		txtItemType = new JTextField();
 		txtDescription = new JTextField();
+		txtTags = new JTextField();
 
 		panel.add(createField("Name:", txtItemName));
-		panel.add(createField("Type:", txtItemType));
 		panel.add(createField("Description:", txtDescription));
+		panel.add(createField("Tags:", txtTags));
 
 		loadData();
 		return scroll;
@@ -109,28 +109,28 @@ public class ItemFormDialog extends JDialog {
 
 	private void loadData() {
 		if(item != null) {
-			txtItemName.setText(item.getItemName());
-			txtItemType.setText(item.getItemType());
+			txtItemName.setText(item.getName());
 			txtDescription.setText(item.getDescription());
+			txtTags.setText(item.getTagList());
 		}
 	}
 
 	private void save() {
 		String itemName = txtItemName.getText();
-		String itemType = txtItemType.getText();
 		String description = txtDescription.getText();
+		String tags= txtTags.getText();
 
-		if(itemName == null || itemName.equals("") || itemType == null || itemType.equals("")) {
-			JOptionPane.showMessageDialog(this, "Name and Type fields cannot be empty");
+		if(itemName == null || itemName.equals("")) {
+			JOptionPane.showMessageDialog(this, "Name field cannot be empty");
 			return;
 		}
 
 		if(item == null) {
-			item = new Item(itemName, itemType, description);
+			item = new Item(itemName,description,tags);
 		} else {
-			item.setItemName(itemName);
-			item.setItemType(itemType);
+			item.setName(itemName);
 			item.setDescription(description);
+			item.setTags(tags);
 		}
 
 		saved = true;

@@ -2,7 +2,7 @@ package gameWorld;
 
 import java.util.*;
 import gamelogic.CharSheet;
-import gamelogic.Item;
+import models.Item;
 import gamelogic.NewItem;
 
 /*Nodo tipo 1
@@ -191,7 +191,7 @@ public class NodeT1 {
 	}
 
 	public String getDescriptions() {
-		return mainDescription + " \n " + " \n" + goDescriptions + " \n" + "\n" + targetDescriptions + " ";
+		return mainDescription + "\n " + "\n" + goDescriptions + "\n" + "\n" + targetDescriptions + "\n";
 	}
 
 	public void setExplored(boolean explored) {
@@ -479,7 +479,7 @@ public class NodeT1 {
 			if (!(i.getDescription().equals("")))
 				aux += "\n" + i.getDescription() + "\n";
 		}
-		aux = (aux.equals("")) ? "nothing" : ": \n" + aux;
+		aux = (aux.equals("")) ? "nothing else\n" : ": \n" + aux;
 		targetDescriptions += aux;
 	}
 

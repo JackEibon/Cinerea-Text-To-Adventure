@@ -133,7 +133,7 @@ public class GameView extends JPanel {
 
 	public void appendColoredText(String text) {
 
-		String[] words = text.split("(?=\\n)|(?<=\\n)|(?=[,.])|(?<=[,.])|\\s+");
+		String[] words = text.split("(?=\n)|(?<=\\n)|(?=[,.])|(?<=[,.])|\\s+");
 		Style still;
 		int i = -1;
 		for (String word : words) {

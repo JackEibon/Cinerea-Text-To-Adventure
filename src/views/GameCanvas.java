@@ -175,7 +175,9 @@ public class GameCanvas extends JPanel {
 
     	inventoryById.remove( Integer.valueOf(id));
         repaint();
-        boolean there=false;
+        /*Attempted Blinking
+         * boolean there=false;
+        
     	for (int i=0; i<5;i++) {
     		if (frameCount%5==0 && !there) {
     		inventoryById.add( Integer.valueOf(id));
@@ -191,7 +193,9 @@ public class GameCanvas extends JPanel {
     	inventoryById.remove( Integer.valueOf(id));
         repaint();}
     	there=false;
+    	 */
     }
+    
 
     public void clearInventory() {
 
