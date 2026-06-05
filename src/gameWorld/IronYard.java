@@ -1,5 +1,7 @@
 package gameWorld;
 
+import java.io.IOException;
+
 import gamelogic.NewItem;
 import utils.Session;
 import models.User;
@@ -18,22 +20,18 @@ public class IronYard extends NodeT1 {
 		User player = Session.getCurrentUser();
 
 		if (player != null) {
-			switch (player.getWeapon().toLowerCase()) {
-			case "sword":
-		//		addItem(NewItem.sword(), "\nA battered sword remains among the grasslands.");
-				break;
-			case "spear":
-			//	addItem(NewItem.spear(), "\nA long spear sticks out of the mud.");
-				break;
-
-			case "gun":// addItem(NewItem.gun(),
-				// "\nAn old firearm lies half buried in the dirt.");
-				break;
-			default:
-				//addItem(NewItem.sword(), "\nA lone sword rests here.");
-			}
+				try {
+					if(addItem(NewItem.fromDB("rusted " + player.getWeapon().toLowerCase()),
+							"\nA "+ "rusted "+ player.getWeapon().toLowerCase() + " remains kind of usable" )) 
+						System.out.println( player.getWeapon().toLowerCase() +" added");
+					else System.out.println( player.getWeapon().toLowerCase() +" NOT added");
+				} catch (IOException e) {
+					addItem(NewItem.sword(), "\nA lone sword rests here.");
+					//e.printStackTrace();
+				}
+	
 		} else {
-			//addItem(NewItem.sword(), "\nA lone sword rests here.");
+			addItem(NewItem.sword(), "\nA lone sword rests here.");
 		}
 	}
 

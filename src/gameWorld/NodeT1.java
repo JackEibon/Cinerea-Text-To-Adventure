@@ -67,39 +67,95 @@ public class NodeT1 {
 		return wolfBeenHere;
 	}
 
-	public boolean addItem(Item i) {
-		return items.add(i);
-	}
+	public boolean addItem(Item ite) {
 
+	    if (ite != null) {return items.add(ite);}
+	    System.out.println("Attempted to add null item.");
+        return false;
+	    
+	}
+	/*
+	public boolean addItem(Item i) {
+		
+		if( i==null) {System.out.println("WHAT"); return false;}
+		return items.add(i);
+	}*/
+/*
 	public boolean addItem(Item i, String tDes) {
+		if( i==null) {System.out.println("WHAT"); return false;}
 		addTargetDescriptions(tDes);
 		return items.add(i);
 	}
+*/
+	public boolean addItem(Item item, String description) {
 
-	public boolean dropItem(Item i, String tDes) {
-		addTargetDescriptions(tDes + " lies there");
-		return items.add(i);
+	    if (item != null) {
+	    	addTargetDescriptions(description);
+		    return items.add(item);
+	        
+	    }
+	    System.out.println("Attempted to add null item.");
+        return false;
+	    
+	}
+	public boolean dropItem(Item ite, String tDes) {
+		if (ite != null) {
+	       
+addTargetDescriptions(tDes + " lies there");
+		return items.add(ite);}
+		 return false;
 	}
 
-	public boolean removeItem(Item i) {
-		return items.remove(i);
+
+	public boolean removeItem(Item ite) {
+
+	    if (ite != null)return items.remove(ite);
+	    return false;
 	}
 
+	public boolean removeItem(String word) {
+
+	    Item item = suchItem(word);
+
+	    if (item == null)
+	        return false;
+
+	    return removeItem(item);
+	}
+	/*
 	public boolean removeItem(String i) {
 		for (Item ite : items) {
-			if (ite.getName().equalsIgnoreCase(i))
-				return removeItem(ite);
+		if (ite.getTags().contains(i))
+			return removeItem(ite);
 		}
 		return false;
+	}*/
+	public Item suchItem(String word) {
+
+	    if (word==null||word.isBlank())
+	        return null;
+
+	    word=word.trim().toLowerCase();
+	    for (Item item : items) {
+	        if (item == null)
+	            continue;
+	        if (item.match(word))
+	            return item;
+	    }
+
+	    return null;
 	}
+	/*
 
 	public Item suchItem(String i) {
+		//for (Item ite : items) {System.out.println("ITEM: " + ite.getName());  System.out.println("TAGS: " + ite.getTags());}
 		for (Item ite : items) {
-			if (ite.getName().equalsIgnoreCase(i))
+			//for (String tag : ite.getTags()) {System.out.println(tag);}
+			if (ite.getTags().contains(i))
 				return ite;
-		}
+			}
 		return null;
-	}
+	}*/
 
 	public List<Item> getItems() {
 		return items;

@@ -10,8 +10,8 @@ public class GameLogic {
     private final WorldGraph world;
     private final Random random = new Random();
     private String lastTarget = "";
-    private static CharSheet player;
-    private static final GameCanvas canvas = new GameCanvas();
+    private static CharSheet player=new CharSheet("name", true);;
+    private static GameCanvas canvas = new GameCanvas(player);
   //  public static GameCanvas canvas= new GameCanvas();
     /* =========================================================
      * CONSTRUCTOR
@@ -192,7 +192,7 @@ public class GameLogic {
     			if (player.addItem(x)) 
     			{
     				world.getCurrentNode().setTargetDescriptions();
-    				canvas.addInventoryById(x.getId());    			
+    //				canvas.addInventoryById(x.getId());    			
     				return "You took the " + target;}
     			world.getCurrentNode().addItem(x);
     			return "You couldnt take it";}
@@ -207,7 +207,7 @@ public class GameLogic {
     		if (world.getCurrentNode().addItem(x)) {
     			if (player.removeItem(x)) {
     				world.getCurrentNode().setTargetDescriptions();
-    				canvas.removeInventoryById(x.getId()); 
+    	//			canvas.removeInventoryById(x.getId()); 
     				return "You dropped " + target;
     				}
     			world.getCurrentNode().removeItem(x);

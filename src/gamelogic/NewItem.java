@@ -2,6 +2,7 @@ package gamelogic;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,22 +14,34 @@ import config.DatabaseConnection;
 
 public class NewItem {
 	
-	public static Item itemFromDB(String name) throws IOException {
+	public static Item fromDB(String itemName) throws IOException {
 		Item item= null;
+	    String sql ="SELECT * FROM item WHERE item_name = ?";
 
-		try (Connection connection = DatabaseConnection.getConnection();
-				Statement st = connection.createStatement();
-				ResultSet rs = st.executeQuery("SELECT * FROM item WHERE item_name = " + name);) 
-		{
-			item= new Item(rs.getInt("id_item"), rs.getString("item_name"),
-						rs.getString("description"),rs.getString("item_tags"));
-			} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-		return item;
+	    try (
+	        Connection connection = DatabaseConnection.getConnection();
+	        PreparedStatement pst = connection.prepareStatement(sql); //as teached by chatgpt
+	    ) {
+
+	        pst.setString(1, itemName); //the number is the index, so if you have 2 "?" question marks, the first is with one, the second is with 2
+	        ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	           item=new Item(
+	                rs.getInt("id_item"),
+	                rs.getString("item_name"),
+	                rs.getString("description"),
+	                rs.getString("item_tags")
+	            );
+	        }
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+
+	    return item;
 	}
 	
-	public static Item itemFromDB(int id) throws IOException {
+	public static Item fromDB(int id) throws IOException {
 		Item item= null;
 
 		try (Connection connection = DatabaseConnection.getConnection();
@@ -79,8 +92,4 @@ public class NewItem {
 				 new ArrayList<>(List.of(
 				                "gun,weapon,projectile,ranged,gunpowder,rusted")));	
 		return x;}
-		
-
-	
-	
 }

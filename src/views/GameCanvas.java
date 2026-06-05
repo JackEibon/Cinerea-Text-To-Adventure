@@ -1,6 +1,10 @@
 package views;
 
 import javax.swing.*;
+
+import gamelogic.CharSheet;
+import repository.ItemRepository;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -9,6 +13,7 @@ import java.util.List;
 
 public class GameCanvas extends JPanel {
 
+	private CharSheet player;
 	private int frameCount = 0;
 
     /*
@@ -19,7 +24,6 @@ public class GameCanvas extends JPanel {
      * 41 = Rusted Spear
      * 42 = Revolver
      */
-	private static final List<Integer> inventoryById = new ArrayList<>();
 
     /*
      * Sprite cache.
@@ -35,7 +39,8 @@ public class GameCanvas extends JPanel {
     private static final int ICON_SPACING = 10;
     private static final int COLUMNS = 2;
 
-    public GameCanvas() {
+    public GameCanvas(CharSheet player) {
+    	this.player=player;
 
         setPreferredSize(new Dimension(350, 500));
         setBackground(Color.BLACK);
@@ -52,34 +57,34 @@ public class GameCanvas extends JPanel {
     
 
     private void loadSprites() {
+        ItemRepository repo =
+            new ItemRepository();
+        List<String> itemNames =
+            repo.getItemNames();
 
-        String id;
+        int loaded = 0;
 
+        for (String itemName : itemNames) {
 
-        for (int itemId = 0; itemId <= 60; itemId++) {
-            for (int frame = 0; frame <= 9; frame++) {
+            for (int frame = 0;frame < 10;frame++) {
 
-                id = "item" + itemId + "("+ frame + ").png";
+                String spriteName =
+                    itemName + "(" + frame + ").png";
 
                 BufferedImage img =
-                        loadImg("/assets/itemSprites/item" + itemId + "("+ frame + ").png");
-
+                    loadImg("/assets/itemSprites/"+ spriteName);
+                System.out.println("attempting to load: /assets/itemSprites/"+ spriteName);
                 if (img != null) {
-      //          	 System.out.println(
-    //                         "Loaded sprite: " + id
-        //             );
-                    sprites.put(id, img);
+                    sprites.put(spriteName,img);
+                    loaded++;
                 }
-          //      else System.out.println(
-            //            "NO Loaded sprite: " + id
-              //  );
+                else System.out.println("failed to load: "+ itemName + "(" + frame + ").png");
             }
         }
-
-        System.out.println(
-                //"Loaded sprites: " + sprites.size()
-        );
+        System.out.println("Loaded sprites: "+ loaded);
     }
+
+     
 
     private BufferedImage loadImg(String path) {
 
@@ -106,112 +111,23 @@ public class GameCanvas extends JPanel {
         
         if (frameCount>100) frameCount=0; 
     }
-
+    
     private void drawInventory(Graphics2D g) {
 
-        for (int index = 0;
-             index < inventoryById.size();
-             index++) {
-
-            int itemId = inventoryById.get(index);
-
-            /*
-             * Animation frame
-             *
-             * 0 1 2 3 4 5 6 7 8 9
-             */
-
-            int frame = (frameCount / 5) % 10;
-
-            String spriteId =
-            		"item" + itemId + "("+ frame + ").png";
-
-            BufferedImage img =
-                    sprites.get(spriteId);
-
-            if (img == null) {
-
-                /*
-                 * Fallback:
-                 * try frame 0
-                 */
-
-                img = sprites.get(
-                		"item" + itemId + "(0).png"
-                );
-            }
-
-            if (img == null) {
-                continue;
-            }
-
+    	int index= 0;
+        for (String ite : player.getInventoryNames()) {
+        	int frame = (frameCount / 5) % 10;
+        	 String spriteName = ite + "("+ frame + ").png";
+        	 BufferedImage img =sprites.get(spriteName);
+        	 if (img == null) img = sprites.get(ite + "(0).png"); //Fallback:try frame 0 
+        	 if (img == null) continue;
             int row = index / COLUMNS;
             int col = index % COLUMNS;
-
-            int x =
-                    10 + col * (ICON_SIZE + ICON_SPACING);
-
-            int y =
-                    10 + row * (ICON_SIZE + ICON_SPACING);
-
-            g.drawImage(
-                    img,
-                    x,
-                    y,
-                    ICON_SIZE,
-                    ICON_SIZE,
-                    null
-            );
+            int x =10 + col * (ICON_SIZE + ICON_SPACING);
+            int y= 10 + row * (ICON_SIZE + ICON_SPACING);
+            g.drawImage(img,x,y,ICON_SIZE,ICON_SIZE, null);
+            index++;
         }
-    }
-
-    public void addInventoryById(int id) {
-        if(inventoryById.add(Integer.valueOf(id))) System.out.println("added item " +id);
-        else System.out.println("not added item " +id);
-        repaint();
-    }
-
-    public void removeInventoryById(int id) {
-
-    	inventoryById.remove( Integer.valueOf(id));
-        repaint();
-        /*Attempted Blinking
-         * boolean there=false;
-        
-    	for (int i=0; i<5;i++) {
-    		if (frameCount%5==0 && !there) {
-    		inventoryById.add( Integer.valueOf(id));
-    		there=true;
-    		}
-            else if(there && frameCount%2==0) { 
-            	inventoryById.remove( Integer.valueOf(id));
-            	there=false;
-            }
-            repaint();
-    	}
-    	if (there) {
-    	inventoryById.remove( Integer.valueOf(id));
-        repaint();}
-    	there=false;
-    	 */
-    }
-    
-
-    public void clearInventory() {
-
-        inventoryById.clear();
-
-        repaint();
-    }
-
-    public List<Integer> getInventoryById() {
-
-        return inventoryById;
-    }
-
-    public int getFrameCount() {
-
-        return frameCount;
     }
 
 }

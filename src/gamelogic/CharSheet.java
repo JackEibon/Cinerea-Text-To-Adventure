@@ -42,7 +42,6 @@ public class CharSheet {
 		this.charId = charId;
 	}
 
-
 	public String getLocation() {
 		return location;
 	}
@@ -245,65 +244,82 @@ public class CharSheet {
 	public List<Item> getInventory() {
 		return inventory;
 	}
+	
+	public List<String> getInventoryNames() {
+		List<String> itemNames = new ArrayList<>();
+		for (Item item : inventory) {
+			itemNames.add(item.getName());
+			
+			
+		}
+		return itemNames;
+	}
 
 	public void setInventory(List<Item> inventory) {
 		this.inventory = inventory;
 	}
 
-	public boolean addItem(Item i) {
-		//if(inventory.add(i)) {inventory.remove(i);canva.addInventoryById(i.getId());}
-		return inventory.add(i);
-	}
-	public boolean removeItem(Item i) {
-		//if(inventory.remove(i)) {inventory.add(i);canva.removeInventoryById(i.getId());}
-		return inventory.remove(i);
-	}
+	/* =========================================================
+	 * INVENTORY
+	 * ========================================================= */
 
+	public boolean addItem(Item item) {
 
-	public boolean hasItem(Item i) {
-		return inventory.contains(i);
+	    if (item == null)
+	        return false;
+
+	    return inventory.add(item);
 	}
 
-	public boolean hasItem(String i) {
-		for (Item ite : inventory) {
-			if (ite.getName().equalsIgnoreCase(i))
-				return true;
-		}
-		return false;
+	public boolean removeItem(Item item) {
+
+	    if (item == null)
+	        return false;
+
+	    return inventory.remove(item);
 	}
 
-	public Item thisItem(String i) {
-		for (Item ite : inventory) {
-			if (ite.getName().equalsIgnoreCase(i))
-				return ite;
-		}
-		return null;
+	public boolean hasItem(Item item) {
+
+	    if (item == null)
+	        return false;
+
+	    return inventory.contains(item);
 	}
 
-	public boolean removeItem(String i) {
-		for (Item ite : inventory) {
-			if (ite.getName().equalsIgnoreCase(i))
-				return removeItem(ite);
-		}
-		return false;
+	public boolean hasItem(String word) {
+
+	    return thisItem(word) != null;
 	}
 
-	public List<String> getStatusEffects() {
-		return statusEffects;
+	public Item thisItem(String word) {
+
+	    if (word == null || word.isBlank())
+	        return null;
+
+	    word = word.trim().toLowerCase();
+
+	    for (Item item : inventory) {
+
+	        if (item == null)
+	            continue;
+
+	        if (item.match(word))
+	            return item;
+	    }
+
+	    return null;
 	}
 
-	public void setStatusEffects(List<String> statusEffects) {
-		this.statusEffects = statusEffects;
-	}
+	public boolean removeItem(String word) {
 
-	public boolean addStatusEffect(String effect) {
-		if (statusEffects.contains(effect)) {
-			return false;
-		}
-		statusEffects.add(effect);
-		return true;
-	}
+	    Item item = thisItem(word);
 
+	    if (item == null)
+	        return false;
+
+	    return removeItem(item);
+	}
 	public boolean removeStatusEffect(String effect) {
 		return statusEffects.remove(effect);
 	}

@@ -104,4 +104,25 @@ public class ItemRepository {
 
 		return false;
 	}
+	
+	public List<String> getItemNames() {//used mainly to load images
+	    List<String> names = new ArrayList<>();
+	    String sql ="SELECT item_name FROM item";
+	    try (
+	        Connection connection =
+	            DatabaseConnection.getConnection();
+	        Statement st =
+	            connection.createStatement();
+	        ResultSet rs =
+	            st.executeQuery(sql);
+	    ) { while (rs.next()) {
+	            names.add(
+	                rs.getString("item_name")
+	            );
+	        }
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+	    return names;
+	}
 }

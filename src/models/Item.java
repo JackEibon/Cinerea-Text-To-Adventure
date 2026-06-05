@@ -39,6 +39,23 @@ public class Item {
 			}
 	}
 	
+	public boolean match(String word) {
+	    if (word == null)return false;
+
+	    word = word.trim().toLowerCase();
+	    if (this.name.toLowerCase().contains(word)) return true;
+	    return hasTag(word);
+	}
+	
+	public boolean hasTag(String tag) {
+	    if (tag == null)return false;
+	    String search = tag.trim().toLowerCase();
+	    for (String currentTag : tags) {
+	        if (currentTag == null)continue;
+	        if (currentTag.trim().equalsIgnoreCase(search))return true;
+	    }
+	    return false;
+	}
 	public boolean addTag(String tag) {
 		return this.tags.add(tag);
 	}
