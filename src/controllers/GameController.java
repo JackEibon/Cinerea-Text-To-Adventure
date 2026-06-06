@@ -23,7 +23,6 @@ public class GameController implements ActionListener {
 		appendText("\nYou are falling across the dark, on a sea of black."
 				+ "\nSuddenly, you crash against something frail, and it breaks."
 				+ "\nA thousand pieces fall by your side, and you fall unto the unwanted ground."
-
 				+ "\n\n\n" + "look around  ");
 	}
 	

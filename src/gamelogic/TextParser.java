@@ -74,7 +74,7 @@ public class TextParser {
 			}
 			}
 		}
-		// as of the moment, no verb= invalid command
+		// as of now the moment, no verb= invalid command
 		if (parsedTongue.getVerb() == null) {
 			return null;
 		}

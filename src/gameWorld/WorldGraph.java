@@ -1,5 +1,6 @@
 package gameWorld;
 
+import java.io.IOException;
 import java.util.*;
 
 import gamelogic.*;
@@ -138,6 +139,15 @@ public class WorldGraph {
         gemRoom = new Cave(x,
                 "An otherwise empty room is set to keep a forgotten treasure",
                 "A glittering path seaths droplets");x++;
+                try {
+					gemRoom.addItem(NewItem.fromDB(user.getGem()),"a glittering gem !");
+				} catch (IOException e) {
+					try {
+						gemRoom.addItem(NewItem.fromDB("ruby"));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
         heavenPeak = new MountainPeak(x,
                 "At this top, one sits at the side of clouds and above the world. A river sits near, and one feels lonely and cold",
                 "A stone peak partitions heavens, but is within reach");x++;

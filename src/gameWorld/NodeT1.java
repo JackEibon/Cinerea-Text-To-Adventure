@@ -523,19 +523,21 @@ addTargetDescriptions(tDes + " lies there");
 	}
 
 	public void setTargetDescriptions() {
-		this.targetDescriptions = "there is ";
+		this.targetDescriptions = "there is";
 		String aux = "";
 		for (CharSheet charac : characters) {
 			if (!(charac.getDescription().equals("")))
 				aux += "\n" + charac.getDescription() + "\n";
 		}
 		if (!(aux.equals("")))
-			aux += "\n";
+			aux += " \n";
 		for (Item i : items) {
-			if (!(i.getDescription().equals("")))
-				aux += "\n" + i.getDescription() + "\n";
+			if (!(i.getDescription().equals(""))) {
+				if ((aux.equals("")))aux="\n";
+				aux += " \n" + i.getDescription() + "\n";
+			}
 		}
-		aux = (aux.equals("")) ? "nothing else\n" : ": \n" + aux;
+		aux = (aux.equals("")) ? " nothing else\n" : ":\n" + aux;
 		targetDescriptions += aux;
 	}
 
