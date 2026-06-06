@@ -182,7 +182,8 @@ public class WorldGraph {
         silverLake.setGoDescriptions();
 
         flowerGarden.setaN(1, greatForest, 2, "walking across the trees");
-        flowerGarden.setaN(2, silverCrater, 1, "following the water");
+        flowerGarden.setaN(2, silverCrater, 1, "walking towards the shimmer");
+        flowerGarden.setaN(3, silverLake, 1, "following  the water");
         flowerGarden.setGoDescriptions();
 
         oldBattlefield.setaN(1, entrance, 1, "walking towards the cave");
