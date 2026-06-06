@@ -4,25 +4,38 @@ import java.util.Random;
 import gameWorld.*;
 import views.GameCanvas;
 import models.Item;
+import models.User;
+import utils.Session;
 public class GameLogic {
+	private User user;
     private final Lexicon lexicon;
     private final TextParser parser;
     private final WorldGraph world;
     private final Random random = new Random();
     private String lastTarget = "";
-    private static CharSheet player=new CharSheet("name", true);;
-    private static GameCanvas canvas = new GameCanvas(player);
+    private static CharSheet player;
+
   //  public static GameCanvas canvas= new GameCanvas();
     /* =========================================================
      * CONSTRUCTOR
      * ========================================================= */
     public GameLogic() {
+    	user=null;
         lexicon = new Lexicon();
         parser = new TextParser();
         world = new WorldGraph();
         world.getCurrentNode().setExplored(true);
-        player= new CharSheet("name", true);
-       // canvas= player.canva
+        player=new CharSheet("name", true);;
+     
+    }
+    public GameLogic(User user) {
+    	this.user = user;
+        lexicon = new Lexicon();
+        parser = new TextParser();
+        world = new WorldGraph(user);
+        world.getCurrentNode().setExplored(true);
+        player=new CharSheet(user.getNickname(), true);;
+   
     }
 
 
@@ -256,9 +269,9 @@ public class GameLogic {
 		return world;
 	}
 	
-	public static GameCanvas getCanva() {
+	public static CharSheet getPlayerSheet() {
 
-	    return canvas;
+	    return player;
 	}
 	
 }

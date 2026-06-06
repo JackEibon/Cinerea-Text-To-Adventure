@@ -29,8 +29,10 @@ import gamelogic.*;
  * OldGraph was the previous code meant for this, but organization and commenting was turning tedious, so i remake
  * the structure from 0 and made it with a clearer idea, and the ideal to comment almost everything.
  */
+import models.User;
 
 public class WorldGraph {
+	private User user=null;
     /* =========================================================
      * WORLD VARIABLES
      * ========================================================= */
@@ -98,13 +100,28 @@ public class WorldGraph {
         buildMinimapCoordinates();
         currentNode = silverCrater;
     }
+    
+    public WorldGraph(User user) {
+        //creates Scenes
+    	this.user=user;
+    	Genesis();
+    	//as requested by partner, i accomodated things by function sections to make it clearer. Also is easier to scale and move things around this way
+        connectForestAndValley();
+        connectMountains();
+        connectCaves();
+        //
+        registerWorldNodes();
+        buildMinimapCoordinates();
+        currentNode = silverCrater;
+    }
     //Creates every scene and gives it an iD;
     private void Genesis() {int x = 0;
         silverCrater = new SilverCrater(x);x++;
         greatForest = new GreatForest(x);x++;
         silverLake = new Lake(x);x++;
         blacksmith = new Blacksmith(x);x++;
-        oldBattlefield = new IronYard(x);x++;
+        oldBattlefield = (this.user !=null) ? (new IronYard(x,user.getWeapon())):new IronYard(x);
+        x++;
         flowerGarden = new FlowerGarden(x);x++;
         entrance = new Cave(x,
                 "the cave is moist and cold, it grows bigger into the darkness",

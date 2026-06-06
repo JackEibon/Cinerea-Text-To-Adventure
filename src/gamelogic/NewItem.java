@@ -69,7 +69,7 @@ public class NewItem {
 	public static Item sword() {
 		Item x=new Item(
 				4,//id
-				"sword",//command name
+				"rusted sword",//name
 				"A sword eaten by time and air.",//description
 				 new ArrayList<>(List.of(
 				                "rusted","weapon","sword")));	

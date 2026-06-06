@@ -17,14 +17,32 @@ public class IronYard extends NodeT1 {
 				"War leaves behind few things of value, other than memories, blood, teachings and the weapon one owns.");
 		setDistantDescription("Some rusty and broken weapons start showing up on this path");
 
-		User player = Session.getCurrentUser();
+		//User player = Session.getCurrentUser();
 
-		if (player != null) {
+		
+			addItem(NewItem.sword(), "\nA lone sword rests here.");
+		
+	}
+	
+	public IronYard(int scene,String weapon) {
+
+		super(scene);
+		setBiome("meadow");
+		setScene(scene);
+		setMainDescription(
+				"War leaves behind few things of value, other than memories, blood, teachings and the weapon one owns.");
+		setDistantDescription("Some rusty and broken weapons start showing up on this path");
+
+		//User player = Session.getCurrentUser();
+
+		if (weapon!=null) {
 				try {
-					if(addItem(NewItem.fromDB("rusted " + player.getWeapon().toLowerCase()),
-							"\nA "+ "rusted "+ player.getWeapon().toLowerCase() + " remains kind of usable" )) 
-						System.out.println( player.getWeapon().toLowerCase() +" added");
-					else System.out.println( player.getWeapon().toLowerCase() +" NOT added");
+					//if(
+					addItem(NewItem.fromDB("rusted " + weapon),
+							"\nA "+ "rusted "+ weapon + " remains kind of usable" )
+							;
+							//) System.out.println( player.getWeapon().toLowerCase() +" added");
+//					else System.out.println( player.getWeapon().toLowerCase() +" NOT added");
 				} catch (IOException e) {
 					addItem(NewItem.sword(), "\nA lone sword rests here.");
 					//e.printStackTrace();

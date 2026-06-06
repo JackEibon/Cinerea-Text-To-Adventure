@@ -118,6 +118,7 @@ public class GameCanvas extends JPanel {
         for (String ite : player.getInventoryNames()) {
         	int frame = (frameCount / 5) % 10;
         	 String spriteName = ite + "("+ frame + ").png";
+        	 //System.out.println(spriteName);
         	 BufferedImage img =sprites.get(spriteName);
         	 if (img == null) img = sprites.get(ite + "(0).png"); //Fallback:try frame 0 
         	 if (img == null) continue;

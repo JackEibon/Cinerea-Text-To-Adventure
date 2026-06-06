@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.*;
 
+import gamelogic.CharSheet;
 import gamelogic.GameLogic;
 import gamelogic.Lexicon;
 import gamelogic.TextReader;
@@ -23,7 +24,7 @@ public class GameView extends JPanel {
 	public JLabel item4 = new JLabel();
 	public JLabel item5 = new JLabel();
 	public JLabel item6 = new JLabel();
-	//public GameCanvas canvas = GameLogic.getCanva();
+	public GameCanvas canvas;
 	private StyledDocument narrationDocument; // this is what makes it look smooth
 	// and allows for a certain personalization (placeholder)
 
@@ -34,20 +35,12 @@ public class GameView extends JPanel {
 	private Style modifierStyle;
 	private Style characterStyle;
 
-	public GameView() {
+	public GameView(CharSheet player) {
 		setLayout(new BorderLayout(10, 10));
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		setBackground(Color.BLACK);
-
-		ImageIcon icon = new ImageIcon(getClass().getResource("/assets/sprites/item/item40.gif"));
-		item1.setIcon(icon);
-		item2.setIcon(icon);
-		item3.setIcon(icon);
-		item4.setIcon(icon);
-		item5.setIcon(icon);
-		item6.setIcon(icon);
-
-		add(GameLogic.getCanva(), BorderLayout.EAST);
+		GameCanvas canvas = new GameCanvas(player);  
+		add(canvas, BorderLayout.EAST);
 		// add(item2,x.);
 		// add(item3,x.);
 		// add(item4,x.);

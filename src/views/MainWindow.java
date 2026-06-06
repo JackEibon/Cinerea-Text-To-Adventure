@@ -33,6 +33,7 @@ import java.util.Properties;
 import models.User;
 import utils.ThemeManager;
 import utils.WindowPreferences;
+import utils.Session;
 
 public class MainWindow extends JFrame {
 
@@ -164,7 +165,7 @@ public class MainWindow extends JFrame {
 		JButton btnPlay = new JButton("Start");
 		addButtonMain(centerPanel, "Start", btnPlay);
 		btnPlay.addActionListener(e -> {
-			new GameWindow();
+			new GameWindow(Session.getCurrentUser());
 			dispose();
 		});
 
