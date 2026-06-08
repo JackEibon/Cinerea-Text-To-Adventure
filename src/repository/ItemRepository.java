@@ -58,7 +58,7 @@ public class ItemRepository {
 	}
 
 	public boolean add(Item item) {
-		String sql = "INSERT INTO item (item_name, item_type, description) VALUES (?,?,?)";
+		String sql = "INSERT INTO item (item_name, description, item_tags) VALUES (?,?,?)";
 
 		try (Connection connection = DatabaseConnection.getConnection();
 				PreparedStatement pst = connection.prepareStatement(sql)) {
@@ -70,7 +70,6 @@ public class ItemRepository {
 			int affectedRows = pst.executeUpdate();
 
 			if (affectedRows > 0) {
-				System.out.println("Item added successfully");
 				return true;
 			}
 
@@ -82,7 +81,7 @@ public class ItemRepository {
 	}
 
 	public boolean update(int index, Item updatedItem) throws IOException {
-		String sql = "UPDATE item SET item_name = ?, item_type = ?, description = ? WHERE id_item = ?";
+		String sql = "UPDATE item SET item_name = ?, description = ?, item_tags = ? WHERE id_item = ?";
 
 		try (Connection connection = DatabaseConnection.getConnection();
 				PreparedStatement pst = connection.prepareStatement(sql)) {

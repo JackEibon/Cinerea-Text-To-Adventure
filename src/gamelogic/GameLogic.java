@@ -178,6 +178,7 @@ public class GameLogic {
 				player.addPoints(world.getCurrentNode().getScene());
 			return getSceneText();
 		}
+		
 		int destination = Integer.parseInt(command.getTarget());
 
 		// wooooo lets make a Try catch

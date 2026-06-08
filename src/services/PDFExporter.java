@@ -25,7 +25,6 @@ import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 
 import models.User;
-import models.Config;
 import models.Item;
 
 public class PDFExporter {
@@ -95,7 +94,7 @@ public class PDFExporter {
 
 			for (int i = 0; i < 2; i++) {
 				Cell[] headerFooter = new Cell[] { createHeaderFooterCell("#"), createHeaderFooterCell("Name"),
-						createHeaderFooterCell("Description"), createHeaderFooterCell("Type") };
+						createHeaderFooterCell("Description"), createHeaderFooterCell("Tags") };
 				for (Cell celda : headerFooter) {
 					if (i == 0)
 						table.addHeaderCell(celda);

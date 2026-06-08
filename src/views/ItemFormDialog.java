@@ -120,8 +120,8 @@ public class ItemFormDialog extends JDialog {
 		String description = txtDescription.getText();
 		String tags= txtTags.getText();
 
-		if(itemName == null || itemName.equals("")) {
-			JOptionPane.showMessageDialog(this, "Name field cannot be empty");
+		if(itemName == null || itemName.equals("") || description == null || description.equals("") || tags == null || tags.equals("")) {
+			JOptionPane.showMessageDialog(this, "One of the fields is empty");
 			return;
 		}
 

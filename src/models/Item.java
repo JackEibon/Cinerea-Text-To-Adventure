@@ -86,13 +86,12 @@ public class Item {
 
 	public void setTags(String taglist) {
 		String[] tagGroup = taglist.split(",");
-		List<String> aux = null;
+		List<String> aux = new ArrayList();
 		for (String ta : tagGroup) {
-			if (ta.isBlank() || ta.equals("") || ta.equals(","))
-				continue;
-			else {
+			if(!(ta==null)){
 				aux.add(ta);
-			}
+			} else if(ta.isBlank() || ta.equals("") || ta.equals(","))
+				continue;
 		}
 		this.tags = aux;
 	}
