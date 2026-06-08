@@ -270,7 +270,7 @@ public class GameLogic {
             player.setPoints(score);
             
             t+="\nScore: " +score;
-            t+="Credits:\n"
+            t+="\nCredits:\n"
                     + "\n"
                     
                     + "\nProgramming by Etneilav & Abraham"
