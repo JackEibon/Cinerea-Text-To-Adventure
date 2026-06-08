@@ -14,7 +14,6 @@ import gamelogic.WordColors;
 
 public class GameView extends JPanel {
 
-	public GameWindow window;
 	public JTextField hiddenInput = new JTextField();
 	public TextReader reader;
 	public JTextPane narrationPane = new JTextPane();
@@ -37,8 +36,7 @@ public class GameView extends JPanel {
 	private Style modifierStyle;
 	private Style characterStyle;
 
-	public GameView(CharSheet player) {
-		this.window = window;
+	public GameView(CharSheet player, WorldGraph world) {
 		setLayout(new BorderLayout(10, 10));
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		setBackground(Color.BLACK);
@@ -173,9 +171,5 @@ public class GameView extends JPanel {
 		default:
 			return defaultStyle;
 		}
-	}
-
-	public Window getWindow() {
-		return window;
 	}
 }

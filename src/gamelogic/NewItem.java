@@ -30,7 +30,7 @@ public class NewItem {
 	                rs.getInt("id_item"),
 	                rs.getString("item_name"),
 	                rs.getString("description"),
-	                rs.getString("item_type")
+	                rs.getString("item_tags")
 	            );
 	        }
 
@@ -49,7 +49,7 @@ public class NewItem {
 				ResultSet rs = st.executeQuery("SELECT * FROM item WHERE id_item = " + id);) 
 		{
 			item= new Item(rs.getInt("id_item"), rs.getString("item_name"),
-						rs.getString("description"),rs.getString("item_type"));
+						rs.getString("description"),rs.getString("item_tags"));
 			} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
