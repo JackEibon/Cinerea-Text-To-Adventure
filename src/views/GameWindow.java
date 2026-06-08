@@ -19,7 +19,7 @@ public class GameWindow extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		gameView = new GameView(logic.getPlayerSheet());
+		gameView = new GameView(logic.getPlayerSheet(),logic.getWorld());
 		add(gameView);
 		new GameController(gameView, logic);
 		setVisible(true);
@@ -29,12 +29,13 @@ public class GameWindow extends JFrame {
 	public GameWindow(User user) {
 		this.user=user;
 		setTitle("Cinerea - Adventure");
-		setSize(1000, 700);
+		setSize(1000, 800);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		logic= new GameLogic(user);
+		//logic= new GameLogic(user);
+		logic= new GameLogic(user, 7, 7, 7, 1, 300);
 
-		gameView = new GameView(logic.getPlayerSheet());
+		gameView = new GameView(logic.getPlayerSheet(),logic.getWorld());
 		
 		add(gameView);
 		new GameController(gameView, logic);

@@ -16,7 +16,10 @@ public class Lexicon {
 			"take", "grab", 
 			"drop", "leave");
 
-	public static final Set<String> directions = Set.of("north", "south", "east", "west", "up", "down", 
+	public static final Set<String> directions = Set.of(
+			"north", "south", "east", "west", 
+			"up", "down",
+			"inventory",
 			"paths","ways",  "ahead",
 			"around", "here",
 			"1", "2", "3", "4", "5", "6", "7", "8");

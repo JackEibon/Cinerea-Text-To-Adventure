@@ -1,4 +1,4 @@
-package gamelogic;
+package characters;
 
 import java.util.ArrayList;
 import models.Item;
@@ -7,15 +7,82 @@ import views.GameCanvas;
 public class CharSheet {
 
 	//public static GameCanvas canva= new GameCanvas();
-	private String name, location;
-	private boolean alive = true, player = false, resting = false, blessed = false, enchanted = false, retreating = false;
-	private int charId, health = 100, maxHealth = 100, energy = 100, maxEnergy = 100, recovery = 5, aim = 0, dodge = 0, tired = 0, bleed = 0, aroma = 0;
+	private String name, location, lookWhere="inventory";
+	
+	private boolean alive = true, player = false, resting = false, blessed = false, enchanted = false,sky=true, retreating = false;
+	private int charId, health = 100, maxHealth = 100, energy = 100, maxEnergy = 100, recovery = 5, aim = 0, dodge = 0, tired = 0, bleed = 0, tock=1, aroma = 0,
+	points=1, countingScore=0;
 	private String description = "";
 	private List<Item> inventory = new ArrayList<>();
 	private List<String> statusEffects = new ArrayList<>(), knownWords = new ArrayList<>();
 
 	public CharSheet() {
 	}
+	
+	
+
+	public String getLookWhere() {
+		return lookWhere;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+	
+	public void addPoints(int x) {
+		this.points+=x;
+	}
+
+
+
+	public void setLookWhere(String lookWhere) {
+		this.lookWhere = lookWhere;
+	}
+
+
+
+	public boolean isSky() {
+		return sky;
+	}
+	
+
+
+
+	public int getCountingScore() {
+		return countingScore;
+	}
+
+
+
+	public void setCountingScore(int countingScore) {
+		this.countingScore = countingScore;
+	}
+
+
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+
+
+	public void setSky(boolean sky) {
+		this.sky = sky;
+	}
+
+
+
+	public int getTock() {
+		return tock;
+	}
+
+
+
+	public void setTock(int tock) {
+		this.tock = tock;
+	}
+
+
 
 	public CharSheet(String name) {
 		this.name = name;

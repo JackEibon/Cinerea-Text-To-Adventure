@@ -1,7 +1,7 @@
 package gameWorld;
 
 import java.util.*;
-import gamelogic.CharSheet;
+import characters.*;
 import models.Item;
 import gamelogic.NewItem;
 
