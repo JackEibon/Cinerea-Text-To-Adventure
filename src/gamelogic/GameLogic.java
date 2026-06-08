@@ -13,15 +13,16 @@ import utils.Session;
 
 public class GameLogic {
 	private User user;
-    private final Lexicon lexicon;
-    private final TextParser parser;
-    private final WorldGraph world;
-    private final Random random = new Random();
-    private String lastTarget = "";
-    private static CharSheet player;
-    private Timer worldTime; 
-    private static int  minitick=0,tick = 1, tack = 1, tock = 1, dayEnd = 0, nightEnd = 0, nigthHP=680, countingScore;
-    private boolean night=false;
+	private final Lexicon lexicon;
+	private final TextParser parser;
+	private final WorldGraph world;
+	private final Random random = new Random();
+	private String lastTarget = "";
+	private CharSheet player;
+	private Timer worldTime;
+	private static int minitick = 0, tick = 1, tack = 1, tock = 1, dayEnd = 0, nightEnd = 0, nigthHP = 670,
+			countingScore;
+	private boolean night = false, set1 = false, set2 = false, set3 = false;
 
 	// public static GameCanvas canvas= new GameCanvas();
 	/*
@@ -616,7 +617,7 @@ public class GameLogic {
 		GameLogic.nigthHP = nigthHP;
 	}
 
-	public static CharSheet getPlayerSheet() {
+	public CharSheet getPlayerSheet() {
 
 		return player;
 	}

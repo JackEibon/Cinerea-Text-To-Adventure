@@ -4,85 +4,66 @@ import java.util.ArrayList;
 import models.Item;
 import java.util.List;
 import views.GameCanvas;
+
 public class CharSheet {
 
-	//public static GameCanvas canva= new GameCanvas();
-	private String name, location, lookWhere="inventory";
-	
-	private boolean alive = true, player = false, resting = false, blessed = false, enchanted = false,sky=true, retreating = false;
-	private int charId, health = 100, maxHealth = 100, energy = 100, maxEnergy = 100, recovery = 5, aim = 0, dodge = 0, tired = 0, bleed = 0, tock=1, aroma = 0,
-	points=1, countingScore=0;
+	// public static GameCanvas canva= new GameCanvas();
+	private String name, location, lookWhere = "inventory";
+
+	private boolean alive = true, player = false, resting = false, blessed = false, enchanted = false, sky = true,
+			retreating = false;
+	private int charId, health = 100, maxHealth = 100, energy = 100, maxEnergy = 100, recovery = 5, aim = 0, dodge = 0,
+			tired = 0, bleed = 0, tock = 1, aroma = 0, points = 1, countingScore = 0;
 	private String description = "";
 	private List<Item> inventory = new ArrayList<>();
 	private List<String> statusEffects = new ArrayList<>(), knownWords = new ArrayList<>();
 
 	public CharSheet() {
 	}
-	
-	
 
 	public String getLookWhere() {
 		return lookWhere;
 	}
-	
+
 	public int getPoints() {
 		return points;
 	}
-	
+
 	public void addPoints(int x) {
-		this.points+=x;
+		this.points += x;
 	}
-
-
 
 	public void setLookWhere(String lookWhere) {
 		this.lookWhere = lookWhere;
 	}
 
-
-
 	public boolean isSky() {
 		return sky;
 	}
-	
-
-
 
 	public int getCountingScore() {
 		return countingScore;
 	}
 
-
-
 	public void setCountingScore(int countingScore) {
 		this.countingScore = countingScore;
 	}
-
-
 
 	public void setPoints(int points) {
 		this.points = points;
 	}
 
-
-
 	public void setSky(boolean sky) {
 		this.sky = sky;
 	}
-
-
 
 	public int getTock() {
 		return tock;
 	}
 
-
-
 	public void setTock(int tock) {
 		this.tock = tock;
 	}
-
-
 
 	public CharSheet(String name) {
 		this.name = name;
@@ -311,13 +292,12 @@ public class CharSheet {
 	public List<Item> getInventory() {
 		return inventory;
 	}
-	
+
 	public List<String> getInventoryNames() {
 		List<String> itemNames = new ArrayList<>();
 		for (Item item : inventory) {
 			itemNames.add(item.getName());
-			
-			
+
 		}
 		return itemNames;
 	}
@@ -326,67 +306,69 @@ public class CharSheet {
 		this.inventory = inventory;
 	}
 
-	/* =========================================================
-	 * INVENTORY
-	 * ========================================================= */
+	/*
+	 * ========================================================= INVENTORY
+	 * =========================================================
+	 */
 
 	public boolean addItem(Item item) {
 
-	    if (item == null)
-	        return false;
+		if (item == null)
+			return false;
 
-	    return inventory.add(item);
+		return inventory.add(item);
 	}
 
 	public boolean removeItem(Item item) {
 
-	    if (item == null)
-	        return false;
+		if (item == null)
+			return false;
 
-	    return inventory.remove(item);
+		return inventory.remove(item);
 	}
 
 	public boolean hasItem(Item item) {
 
-	    if (item == null)
-	        return false;
+		if (item == null)
+			return false;
 
-	    return inventory.contains(item);
+		return inventory.contains(item);
 	}
 
 	public boolean hasItem(String word) {
 
-	    return thisItem(word) != null;
+		return thisItem(word) != null;
 	}
 
 	public Item thisItem(String word) {
 
-	    if (word == null || word.isBlank())
-	        return null;
+		if (word == null || word.isBlank())
+			return null;
 
-	    word = word.trim().toLowerCase();
+		word = word.trim().toLowerCase();
 
-	    for (Item item : inventory) {
+		for (Item item : inventory) {
 
-	        if (item == null)
-	            continue;
+			if (item == null)
+				continue;
 
-	        if (item.match(word))
-	            return item;
-	    }
+			if (item.match(word))
+				return item;
+		}
 
-	    return null;
+		return null;
 	}
 
 	public boolean removeItem(String word) {
 
-	    Item item = thisItem(word);
+		Item item = thisItem(word);
 
-	    if (item == null)
-	        return false;
+		if (item == null)
+			return false;
 
-	    return removeItem(item);
+		return removeItem(item);
 	}
+
 	public boolean removeStatusEffect(String effect) {
 		return statusEffects.remove(effect);
 	}

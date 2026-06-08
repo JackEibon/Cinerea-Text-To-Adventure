@@ -26,16 +26,16 @@ public class TextParser {
 					word = "take";
 					break;
 				}
-				if (parsedTongue.getVerb() != null) 
+				if (parsedTongue.getVerb() != null)
 					return null;
-				if (!parsedTongue.maySetVerb(word)) 
+				if (!parsedTongue.maySetVerb(word))
 					return null;
 				break;
 			}
 			case "direction": {
-				if (parsedTongue.getTarget() != null) 
+				if (parsedTongue.getTarget() != null)
 					return null;
-				if (!parsedTongue.maySetTarget(word)) 
+				if (!parsedTongue.maySetTarget(word))
 					return null;
 				break;
 			}
@@ -48,24 +48,24 @@ public class TextParser {
 					}
 					;
 				} else {
-					if (parsedTongue.getItem() != null) 
+					if (parsedTongue.getItem() != null)
 						return null;
-					if (!parsedTongue.maySetItem(word)) 
+					if (!parsedTongue.maySetItem(word))
 						return null;
 				}
 				break;
 			}
 			case "character": {
-				if (parsedTongue.getTarget() != null) 
+				if (parsedTongue.getTarget() != null)
 					return null;
-				if (!parsedTongue.maySetTarget(word)) 
+				if (!parsedTongue.maySetTarget(word))
 					return null;
 				break;
 			}
 			case "modifier": {
-				if (parsedTongue.getModifier() != null) 
+				if (parsedTongue.getModifier() != null)
 					return null;
-				if (!parsedTongue.maySetModifier(word)) 
+				if (!parsedTongue.maySetModifier(word))
 					return null;
 				break;
 			}

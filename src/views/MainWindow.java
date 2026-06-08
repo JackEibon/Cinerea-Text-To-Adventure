@@ -26,6 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import assets.utils.AppFont;
@@ -39,31 +40,16 @@ public class MainWindow extends JFrame {
 
 	public static final String HOME = "Home";
 	public static final String USERS = "Users";
-	public static final String CONFIG = "Configs";
-	public static final String SCORE = "Scores";
 	public static final String ITEM = "Items";
-	public static final String STATUS = "Statuses";
-	public static final String NPC = "NPCs";
-	public static final String INVENTORY = "Inventories";
 	
 	public JMenuItem mItemExit;
 	
 	public JButton homeBtn;
 	public JButton usersBtn;
-	public JButton configBtn;
-	public JButton scoreBtn;
 	public JButton itemBtn;
-	public JButton statusBtn;
-	public JButton npcBtn;
-	public JButton inventoryBtn;
 	
 	public UsersView usersPanel;
-	public ConfigView configPanel;
-	public ScoreView scorePanel;
 	public ItemView itemPanel;
-	public StatusView statusPanel;
-	public NpcView npcPanel;
-	public UserInventoryView inventoryPanel;
 	
 	private CardLayout cardLayout; 
 	private JPanel container; 
@@ -268,27 +254,12 @@ public class MainWindow extends JFrame {
 		homeBtn.setFocusable(false);
 		usersBtn = new JButton("Users");
 		usersBtn.setFocusable(false);
-		configBtn = new JButton("Configs");
-		configBtn.setFocusable(false);
-		scoreBtn = new JButton("Scores");
-		scoreBtn.setFocusable(false);
 		itemBtn = new JButton("Items");
 		itemBtn.setFocusable(false);
-		statusBtn = new JButton("Statuses");
-		statusBtn.setFocusable(false);
-		npcBtn = new JButton("NPCs");
-		npcBtn.setFocusable(false);
-		inventoryBtn = new JButton("Inventories");
-		inventoryBtn.setFocusable(false);
 
 		navbar.add(homeBtn);
 		navbar.add(usersBtn);
-		navbar.add(configBtn);
-		navbar.add(scoreBtn);
 		navbar.add(itemBtn);
-		navbar.add(statusBtn);
-		navbar.add(npcBtn);
-		navbar.add(inventoryBtn);
 
 		add(navbar, BorderLayout.NORTH);
 	}
@@ -297,25 +268,24 @@ public class MainWindow extends JFrame {
 		cardLayout = new CardLayout();
 		container = new JPanel(cardLayout);
 		
+		String welcome = "\n\n\n\nWelcome\nIf you're reading this means that you've got ADMIN\nNow do your work!\n\n\nAtte: Etneilav";
+		
+		JTextArea textWelcome = new JTextArea(welcome);
+		
+		textWelcome.setEditable(false);   
+		textWelcome.setOpaque(false);     
+		textWelcome.setFocusable(false);
+		textWelcome.setFont(AppFont.normalSecondary());
+		
 		JPanel homePanel = new JPanel();
-		homePanel.add(new JLabel("Welcome"));
+		homePanel.add(textWelcome);
 		
 		usersPanel = new UsersView();
-		configPanel = new ConfigView();
-		scorePanel = new ScoreView();
 		itemPanel = new ItemView();
-		statusPanel = new StatusView();
-		npcPanel = new NpcView();
-		inventoryPanel = new UserInventoryView();
 		
 		container.add(homePanel, HOME);
 		container.add(usersPanel, USERS);
-		container.add(configPanel, CONFIG);
-		container.add(scorePanel, SCORE);
 		container.add(itemPanel, ITEM);
-		container.add(statusPanel, STATUS);
-		container.add(npcPanel, NPC);
-		container.add(inventoryPanel, INVENTORY);
 		
 		add(container, BorderLayout.CENTER);
 	}
@@ -329,20 +299,6 @@ public class MainWindow extends JFrame {
 				repaint();
 			}
 			
-			if (configPanel != null && (CONFIG.equals(view) || "Configs".equals(view))) {
-				getContentPane().removeAll();
-				add(configPanel, BorderLayout.CENTER);
-				revalidate();
-				repaint();
-			}
-			
-			if (scorePanel != null && (SCORE.equals(view) || "Scores".equals(view))) {
-				getContentPane().removeAll();
-				add(scorePanel, BorderLayout.CENTER);
-				revalidate();
-				repaint();
-			}
-			
 			if (itemPanel != null && (ITEM.equals(view) || "Items".equals(view))) {
 				getContentPane().removeAll();
 				add(itemPanel, BorderLayout.CENTER);
@@ -350,33 +306,13 @@ public class MainWindow extends JFrame {
 				repaint();
 			}
 			
-			if (statusPanel != null && (STATUS.equals(view) || "Statuses".equals(view))) {
-				getContentPane().removeAll();
-				add(statusPanel, BorderLayout.CENTER);
-				revalidate();
-				repaint();
-			}
-			
-			if (npcPanel != null && (NPC.equals(view) || "NPCs".equals(view))) {
-				getContentPane().removeAll();
-				add(npcPanel, BorderLayout.CENTER);
-				revalidate();
-				repaint();
-			}
-			
-			if (inventoryPanel != null && (INVENTORY.equals(view) || "Inventories".equals(view))) {
-				getContentPane().removeAll();
-				add(inventoryPanel, BorderLayout.CENTER);
-				revalidate();
-				repaint();
-			}
 			return;
 		}
 		cardLayout.show(container, view); 
 	}
 
 	public int confirmExit() { 
-		return JOptionPane.showConfirmDialog(this, "¿Are you sure you want to go back? The data will be lost", "¿Sure?",
+		return JOptionPane.showConfirmDialog(this, "Are you sure you want to go back? The data will be lost", "Sure?",
 				JOptionPane.YES_NO_OPTION);
 	}
 

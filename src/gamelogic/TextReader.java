@@ -9,7 +9,7 @@ public class TextReader extends JComponent {
 
 	public TextReader(JTextField input) {
 		this.input = input;
-		
+
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(100, 40));
 		setFocusable(false);
@@ -18,21 +18,21 @@ public class TextReader extends JComponent {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setFont(new Font("Consolas", Font.BOLD, 18));
-		
+
 		String text = input.getText();
 		String[] words = text.split("\\s+");
-		
+
 		int x = 10;
 		int y = 25;
-		
+
 		String lastVerb = null;
-		
+
 		int coloredCount = countColored(words);
-		
+
 		for (String word : words) {
 			Color base = WordColors.getColorForWord(word, false);
 			boolean isTarget = false;
@@ -42,23 +42,23 @@ public class TextReader extends JComponent {
 				else if (lastVerb != null)
 					isTarget = true;
 			}
-			
+
 			Color finalColor = WordColors.getColorForWord(word, isTarget);
-			
+
 			g.setColor(finalColor);
 			g.drawString(word, x, y);
-			
+
 			if (Lexicon.isVerb(word)) {
 				lastVerb = word;
 			}
-			
+
 			x += g.getFontMetrics().stringWidth(word + " ");
 		}
 	}
 
 	private int countColored(String[] words) {
 		int count = 0;
-		
+
 		for (String w : words) {
 			if (!Lexicon.wordIs(w).equals("non")) {
 				count++;
