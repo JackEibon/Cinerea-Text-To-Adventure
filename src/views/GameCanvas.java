@@ -173,7 +173,7 @@ public class GameCanvas extends JPanel {
         }
         
         
-        if (frameCount>500) frameCount=0; 
+        if (frameCount>100) frameCount=0; 
     }
     
     private void drawScore(Graphics g) 
@@ -232,7 +232,7 @@ public class GameCanvas extends JPanel {
             int x,
             int y) {
 
-        int f=frame/25;
+        int f=frame;
 
         switch(type) {
 
@@ -241,11 +241,11 @@ public class GameCanvas extends JPanel {
                 break;
 
             case 2:
-                f %= 10;
+                f %= 9;
                 break;
 
             case 3:
-                f %= 17;
+                f %= 15;
                 break;
 
             default:
@@ -271,7 +271,7 @@ public class GameCanvas extends JPanel {
 
     	int index= 0;
         for (String ite : player.getInventoryNames()) {
-        	int frame = (frameCount / 50) % 10;
+        	int frame = (frameCount / 5) % 10;
         	 String spriteName = ite + "("+ frame + ").png";
         	 //System.out.println(spriteName);
         	 BufferedImage img =sprites.get(spriteName);

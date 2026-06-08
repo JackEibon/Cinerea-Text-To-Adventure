@@ -28,7 +28,7 @@ public class Star {
 	
 	public void upAdvance() {
 		this.coordinate_y--;
-		if (coordinate_y<0) {this.coordinate_y=680;}
+		if (coordinate_y<-40) {this.coordinate_y=680;}
 		
 		
 	}

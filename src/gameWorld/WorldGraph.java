@@ -355,7 +355,7 @@ public class WorldGraph {
 
         Random r = new Random();
 
-        for(int i = 0; i < 10000; i++) {
+        for(int i = 0; i < 1000; i++) {
 
             nightSky.add(
                 new Star(
