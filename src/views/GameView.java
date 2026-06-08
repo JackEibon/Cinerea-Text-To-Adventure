@@ -5,7 +5,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.*;
 
-import gamelogic.CharSheet;
+import characters.*;
+import gameWorld.WorldGraph;
 import gamelogic.GameLogic;
 import gamelogic.Lexicon;
 import gamelogic.TextReader;
@@ -41,7 +42,7 @@ public class GameView extends JPanel {
 		setLayout(new BorderLayout(10, 10));
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		setBackground(Color.BLACK);
-		GameCanvas canvas = new GameCanvas(player);  
+		GameCanvas canvas = new GameCanvas(player,world);  
 		add(canvas, BorderLayout.EAST);
 		// add(item2,x.);
 		// add(item3,x.);
@@ -110,6 +111,12 @@ public class GameView extends JPanel {
 			if (!hiddenInput.hasFocus()) {
 				hiddenInput.requestFocusInWindow();
 			}
+			if (player.getPoints()>10000) {
+				hiddenInput.setRequestFocusEnabled(false);
+				hiddenInput.setFocusable(false);
+				hiddenInput.setText("Score: "+ Integer.toString(player.getPoints()));
+			}
+			
 		});
 	}
 

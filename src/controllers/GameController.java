@@ -53,12 +53,24 @@ public class GameController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String response= "";
+		//if (logic.getPlayerSheet().isAlive()&&logic.getNightEnd()<3) {
 		String command = view.hiddenInput.getText();
-		String response = logic.execute(command);
+		response = logic.execute(command.toLowerCase());
+		
 		appendText("> " + command + "\n" + response);
+		
 		view.hiddenInput.setText("");
-		view.reader.repaint();
+		view.reader.repaint();	
 	}
+		//else 
+		//{
+			//response= logic.execute("GAME OVER");
+			//appendText(response);
+		//}
+		
+		
+	//}
 
 	public void appendText(String text) {
 		view.appendColoredText(text);
