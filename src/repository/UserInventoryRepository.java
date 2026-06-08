@@ -19,11 +19,10 @@ public class UserInventoryRepository {
 
 	public List<UserInventory> getUserInventories() throws IOException {
 		List<UserInventory> inventories = new ArrayList<UserInventory>();
-		
-		String sql = "SELECT ui.id_inventory, ui.id_user, ui.id_item, ui.quantity, u.nickname, i.item_name " +
-					 "FROM user_inventory ui " +
-					 "INNER JOIN user_cinerea u ON ui.id_user = u.id_user_cinerea " +
-					 "INNER JOIN item i ON ui.id_item = i.id_item";
+
+		String sql = "SELECT ui.id_inventory, ui.id_user, ui.id_item, ui.quantity, u.nickname, i.item_name "
+				+ "FROM user_inventory ui " + "INNER JOIN user_cinerea u ON ui.id_user = u.id_user_cinerea "
+				+ "INNER JOIN item i ON ui.id_item = i.id_item";
 
 		try (Connection connection = DatabaseConnection.getConnection();
 				Statement st = connection.createStatement();
@@ -32,11 +31,11 @@ public class UserInventoryRepository {
 			while (rs.next()) {
 				UserInventory inventory = new UserInventory(rs.getInt("id_inventory"), rs.getInt("id_user"),
 						rs.getInt("id_item"), rs.getInt("quantity"));
-						
+
 				// inyectamos el nombre del usuario y del objeto
 				inventory.setNickname(rs.getString("nickname"));
 				inventory.setItemName(rs.getString("item_name"));
-				
+
 				inventories.add(inventory);
 			}
 

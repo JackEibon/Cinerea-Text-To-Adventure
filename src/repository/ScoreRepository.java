@@ -20,10 +20,9 @@ public class ScoreRepository {
 
 	public List<Score> getScores() throws IOException {
 		List<Score> scores = new ArrayList<Score>();
-		
-		String sql = "SELECT s.id_score, s.id_user, s.best_score, s.last_score, u.nickname " +
-					 "FROM score s " +
-					 "INNER JOIN user_cinerea u ON s.id_user = u.id_user_cinerea";
+
+		String sql = "SELECT s.id_score, s.id_user, s.best_score, s.last_score, u.nickname " + "FROM score s "
+				+ "INNER JOIN user_cinerea u ON s.id_user = u.id_user_cinerea";
 
 		try (Connection connection = DatabaseConnection.getConnection();
 				Statement st = connection.createStatement();
@@ -32,10 +31,10 @@ public class ScoreRepository {
 			while (rs.next()) {
 				Score score = new Score(rs.getInt("id_score"), rs.getInt("id_user"), rs.getInt("best_score"),
 						rs.getInt("last_score"));
-						
+
 				// inyectamos el nombre del usuario
 				score.setNickname(rs.getString("nickname"));
-				
+
 				scores.add(score);
 			}
 

@@ -1,21 +1,24 @@
 package views;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import controllers.SettingsController;
 import controllers.TutorialController;
 
-public class TutorialWindow extends JFrame {
+public class TutorialWindow extends JDialog {
 
 	private TutorialView TutorialView;
 
 	public TutorialWindow() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/assets/img/pixeles.png"));
 		setTitle("Cinerea – Tutorial");
-		setSize(600, 520);
+		setSize(600, 700);
+		setMinimumSize(new Dimension(600, 700));
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setModal(true);
 
 		TutorialView = new TutorialView(this);
 		add(TutorialView);

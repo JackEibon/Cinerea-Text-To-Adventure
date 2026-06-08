@@ -20,10 +20,9 @@ public class ConfigRepository {
 
 	public List<Config> getConfigs() throws IOException {
 		List<Config> configs = new ArrayList<Config>();
-		
-		String sql = "SELECT c.id_config, c.id_user, c.setting_key, c.setting_value, u.nickname " +
-					 "FROM configuration c " +
-					 "INNER JOIN user_cinerea u ON c.id_user = u.id_user_cinerea";
+
+		String sql = "SELECT c.id_config, c.id_user, c.setting_key, c.setting_value, u.nickname "
+				+ "FROM configuration c " + "INNER JOIN user_cinerea u ON c.id_user = u.id_user_cinerea";
 
 		try (Connection connection = DatabaseConnection.getConnection();
 				Statement st = connection.createStatement();
@@ -32,10 +31,10 @@ public class ConfigRepository {
 			while (rs.next()) {
 				Config config = new Config(rs.getInt("id_config"), rs.getInt("id_user"), rs.getString("setting_key"),
 						rs.getString("setting_value"));
-						
+
 				// inyectamos el nombre del usuario
 				config.setNickname(rs.getString("nickname"));
-				
+
 				configs.add(config);
 			}
 

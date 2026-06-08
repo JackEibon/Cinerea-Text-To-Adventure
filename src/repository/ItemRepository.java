@@ -26,8 +26,8 @@ public class ItemRepository {
 				ResultSet rs = st.executeQuery("SELECT * FROM item");) {
 
 			while (rs.next()) {
-				Item item = new Item(rs.getInt("id_item"), rs.getString("item_name"),
-						rs.getString("description"),rs.getString("item_tags"));
+				Item item = new Item(rs.getInt("id_item"), rs.getString("item_name"), rs.getString("description"),
+						rs.getString("item_type"));
 				items.add(item);
 			}
 
@@ -104,25 +104,19 @@ public class ItemRepository {
 
 		return false;
 	}
-	
-	public List<String> getItemNames() {//used mainly to load images
-	    List<String> names = new ArrayList<>();
-	    String sql ="SELECT item_name FROM item";
-	    try (
-	        Connection connection =
-	            DatabaseConnection.getConnection();
-	        Statement st =
-	            connection.createStatement();
-	        ResultSet rs =
-	            st.executeQuery(sql);
-	    ) { while (rs.next()) {
-	            names.add(
-	                rs.getString("item_name")
-	            );
-	        }
-	    } catch (SQLException ex) {
-	        ex.printStackTrace();
-	    }
-	    return names;
+
+	public List<String> getItemNames() {// used mainly to load images
+		List<String> names = new ArrayList<>();
+		String sql = "SELECT item_name FROM item";
+		try (Connection connection = DatabaseConnection.getConnection();
+				Statement st = connection.createStatement();
+				ResultSet rs = st.executeQuery(sql);) {
+			while (rs.next()) {
+				names.add(rs.getString("item_name"));
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return names;
 	}
 }

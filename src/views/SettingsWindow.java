@@ -1,10 +1,10 @@
 package views;
 
 import java.awt.Toolkit;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import controllers.SettingsController;
 
-public class SettingsWindow extends JFrame {
+public class SettingsWindow extends JDialog {
 
 	private SettingsView settingsView;
 
@@ -14,7 +14,8 @@ public class SettingsWindow extends JFrame {
 		setSize(600, 520);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setModal(true);
 
 		settingsView = new SettingsView(this);
 		add(settingsView);

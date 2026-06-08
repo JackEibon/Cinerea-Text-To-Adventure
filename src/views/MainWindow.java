@@ -90,6 +90,9 @@ public class MainWindow extends JFrame {
 		int x = Integer.parseInt(prefs.getProperty("window.x", "-1"));
 		int y = Integer.parseInt(prefs.getProperty("window.y", "-1"));
 		setSize(width, heigth);
+		
+		setMinimumSize(new Dimension(800, 600));
+		
 		if (x == -1 || y == -1)
 			setLocationRelativeTo(null);
 		else

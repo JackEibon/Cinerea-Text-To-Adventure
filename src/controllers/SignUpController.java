@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JComboBox;
@@ -16,6 +18,7 @@ import models.User;
 import repository.UserRepository;
 import utils.PasswordUtils;
 import views.LoginWindow;
+import views.MainWindow;
 import views.SignUpView;
 
 public class SignUpController {
@@ -30,6 +33,18 @@ public class SignUpController {
 	}
 
 	private void registerListeners() {
+		
+		this.view.getWindow().addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		    	int option = JOptionPane.showConfirmDialog(view.getWindow(), "Cancel Operation?");
+
+				if (option == JOptionPane.YES_OPTION) {
+					view.getWindow().dispose();
+					new LoginWindow();
+				}
+		    }
+		});
 
 		view.getTxtEmail().getDocument().addDocumentListener(new DocumentListener() {
 			@Override
@@ -123,7 +138,6 @@ public class SignUpController {
 	private void registerUser(User user) {
 		try {
 			repository.save(user);
-			JOptionPane.showMessageDialog(view, "Saved");
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(view, e.getMessage());
 		}
@@ -231,7 +245,7 @@ public class SignUpController {
 
 			registerUser(user);
 
-			JOptionPane.showMessageDialog(view.getWindow(), "Character Created: " + view.getTxtNickname().getText());
+			JOptionPane.showMessageDialog(view.getWindow(), "Sign In Succesful");
 			new LoginWindow();
 			view.getWindow().dispose();
 			return;

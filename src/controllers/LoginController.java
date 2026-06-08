@@ -42,6 +42,23 @@ public class LoginController {
 				handle();
 			}
 		});
+		
+		view.getTxtPassword().getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				handle();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				handle();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				handle();
+			}
+		});
 
 		view.getBtnLogin().addActionListener(e -> {
 			try {
@@ -65,7 +82,7 @@ public class LoginController {
 			if (validateAndShow(user)) {
 
 			}
-		} catch (InvalidUserException | InvalidPasswordException e) {
+		} catch (InvalidUserException | InvalidPasswordException e) { //Aqui usamos las excepciones personalizadas
 			view.getErrPassword().setText("Invalid Credentials");
 			view.getErrPassword().setVisible(true);
 		}
