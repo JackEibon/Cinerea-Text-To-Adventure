@@ -17,10 +17,10 @@ public class LoginWindow extends JFrame {
 		Image myIcon = tk.getImage("src/assets/img/pixeles.png");
 
 		setIconImage(myIcon);
-		setTitle("Login");
+		setTitle("Cinerea - Login");
 		setSize(630, 680);
 		setLocationRelativeTo(null);
-		setResizable(true);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		loginView = new LoginView(this);

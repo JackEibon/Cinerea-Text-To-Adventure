@@ -89,7 +89,6 @@ public class UserRepository {
 			int affectedRows = pst.executeUpdate();
 
 			if (affectedRows > 0) {
-				System.out.println("User added successfully");
 				return true;
 			}
 

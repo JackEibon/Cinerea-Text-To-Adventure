@@ -19,11 +19,11 @@ public class SignUpWindow extends JFrame {
 		Image myIcon = tk.getImage("src/assets/img/pixeles.png");
 		setIconImage(myIcon);
 
-		setTitle("Sign Up");
+		setTitle("Cinerea - Sign Up");
 		setSize(620, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 		signUpView = new SignUpView(this);
 		add(signUpView);
