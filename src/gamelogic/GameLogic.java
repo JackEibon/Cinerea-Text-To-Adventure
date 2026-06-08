@@ -19,8 +19,8 @@ public class GameLogic {
     private String lastTarget = "";
     private static CharSheet player;
     private Timer worldTime; 
-    private static int  minitick=0,tick = 1, tack = 1, tock = 1, dayEnd = 0, nightEnd = 0, nigthHP=670, countingScore;
-    private boolean night=false, set1=false, set2=false, set3=false;
+    private static int  minitick=0,tick = 1, tack = 1, tock = 1, dayEnd = 0, nightEnd = 0, nigthHP=680, countingScore;
+    private boolean night=false;
 
   //  public static GameCanvas canvas= new GameCanvas();
     /* =========================================================
