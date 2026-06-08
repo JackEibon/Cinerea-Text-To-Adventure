@@ -22,6 +22,7 @@ public class NewItem {
 	        Connection connection = DatabaseConnection.getConnection();
 	        PreparedStatement pst = connection.prepareStatement(sql); //as teached by chatgpt
 	    ) {
+
 	        pst.setString(1, itemName); //the number is the index, so if you have 2 "?" question marks, the first is with one, the second is with 2
 	        ResultSet rs = pst.executeQuery();
 	        if (rs.next()) {
@@ -29,7 +30,7 @@ public class NewItem {
 	                rs.getInt("id_item"),
 	                rs.getString("item_name"),
 	                rs.getString("description"),
-	                rs.getString("item_type")
+	                rs.getString("item_tags")
 	            );
 	        }
 
@@ -48,7 +49,7 @@ public class NewItem {
 				ResultSet rs = st.executeQuery("SELECT * FROM item WHERE id_item = " + id);) 
 		{
 			item= new Item(rs.getInt("id_item"), rs.getString("item_name"),
-						rs.getString("description"),rs.getString("item_type"));
+						rs.getString("description"),rs.getString("item_tags"));
 			} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
