@@ -42,13 +42,7 @@ public class GameView extends JPanel {
 		setBackground(Color.BLACK);
 		GameCanvas canvas = new GameCanvas(player,world);  
 		add(canvas, BorderLayout.EAST);
-		// add(item2,x.);
-		// add(item3,x.);
-		// add(item4,x.);
-		// add(item5,x.);
-		// add(item6,x.);
-
-		// Hidden input
+		
 		hiddenInput.setOpaque(false);
 		hiddenInput.setForeground(new Color(0, 0, 0, 0));
 		hiddenInput.setCaretColor(new Color(0, 0, 0, 0));
@@ -93,8 +87,8 @@ public class GameView extends JPanel {
 		minimap.setPreferredSize(new Dimension(220, 200));
 		minimap.setFont(new Font("Consolas", Font.BOLD, 16));
 		minimap.setBorder(null);
-		// add(minimap,BorderLayout.EAST);
-		// Repaint while typing
+
+
 		hiddenInput.addKeyListener(new java.awt.event.KeyAdapter() {
 			@Override
 			public void keyReleased(java.awt.event.KeyEvent e) {

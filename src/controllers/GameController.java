@@ -44,8 +44,8 @@ public class GameController implements ActionListener {
 		        );
 		        
 		        if (option == JOptionPane.YES_OPTION) {
-		        	new MainWindow();
 		        	window.dispose();
+		        	new MainWindow();
 		        }
 		    }
 		});
@@ -63,13 +63,12 @@ public class GameController implements ActionListener {
 		view.hiddenInput.setText("");
 		view.reader.repaint();	
 	}
-		//else 
+		//else
 		//{
 			//response= logic.execute("GAME OVER");
 			//appendText(response);
 		//}
-		
-		
+	
 	//}
 
 	public void appendText(String text) {
